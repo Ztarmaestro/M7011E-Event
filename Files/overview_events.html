@@ -1,10 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Welcome to #Event</title>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <!-- Optional custom theme -->
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .carousel-inner > .item > img {
+            height: 500px;
+            width: 500px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .top-buffertop {
+            margin-top:100px;
+        }
+        .top-bufferbottom {
+            margin-bottom: 100px;
+        }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+
 </head>
-<body>
-Show events here!
-</body>
-</html>
+
+<!-- NAVBAR
+================================================== -->
+
+    <nav class="navbar-wrapper">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <nav class="navbar navbar-default">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/Files/index.html">#Event</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="/Files/overview_events.html">Events</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-form navbar-left" role="search" action="/Files/search_result.html">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Files/about.html">Om oss</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+
+            </nav>
+        </div>
+    </nav>
+
+<!--- SIDOMENY
+============================================================================================= -->
+    
+    <nav class="Side-meny">
+        <div class="col-xs-4 col-sm-2 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="#" class="list-group-item">Dina Evenemang</a>
+            <a href="#" class="list-group-item">Alla Evenemang(här)</a>
+            <a href="#" class="list-group-item">Evenemang nära dig</a>
+            <a href="#" class="list-group-item">Inbjudningar</a>
+            <a href="/Files/create_event.html" class="list-group-item">Skapa ett Evenemang</a>  
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+    </nav>
+    
+
+<!--- EVENT FLÖDET
+=================================================================================-->
+    
+    <nav class="Event-flow">
+        <div class="col-xs-10 col-sm-7" id="flow">
+            <a href="#" class="list-group-item">HEJ</a>
+        </div>
+    </nav>
+    
+    
+<!--- SKAPA EVENT KNAPPEN
+=================================================================================-->
+    
+    <nav class="Create-event-button">
+        <div class="col-xs-4 col-sm-2 sidebar-offcanvas" id="button">
+            <p><a class="btn btn-primary btn-lg" href="/Files/create_event.html" role="button">+ Skapa event</a></p>
+        </div>
+    </nav>
