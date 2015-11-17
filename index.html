@@ -8,6 +8,9 @@
 
     <title>Welcome to #Event</title>
 
+    <!-- Glyphicons library -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -29,7 +32,7 @@
             margin: 0 auto;
         }
         .top-buffertop {
-            margin-top:100px;
+            margin-top: 100px;
         }
         .top-bufferbottom {
             margin-bottom: 100px;
@@ -78,18 +81,20 @@
                         </li>
                     </ul>
 
-                    <form class="navbar-form navbar-left" role="search" action="/Files/search_result.html">
+                    <form class="navbar-form navbar-left" role="search" action="Files/search_result.html">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
                     </form>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
+                                <li><a href="Files/profile.html">Profile</a></li>
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something else here</a></li>
                                 <li role="separator" class="divider"></li>
@@ -245,11 +250,15 @@
         <!-- /END THE FEATURETTES -->
 
         <!-- FOOTER -->
+        <div class="top-bufferbottom">
         <footer>
             <p class="pull-right"><a href="#">Back to top</a></p>
             <p>&copy; 2015 Erik K. & Louise O. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            <a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+            <a href="#"><i class="fa fa-2x fa-github-square" style="color:black"></i></a>
+            <a href="#"><i class="fa fa-2x fa-twitter-square" style="color:deepskyblue"></i></a>
         </footer>
-
+        </div>
     </div><!-- /.container -->
 
 <body>
