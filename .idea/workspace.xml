@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9aecc69-b159-4101-a23a-34d5075aaafd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/googlemap.html" afterPath="$PROJECT_DIR$/Files/googlemap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Event.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.75">
-              <caret line="35" column="9" selection-start-line="33" selection-start-column="8" selection-end-line="35" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.5981595">
+              <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#i#0;n#a#1;n#footer#0;n#div#4;n#div#1;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#a#2;n#footer#0;n#div#4;n#div#1;n#html#0;n#!!top" expanded="true" />
@@ -46,13 +47,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="googlemap.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="googlemap.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Files/googlemap.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2530675">
-              <caret line="11" column="99" selection-start-line="11" selection-start-column="99" selection-end-line="11" selection-end-column="99" />
+            <state vertical-scroll-proportion="-5.0">
+              <caret line="8" column="104" selection-start-line="8" selection-start-column="104" selection-end-line="8" selection-end-column="104" />
               <folding>
-                <element signature="n#style#0;n#iframe#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#iframe#0;n#head#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,10 +140,10 @@
         <option value="$PROJECT_DIR$/Files/header.html" />
         <option value="$PROJECT_DIR$/Files/create_event.html" />
         <option value="$PROJECT_DIR$/Files/overview_events.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Files/search_result.html" />
         <option value="$PROJECT_DIR$/Files/profile.html" />
         <option value="$PROJECT_DIR$/Files/googlemap.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -458,17 +459,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.75">
-          <caret line="35" column="9" selection-start-line="33" selection-start-column="8" selection-end-line="35" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#a#1;n#footer#0;n#div#4;n#div#1;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#2;n#footer#0;n#div#4;n#div#1;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Files/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.166666">
@@ -479,10 +469,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Files/googlemap.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2530675">
-          <caret line="11" column="99" selection-start-line="11" selection-start-column="99" selection-end-line="11" selection-end-column="99" />
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="8" column="104" selection-start-line="8" selection-start-column="104" selection-end-line="8" selection-end-column="104" />
           <folding>
-            <element signature="n#style#0;n#iframe#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#head#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5981595">
+          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#a#1;n#footer#0;n#div#4;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#2;n#footer#0;n#div#4;n#div#1;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
