@@ -18,7 +18,7 @@ var templates = template.Must(template.ParseGlob("Event/templates/*"))
 
 func main() {
 	// Instantiate a new router
-	bindAddr := "130.240.170.50:80"
+	bindAddr := "192.168.1.82:8080"
 	r := httprouter.New()
 	r.NotFound = http.FileServer(http.Dir("static/"))
 	r.GET("/", indexHandler)
