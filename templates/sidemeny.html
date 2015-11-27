@@ -1,4 +1,4 @@
-{{define "content"}}
+{{define "sidemeny"}}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>Welcome to #Event</title>
+
+    <!-- Glyphicons library -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -31,53 +34,30 @@
             margin: 0 auto;
         }
         .top-buffertop {
-            margin-top:100px;
+            margin-top: 100px;
         }
         .top-bufferbottom {
             margin-bottom: 100px;
         }
+
     </style>
 
     <!-- Custom styles for this template -->
     <link href="carousel.css" rel="stylesheet">
 
 </head>
-
-<!--- SIDOMENY
-============================================================================================= -->
-   <!---- 
-    <nav class="Side-meny">
+    
+<!---------------------------- SIDE MENY ----------------------------->    
+ <nav>
         <div class="col-xs-4 col-sm-2 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
-            <a href="#" class="list-group-item">Your events</a>
-            <a href="#" class="list-group-item">All events(här)</a>
+            <a href="#" class="list-group-item">Your events(här)</a>
+            <a href="/events" class="list-group-item">All events</a>
             <a href="#" class="list-group-item">Events close to you</a>
             <a href="#" class="list-group-item">Invites</a>
-            <a href="/createevent" class="list-group-item">Create a event</a>
+            <a href="/create_event" class="list-group-item">Create a event</a>
           </div>
-        </div><!--/.sidebar-offcanvas
-    </nav>
- ----->
-    
-    {{template "sidemeny"}}
-    
-
-<!--- EVENT FLÖDET
-=================================================================================-->
-    
-    <nav class="Event-flow">
-        <div class="col-xs-10 col-sm-7" id="flow">
-            <a href="#" class="list-group-item">HEJ</a>
-        </div>
-    </nav>
-
-<!--- SKAPA EVENT KNAPPEN
-=================================================================================-->
-    
-    <nav class="Create-event-button">
-        <div class="col-xs-4 col-sm-2 sidebar-offcanvas" id="button">
-            <p><a class="btn btn-primary btn-lg" href="/createevent" role="button">+ Skapa event</a></p>
-        </div>
+        </div><!--/.sidebar-offcanvas-->
     </nav>
 
 <body>
@@ -87,5 +67,5 @@
 
 </body>
 </html>
-
+    
 {{end}}
