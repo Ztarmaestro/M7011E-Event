@@ -27,10 +27,15 @@ func main() {
 
 	r := httprouter.New()
 	r.NotFound = http.FileServer(http.Dir("Event/"))
+
+	//Handlers for differnt pages
 	r.GET("/", indexHandler)
 	r.GET("/events", eventHandler)
     r.GET("/profile", profileHandler)
-    r.GET("/createevent", createHandler)
+    r.GET("/create_event", createHandler)
+    r.GET("/about", aboutHandler)
+    r.GET("/search_result", searchHandler)
+
 	fmt.Println("Server running on", bindAddr)
 	log.Fatal(http.ListenAndServe(bindAddr, r))
 }
@@ -86,7 +91,6 @@ func eventHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 }
 
-
 func profileHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     // you access the cached templates with the defined name, not the filename
@@ -107,7 +111,6 @@ func profileHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 
 }
 
-
 func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     // you access the cached templates with the defined name, not the filename
@@ -117,6 +120,46 @@ func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
 	pageNavbar := "Event/templates/navbar.html"
 
 	pageTemplate := "Event/templates/create_event.html"
+
+	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+		// Something gnarly happened.
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	} else {
+		// return to client via t.Execute
+		t.Execute(w, nil)
+	}
+
+}
+
+func abouteHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+
+    // you access the cached templates with the defined name, not the filename
+
+    pagePath := "Event/templates/main.html"
+	pageFooter := "Event/templates/footer.html"
+	pageNavbar := "Event/templates/navbar.html"
+
+	pageTemplate := "Event/templates/about.html"
+
+	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+		// Something gnarly happened.
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	} else {
+		// return to client via t.Execute
+		t.Execute(w, nil)
+	}
+
+}
+
+func searchHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+
+    // you access the cached templates with the defined name, not the filename
+
+    pagePath := "Event/templates/main.html"
+	pageFooter := "Event/templates/footer.html"
+	pageNavbar := "Event/templates/navbar.html"
+
+	pageTemplate := "Event/templates/search_result.html"
 
 	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
 		// Something gnarly happened.
