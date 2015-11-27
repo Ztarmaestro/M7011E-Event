@@ -30,7 +30,7 @@ func main() {
 	r.GET("/", indexHandler)
 	r.GET("/events", eventHandler)
     r.GET("/profile", profileHandler)
-    r.GET("/createevent" createHandler)
+    r.GET("/createevent", createHandler)
 	fmt.Println("Server running on", bindAddr)
 	log.Fatal(http.ListenAndServe(bindAddr, r))
 }
