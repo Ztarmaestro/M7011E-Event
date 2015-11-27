@@ -131,7 +131,7 @@ func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
 
 }
 
-func abouteHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func aboutHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     // you access the cached templates with the defined name, not the filename
 
