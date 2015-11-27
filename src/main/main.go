@@ -118,10 +118,11 @@ func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
     pagePath := "Event/templates/main.html"
 	pageFooter := "Event/templates/footer.html"
 	pageNavbar := "Event/templates/navbar.html"
+	pageSidebar := "Event/templates/sidemeny.html"
 
 	pageTemplate := "Event/templates/create_event.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageSidebar, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
