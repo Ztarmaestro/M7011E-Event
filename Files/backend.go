@@ -2,7 +2,7 @@ func main() {
 	// Instantiate a new router
 
 	//Real address for server, change back before pushing to git 
-	bindAddr := "130.240.170.56:8080"
+	bindAddr := "130.240.170.56:8000"
 
 	//Address for testing server on LAN
 	//bindAddr := "127.0.0.1:8080"
