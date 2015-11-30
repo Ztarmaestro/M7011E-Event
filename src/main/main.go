@@ -96,7 +96,7 @@ func profileHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 
 	pageTemplate := "Event/templates/profile.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
