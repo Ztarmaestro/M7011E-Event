@@ -1,17 +1,24 @@
-{{define "content"}}
+{{define "eventform"}} 
 
-<!--- SIDO MENY
-=================================================================================-->
-
-{{template "sidemeny"}}
-    
-<!--- EVENT FLÖDET
+<!-- SKAPA EVENT KNAPPEN
 =================================================================================-->
     
-    <nav class="Event-flow">
-        <div class="col-xs-4 col-sm-8" id="create-event">
-            
-            <form class="form-horizontal" role="form">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  + Skapa event
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+    
+        <form class="form-horizontal" role="form">
                 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="event">Event:</label>
@@ -47,16 +54,14 @@
                         <br><textarea placeholder="Enter information about your event" rows="4" cols="36"></textarea>
                     </div>
                 </div>
-                
-                <div class="form-group"> 
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <a class="btn btn-default" href="/Files/overview_events.html" role="button">Cancel</a>
-                        <a class="btn btn-default" href="/Files/your_events.html" role="button">Create</a>
-                    </div>
-                </div>
-                
-            </form>
-        </div>
-    </nav> 
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{end}}

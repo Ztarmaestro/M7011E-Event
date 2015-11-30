@@ -114,8 +114,9 @@ func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
 	pageSidemeny := "Event/templates/sidemeny.html"
 
 	pageTemplate := "Event/templates/create_event.html"
+	pageEventbutton := "Event/templates/create_event_form.html"
 
-	if t, err := template.ParseFiles(pagePath, pageSidemeny, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageEventbutton, pageSidemeny, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
