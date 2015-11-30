@@ -56,12 +56,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
     // you access the cached templates with the defined name, not the filename
 
     pagePath := "Event/templates/main.html"
-	pageFooter := "Event/templates/footer.html"
-	pageNavbar := "Event/templates/navbar.html"
 
 	pageTemplate := "Event/templates/startpage.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
@@ -76,12 +74,11 @@ func eventHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
     // you access the cached templates with the defined name, not the filename
 
     pagePath := "Event/templates/main.html"
-	pageFooter := "Event/templates/footer.html"
-	pageNavbar := "Event/templates/navbar.html"
 
+	pageSidemeny := "Event/templates/sidemeny.html"
 	pageTemplate := "Event/templates/overview_events.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageSidemeny, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
@@ -96,12 +93,10 @@ func profileHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
     // you access the cached templates with the defined name, not the filename
 
     pagePath := "Event/templates/main.html"
-	pageFooter := "Event/templates/footer.html"
-	pageNavbar := "Event/templates/navbar.html"
 
 	pageTemplate := "Event/templates/profile.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
@@ -116,12 +111,11 @@ func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
     // you access the cached templates with the defined name, not the filename
 
     pagePath := "Event/templates/main.html"
-	pageFooter := "Event/templates/footer.html"
-	pageNavbar := "Event/templates/navbar.html"
+	pageSidemeny := "Event/templates/sidemeny.html"
 
 	pageTemplate := "Event/templates/create_event.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageSidemeny, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
@@ -136,12 +130,10 @@ func aboutHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
     // you access the cached templates with the defined name, not the filename
 
     pagePath := "Event/templates/main.html"
-	pageFooter := "Event/templates/footer.html"
-	pageNavbar := "Event/templates/navbar.html"
 
 	pageTemplate := "Event/templates/about.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
@@ -156,12 +148,10 @@ func searchHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
     // you access the cached templates with the defined name, not the filename
 
     pagePath := "Event/templates/main.html"
-	pageFooter := "Event/templates/footer.html"
-	pageNavbar := "Event/templates/navbar.html"
 
 	pageTemplate := "Event/templates/search_result.html"
 
-	if t, err := template.ParseFiles(pagePath, pageFooter, pageNavbar, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
