@@ -133,20 +133,20 @@ func (fn handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	This function lists all users from the db
 */
 func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	rows, err := con.Query("select name, uid from Users")
+	rows, err := db.Query("select name, uid from Users")
 	if err != nil {
 		return nil, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		//log.Printf("No user with that ID")
 	}
 
-	var result []User // create an array of stairs
+	var result []User // create an array of users
 	var uid uint64
 	var name string
 
@@ -172,13 +172,14 @@ func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handler
 func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
 	//mux.Vars(r)["id"] grabs variables from the path
 	param := mux.Vars(r)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	row, err := con.Query("select * from Users where idToken =?", param)
+	row, err := db.Query("select * from Users where idToken =?", param)
 	if err == sql.ErrNoRows {
 		log.Printf("No user with that ID")
 	}
@@ -226,12 +227,12 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	if e != nil {
 		return Stair{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
-	defer con.Close()
-	row, _ := con.Query("select count(*) from Users where idToken=?", payload.IdToken)
+	defer db.Close()
+	row, _ := db.Query("select count(*) from Users where idToken=?", payload.IdToken)
 	var count int
 	for row.Next() {
 		row.Scan(&count)
@@ -242,7 +243,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 
 	}
 
-	_, err = con.Exec("insert into Users( name, lastname, idToken, photo) values(?,?,?,?)", payload.FirstName, payload.LastName, payload.IdToken, payload.Photo)
+	_, err = db.Exec("insert into Users( name, lastname, idToken, photo) values(?,?,?,?)", payload.FirstName, payload.LastName, payload.IdToken, payload.Photo)
 
 	if err != nil {
 		return nil, &handlerError{err, "Error adding to DB", http.StatusInternalServerError}
@@ -270,7 +271,7 @@ func removeUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerEr
 }
 
 /*
-	Add stair to DB
+	Add event to DB
 	Function to add a stair to the db
 */
 func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
@@ -319,15 +320,15 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	// adds the header from the website again
 	payload.Photo = a[0] + "," + payload.Photo
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
-	defer con.Close()
+	defer db.Close()
 
 	//inputs the stair to the db
-	_, err = con.Exec("insert into Stairs(position, stairname, description, uid, photo) values(?,?,?,?,?)", payload.Position, payload.Name, payload.Description, payload.User, payload.Photo)
+	_, err = db.Exec("insert into Event(position, eventname, description, uid, photo) values(?,?,?,?,?)", payload.Position, payload.Name, payload.Description, payload.User, payload.Photo)
 
 	if err != nil {
 
@@ -389,15 +390,14 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 
 	// adds the header from the website again
 	payload.Preview = a[0] + "," + payload.Preview
-
-	con, err := sql.Open("mymysql", "tcp:localhost:3306*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
-	defer con.Close()
+	defer db.Close()
 
-	_, err = con.Exec("insert into Photos(user_id,stair_id,photo_base64,preview) values(?,?,?,?)", payload.UserId, payload.StairId, payload.Picture, payload.Preview)
+	_, err = db.Exec("insert into Photos(user_id,event_id,photo_base64,preview) values(?,?,?,?)", payload.UserId, payload.EventId, payload.Picture, payload.Preview)
 
 	if err != nil {
 
@@ -411,20 +411,20 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 }
 
 /*
-	Get stair from DB
-	Grabs a stair from the db.
+	Get event from DB
+	Grabs a event from the db.
 */
 
 func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	row, err := con.Query("select id, position, stairname, uid from Stairs where uid =?", param)
+	row, err := db.Query("select id, position, stairname, uid from Stairs where uid =?", param)
 	if err == sql.ErrNoRows {
 		return nil, &handlerError{err, "Error no stairs found", http.StatusBadRequest}
 		//log.Printf("No user with that ID")
@@ -434,22 +434,23 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 		//panic(err)
 	}
-	var position, stairname string
+	var position, eventname string
 	var uid, id uint64
-	var result []Stair
+	var result []Event
 	for row.Next() {
 
-		stair := new(Stair)
-		if err := row.Scan(&id, &position, &stairname, &uid); err != nil {
+		event := new(Event)
+		if err := row.Scan(&id, &position, &eventname, &uid); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
 		}
 
-		stair.Id = id
-		stair.Name = stairname
-		stair.User = uid
-		stair.Position = position
-		result = append(result, *stair)
+		event.Id = id
+		event.Name = eventname
+		event.User = uid
+		event.Position = position
+
+		result = append(result, *event)
 
 	}
 
@@ -458,38 +459,39 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 }
 
 /*
-	Get all stairs from DB
-	Returns all the stairs in the db
+	Get all events from DB
+	Returns all the events in the db
 */
 func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	rows, err := con.Query("select id, position, stairname, uid from Stairs")
+	rows, err := db.Query("select id, position, eventname, uid from Event")
 	if err != nil {
 		return nil, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		//log.Printf("No user with that ID")
 	}
 
-	var result []Stair // create an array of stairs
+	var result []Event // create an array of Event
 	var id, user uint64
-	var position, stairname string
+	var position, eventname string
 
 	for rows.Next() {
-		stair := new(Stair)
-		err = rows.Scan(&id, &position, &stairname, &user)
+		event := new(Event)
+		err = rows.Scan(&id, &position, &eventname, &user)
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
-		stair.Id = id
-		stair.Position = position
-		stair.Name = stairname
-		stair.User = user
-		result = append(result, *stair)
+		event.Id = id
+		event.Position = position
+		event.Name = eventname
+		event.User = user
+
+		result = append(result, *event)
 	}
 
 	return result, nil
@@ -501,13 +503,13 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 */
 func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	row, err := con.Query("select * from Photos where photo_id =?", param)
+	row, err := db.Query("select * from Photos where photo_id =?", param)
 	if err == sql.ErrNoRows {
 		log.Printf("No photo with that ID")
 	}
@@ -540,16 +542,16 @@ func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 */
 func retriveUserPictures(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	row, err := con.Query("select * from Photos where user_id =?", param)
+	row, err := db.Query("select * from Photos where user_id =?", param)
 	if err == sql.ErrNoRows {
-		return nil, &handlerError{err, "Error commenting on Stair", http.StatusBadRequest}
+		return nil, &handlerError{err, "Error commenting on Event", http.StatusBadRequest}
 
 	}
 
@@ -580,21 +582,20 @@ func retriveUserPictures(rw http.ResponseWriter, req *http.Request) (interface{}
 }
 
 /*
-	Retrive a stairs pictures
-	Retruves a stairs pictures
+	Retrive a events pictures
 */
 func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	row, err := con.Query("select * from Photos where stair_id =?", param)
+	row, err := db.Query("select * from Photos where event_id =?", param)
 	if err == sql.ErrNoRows {
-		return nil, &handlerError{err, "Error commenting on Stair", http.StatusBadRequest}
+		return nil, &handlerError{err, "Error commenting on Event", http.StatusBadRequest}
 
 	}
 
@@ -624,85 +625,20 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 }
 
 /*
-	Retrive a stair and Rating from the db
-*/
-
-func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
-	param := mux.Vars(req)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
-	if err != nil {
-		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
-		log.Fatal(err)
-	}
-	defer con.Close()
-
-	row, err := con.Query("select id, position, stairname, description, uid from Stairs where id =?", param)
-	if err == sql.ErrNoRows {
-		return nil, &handlerError{err, "Error stair not found", http.StatusBadRequest}
-
-	}
-
-	if err != nil {
-		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
-		//panic(err)
-	}
-
-	stair := new(Stair)
-	for row.Next() {
-		var position, stairname, description string
-		var uid, id uint64
-
-		if err := row.Scan(&id, &position, &stairname, &description, &uid); err != nil {
-			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
-			//log.Fatal(err)
-		}
-
-		stair.Id = id
-		stair.Name = stairname
-		//stair.Photo = photo
-		stair.User = uid
-		stair.Description = description
-		stair.Position = position
-
-	}
-
-	q2, err := con.Query("SELECT AVG(rating) FROM Rating where stair_id =?", param)
-
-	if err == sql.ErrNoRows {
-		return nil, &handlerError{err, "Error rating not found", http.StatusBadRequest}
-	}
-
-	if err != nil {
-		return nil, &handlerError{err, "Internal Error when req  rating DB", http.StatusInternalServerError}
-		//panic(err)
-	}
-	for q2.Next() {
-		var average float64
-		if err := q2.Scan(&average); err != nil {
-			return stair, nil
-		}
-		stair.Average = average
-
-	}
-
-	return stair, nil
-}
-
-/*
-	Retrive a stairs preview pictures from the db
+	Retrive a events preview pictures from the db
 */
 func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer db.Close()
 
-	row, err := con.Query("select preview, photo_id from Photos where stair_id =?", param)
+	row, err := db.Query("select preview, photo_id from Photos where event_id =?", param)
 	if err == sql.ErrNoRows {
-		return nil, &handlerError{err, "Error commenting on Stair", http.StatusBadRequest}
+		return nil, &handlerError{err, "Error commenting on Event", http.StatusBadRequest}
 
 	}
 
@@ -731,7 +667,7 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 
 /*
 	Retrive a users pictures previews from the db
-*/
+
 func retriveUserPicturesPreview(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
 	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
@@ -769,22 +705,23 @@ func retriveUserPicturesPreview(rw http.ResponseWriter, req *http.Request) (inte
 
 	return result, nil
 }
+*/
 
 /*
-	Retrive a stairs photo
+	Retrive a event photo
 */
 func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	con, err := sql.Open("mymysql", "tcp:130.240.170.56:8000*M7011E/root/jaam")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer con.Close()
+	defer dv.Close()
 
-	row, err := con.Query("select photo from Stairs where id =?", param)
+	row, err := dv.Query("select photo from Event where id =?", param)
 	if err == sql.ErrNoRows {
-		return nil, &handlerError{err, "Error stair not found", http.StatusBadRequest}
+		return nil, &handlerError{err, "Error event not found", http.StatusBadRequest}
 		//log.Printf("No user with that ID")
 	}
 
@@ -793,7 +730,7 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 		//panic(err)
 	}
 
-	stair := new(Stair)
+	event := new(Event)
 	for row.Next() {
 		var photo string
 
@@ -801,14 +738,12 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
 		}
-		stair.Photo = photo
+		event.Photo = photo
 
 	}
 
-	return stair, nil
+	return event, nil
 }
-
-
 
 func main() {
 	// command line flags

@@ -60,7 +60,7 @@ function getEvent(id, marker, action){
         }
       }else{ 
         
-        console.log('Finish loading stair: ' + obj); 
+        console.log('Finish loading event: ' + obj); 
         appendToMarker(obj, marker);
       }
     }else{
@@ -71,7 +71,7 @@ function getEvent(id, marker, action){
     console.log('Begun loading pic');
     xmlHttp.open( "GET", "http://130.240.170.56:8000/stair/photo/"+id, false );   
   }else{
-    console.log('Loading stair only');
+    console.log('Loading event only');
      xmlHttp.open( "GET", "http://130.240.170.56:8000/stair/"+id, false );
   }
   xmlHttp.send( null ); 
