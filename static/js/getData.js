@@ -11,14 +11,14 @@ function getLocations(recData, status, stairID)
         loadMap(obj);  
         
     }else{
-      return "TOMTE";
+      return "Error";
     }
   };
   xmlHttp.open( "GET", "http://130.240.170.56/stairs", false );   
   xmlHttp.send( null );
 }
 
-function getUserStairs(user_id){
+function getUserEvent(user_id){
    var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
@@ -27,7 +27,7 @@ function getUserStairs(user_id){
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);  
     }else{
-      return "TOMTE";
+      return "Error";
     }
   };
   
@@ -46,34 +46,16 @@ function getEvent(id, marker, action){
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);  
         console.log(obj);
-      if(marker.photo == '' || action == 'user'){
-        if(action == 'user'){
-            //appendToMarker(obj,'');
-            marker = obj;
-            marker.id = id;
-            getStair(marker.id, marker, '');
-            return;
-        }else{
-        //console.log('Finish loading pic');
-        marker.photo = obj.photo;
-        getStair(marker.id, marker); 
-        }
       }else{ 
         
         console.log('Finish loading event: ' + obj); 
         appendToMarker(obj, marker);
       }
     }else{
-      return "TOMTE";
+      return "Error";
     }
   };
-  if(marker.photo == '' || action == 'user'){
-    console.log('Begun loading pic');
-    xmlHttp.open( "GET", "http://130.240.170.56:8000/stair/photo/"+id, false );   
-  }else{
-    console.log('Loading event only');
-     xmlHttp.open( "GET", "http://130.240.170.56:8000/stair/"+id, false );
-  }
+  xmlHttp.open( "GET", "http://130.240.170.56:8000/event/"+id, false );
   xmlHttp.send( null ); 
 }
 

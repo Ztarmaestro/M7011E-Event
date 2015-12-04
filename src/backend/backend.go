@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	_ "github.com/ziutek/mymysql/godrv"
+	//_ "github.com/ziutek/mymysql/godrv"
 	"io/ioutil"
 	"log"
 	//"math"
@@ -133,7 +133,7 @@ func (fn handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	This function lists all users from the db
 */
 func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -172,7 +172,7 @@ func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handler
 func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
 	//mux.Vars(r)["id"] grabs variables from the path
 	param := mux.Vars(r)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	
 	if err != nil {
 		log.Fatal(err)
@@ -227,7 +227,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	if e != nil {
 		return Stair{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
@@ -320,7 +320,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	// adds the header from the website again
 	payload.Photo = a[0] + "," + payload.Photo
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
@@ -390,7 +390,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 
 	// adds the header from the website again
 	payload.Preview = a[0] + "," + payload.Preview
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
@@ -417,7 +417,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 
 func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -463,7 +463,7 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 	Returns all the events in the db
 */
 func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -503,7 +503,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 */
 func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -542,7 +542,7 @@ func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 */
 func retriveUserPictures(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -586,7 +586,7 @@ func retriveUserPictures(rw http.ResponseWriter, req *http.Request) (interface{}
 */
 func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -629,7 +629,7 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 */
 func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -712,7 +712,7 @@ func retriveUserPicturesPreview(rw http.ResponseWriter, req *http.Request) (inte
 */
 func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:8000)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
