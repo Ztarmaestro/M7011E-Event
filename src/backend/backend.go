@@ -13,16 +13,16 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
-	"time"
+	//"time"
 
 	// this is test for photos
 	"bytes"
 	"encoding/base64"
-	//"github.com/nfnt/resize"
+	"github.com/nfnt/resize"
 	"image"
 	"image/jpeg"
 	"strings"
-	
+
 )
 
 // error response struct
@@ -160,7 +160,7 @@ func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handler
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
-		user.FirstName = name
+		user.Name = name
 		user.UserID = uid
 		result = append(result, *user)
 	}
@@ -203,9 +203,8 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 		}
 		user.IdToken = idToken
 		user.UserID = uid
-		user.FirstName = name
-		user.LastName = lastname
-		user.Photo = photo
+		user.Name = name
+	
 	}
 
 	return user, nil
@@ -229,7 +228,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	e = json.Unmarshal(data, &payload)
 
 	if e != nil {
-		return Stair{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
+		return User{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
 	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
@@ -247,7 +246,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 
 	}
 
-	_, err = db.Exec("insert into Users( name, lastname, idToken, photo) values(?,?,?,?)", payload.FirstName, payload.LastName, payload.IdToken, payload.Photo)
+	_, err = db.Exec("insert into Users( User_name, ID_token, API_UserID) values(?,?,?)", payload.Name, payload.IdToken, payload.UserID)
 
 	if err != nil {
 		return nil, &handlerError{err, "Error adding to DB", http.StatusInternalServerError}
