@@ -488,26 +488,27 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 		//panic(err)
 	}
 
-	event := new(Event)
+	var result []Event_table // create an array of events
+	var Address, Name, Date, Zipcode, Description string
+	var ID uint64
 	for row.Next() {
-		var position, eventname, description string
-		var uid, id uint64
 
-		if err := row.Scan(&id, &position, &eventname, &description, &uid); err != nil {
+		event := new(Event_table)
+		if err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
 		}
 
-		event.ID = id
-		event.Name = eventname
-		event.Photo = Picture_ID
-		event.User = uid
-		event.Description = description
-		event.Position = position
+		event.ID = ID
+		event.Name = Name
+		event.Address = Address
+		event.Zipcode = Zipcode
+		event.Date = Date
+		event.Description = Description
 
 	}
 
-	return event, nil
+	return result, nil
 }
 
 /*
@@ -528,23 +529,23 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 		//log.Printf("No user with that ID")
 	}
 
-	var result []Event // create an array of Event
-	var id, user uint64
-	var position, eventname string
-
+	var result []Event_table // create an array of Event
+	var Address, Name, Date, Zipcode, Description string
+	var ID uint64
 	for rows.Next() {
-		event := new(Event)
-		err = rows.Scan(&id, &position, &eventname, &user)
+
+		event := new(Event_table)
+		if err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil {
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
 
-		event.ID = id
-		event.Name = eventname
-		event.Photo = Picture_ID
-		event.User = uid
-		event.Description = description
-		event.Position = position
+		event.ID = ID
+		event.Name = Name
+		event.Address = Address
+		event.Zipcode = Zipcode
+		event.Date = Date
+		event.Description = Description
 
 		result = append(result, *event)
 	}
