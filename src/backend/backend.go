@@ -196,7 +196,7 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	for row.Next() {
 		var idToken string
 		var uid uint64
-		var name, string
+		var name string
 
 		if err := row.Scan(&uid, &name, &idToken); err != nil {
 			log.Fatal(err)
@@ -658,7 +658,7 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 	}
 	var result []Picture
-	var Photo_ID, Event_ID, uint64
+	var Photo_ID, Event_ID uint64
 	var Photo string
 
 	for row.Next() {
