@@ -15,13 +15,14 @@ import (
 	"strconv"
 	"time"
 
-	// this is test for photos
+	/* this is test for photos
 	"bytes"
 	"encoding/base64"
 	"github.com/nfnt/resize"
 	"image"
 	"image/jpeg"
 	"strings"
+	/*
 )
 
 // error response struct
@@ -274,7 +275,7 @@ func removeUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerEr
 
 /*
 	Add event to DB
-	Function to add a stair to the db
+	Function to add a event to the db
 */
 func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	data, e := ioutil.ReadAll(req.Body)

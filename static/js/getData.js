@@ -232,3 +232,27 @@ function getEventUser(userID){
   xmlHttp.open( "GET", "http://130.240.170.56:8000/users/stairs/"+userID, false );   
   xmlHttp.send( null );
 }
+
+function sendForm(data, type) {
+
+  var xhr = new XMLHttpRequest();
+
+    data.user = parseInt(data.user);
+    xhr.open('POST',"http://130.240.170.56:8000/event" , true);
+  
+  xhr.onreadystatechange=function() {
+    if (xhr.readyState==4 && xhr.status==200) {
+      console.log("SUCCESSFULLY UPLOADED");
+      document.getElementById('newLoc').reset();
+      markerPlaced = 0;
+      $('#main-map-canvas').empty;
+      initialize();
+      return false;
+    }
+  }
+  if(type!=undefined){
+    xhr.send(JSON.stringify(data));
+  }
+
+  
+}
