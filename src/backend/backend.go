@@ -331,7 +331,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	defer db.Close()
 
 	//inputs the event to the db
-	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description, Photo) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Picture)
+	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description, Photo) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Photo)
 
 	if err != nil {
 
@@ -533,9 +533,9 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 	var Address, Name, Date, Zipcode, Description string
 	var ID uint64
 
-	for row.Next() {
+	for rows.Next() {
 		event := new(Event_table)
-		err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil 
+		err := rows.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil 
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
@@ -665,7 +665,7 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 	for row.Next() {
 		picture := new(Picture)
 
-		if err := row.Scan(&Photo_ID, &Event_ID, &Photo); err != nil {
+		if err := row.Scan(&PhotoId, &EventId, &Photo); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 		}
 
@@ -701,13 +701,13 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 	}
 	var result []Picture
-	var Photo_ID uint64
+	var Photo_Id uint64
 	var Preview string
 
 	for row.Next() {
 		picture := new(Picture)
 
-		if err := row.Scan(&Preview, &Photo_id); err != nil {
+		if err := row.Scan(&Preview, &Photo_Id); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 		}
 
@@ -772,9 +772,9 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
-	defer dv.Close()
+	defer db.Close()
 
-	row, err := dv.Query("select Photo from Picture where Event_ID =?", param)
+	row, err := db.Query("select Photo from Picture where Event_ID =?", param)
 	if err == sql.ErrNoRows {
 		return nil, &handlerError{err, "Error event not found", http.StatusBadRequest}
 		//log.Printf("No user with that ID")
@@ -793,11 +793,11 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
 		}
-		picture.Photo = Photo
+		picture.Picture = Photo
 
 	}
 
-	return event, nil
+	return picture, nil
 }
 
 func main() {
