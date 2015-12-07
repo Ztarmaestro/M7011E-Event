@@ -331,7 +331,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	defer db.Close()
 
 	//inputs the event to the db
-	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description, Photo) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Event_name, payload.Info, payload.Picture_ID)
+	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description, Photo) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Picture)
 
 	if err != nil {
 
@@ -400,7 +400,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 	}
 	defer db.Close()
 
-	_, err = db.Exec("insert into Picture(Picture, Preview) values(?,?)", payload.Photo, payload.Preview)
+	_, err = db.Exec("insert into Picture(Picture, Preview) values(?,?)", payload.Picture, payload.Preview)
 
 	if err != nil {
 
@@ -532,10 +532,10 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 	var result []Event_table // create an array of Event
 	var Address, Name, Date, Zipcode, Description string
 	var ID uint64
-	for row.Next() {
 
+	for row.Next() {
 		event := new(Event_table)
-		if err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil {
+		err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil 
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
@@ -550,7 +550,6 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 		result = append(result, *event)
 	}
 
- }
  	return result, nil
 }
 
@@ -577,11 +576,11 @@ func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 
 	photo := new(Picture)
 	for row.Next() {
-		var photo_id, user_id, stair_id uint64
-		var photo_base64 string
-		var preview string
+		var PhotoId, EventId uint64
+		var Picture string
 
-		if err := row.Scan(&photo_id, &user_id, &stair_id, &photo_base64, &preview); err != nil {
+
+		if err := row.Scan(&PhotoId, EventId, Picture); err != nil {
 			log.Fatal(err)
 		}
 		photo.PhotoId = PhotoId
@@ -660,7 +659,7 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 	}
 	var result []Picture
-	var Photo_ID, Event_ID uint64
+	var PhotoId, EventId uint64
 	var Photo string
 
 	for row.Next() {
@@ -670,8 +669,8 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 		}
 
-		picture.PhotoId = Photo_id
-		picture.EventId = Event_ID
+		picture.PhotoId = PhotoId
+		picture.EventId = EventId
 		picture.Picture = Photo
 		result = append(result, *picture)
 
