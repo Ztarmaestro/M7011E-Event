@@ -15,14 +15,14 @@ import (
 	"strconv"
 	"time"
 
-	/* this is test for photos
+	// this is test for photos
 	"bytes"
 	"encoding/base64"
-	"github.com/nfnt/resize"
+	//"github.com/nfnt/resize"
 	"image"
 	"image/jpeg"
 	"strings"
-	/*
+	
 )
 
 // error response struct
@@ -111,6 +111,7 @@ func (fn handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf(`{"error":"%s"}`, err.Message), err.Code)
 		return
 	}
+
 	if response == nil {
 		log.Printf("ERROR: response from method is nil\n")
 		http.Error(w, "Internal server error. Check the logs.", http.StatusInternalServerError)
