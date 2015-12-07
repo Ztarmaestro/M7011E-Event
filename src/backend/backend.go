@@ -535,7 +535,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 
 	for rows.Next() {
 		event := new(Event_table)
-		err := rows.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil 
+		err := rows.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); //err != nil 
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
@@ -712,7 +712,7 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 		}
 
 		picture.Preview = Preview
-		picture.PhotoId = Photo_ID
+		picture.PhotoId = Photo_Id
 		result = append(result, *picture)
 
 	}
@@ -821,8 +821,8 @@ func main() {
 	router.Handle("/users/{id}", handler(removeUser)).Methods("DELETE")
 
 	// Handler for users Picture
-	router.Handle("/users/picture/{id}", handler(retriveUserPictures)).Methods("GET")
-	router.Handle("/users/picture/preview/{id}", handler(retriveUserPicturesPreview)).Methods("GET")
+	//router.Handle("/users/picture/{id}", handler(retriveUserPictures)).Methods("GET")
+	//router.Handle("/users/picture/preview/{id}", handler(retriveUserPicturesPreview)).Methods("GET")
 
 	// Handlers for event
 	router.Handle("/event", handler(addEvent)).Methods("POST")
