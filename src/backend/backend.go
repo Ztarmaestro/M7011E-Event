@@ -551,6 +551,8 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 	}
 
 	return result, nil
+ }
+
 }
 
 /*
