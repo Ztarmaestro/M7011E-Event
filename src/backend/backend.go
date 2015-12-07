@@ -331,7 +331,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	defer db.Close()
 
 	//inputs the event to the db
-	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Event_name, Info, Picture_ID) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Event_name, payload.Info, payload.Picture_ID)
+	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description, Photo) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Event_name, payload.Info, payload.Picture_ID)
 
 	if err != nil {
 
@@ -400,7 +400,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 	}
 	defer db.Close()
 
-	_, err = db.Exec("insert into Picture(Photo, Preview) values(?,?)", payload.Photo, payload.Preview)
+	_, err = db.Exec("insert into Picture(Picture, Preview) values(?,?)", payload.Photo, payload.Preview)
 
 	if err != nil {
 
@@ -408,7 +408,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 	}
 
 	returnvariables := new(Picture)
-	returnvariables.Photo_ID = payload.Photo_ID
+	returnvariables.PhotoId = payload.PhotoId
 	returnvariables.Preview = payload.Preview
 	return returnvariables, nil
 }
@@ -532,7 +532,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 	var result []Event_table // create an array of Event
 	var Address, Name, Date, Zipcode, Description string
 	var ID uint64
-	for rows.Next() {
+	for row.Next() {
 
 		event := new(Event_table)
 		if err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil {
@@ -550,9 +550,8 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 		result = append(result, *event)
 	}
 
-	return result, nil
  }
-
+ 	return result, nil
 }
 
 /*
@@ -585,10 +584,9 @@ func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 		if err := row.Scan(&photo_id, &user_id, &stair_id, &photo_base64, &preview); err != nil {
 			log.Fatal(err)
 		}
-		photo.PhotoId = photo_id
-		photo.UserId = user_id
-		photo.StairId = stair_id
-		photo.Picture = photo_base64
+		photo.PhotoId = PhotoId
+		photo.EventId = EventId
+		photo.Picture = Picture
 	}
 
 	return photo, nil
@@ -673,7 +671,7 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 		}
 
 		picture.PhotoId = Photo_id
-		picture.StairId = Event_ID
+		picture.EventId = Event_ID
 		picture.Picture = Photo
 		result = append(result, *picture)
 
