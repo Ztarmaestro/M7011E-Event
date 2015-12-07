@@ -48,11 +48,12 @@ A  User is composed of a
 	and a Photo witch is a url to that persons fb profile pic
 */
 type User struct {
-	UserID    uint64 `json:"userID"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	IdToken   string `json:"id"`
-	Photo     string `json:"photo"`
+	UserID    	uint64 `json:"API_UserID"`
+	IdToken   	string `json:"ID_token"`
+	Attending	uint64 `json:"Attending"`
+	Name 		string `json:"User_name"`
+	//LastName  string `json:"last_name"`
+	//Photo     string `json:"photo"`
 }
 
 //Event struct
@@ -66,13 +67,14 @@ A Event is composed of
 	Description	of the event
 */
 type Event struct {
-	Id          uint64  `json:"id"`
-	Address     string  `json:"address"`
-	Zipcode     string  `json:"zipcode"`
-	Name        string  `json:"eventname"`
-	User        uint64  `json:"user"`
-	Photo       string  `json:"photo"`
-	Description string  `json:"description"`
+	ID          uint64  `json:"Event_ID"`
+	Date 		string 	`json:"Date"`
+	Address     string  `json:"Address"`
+	Zipcode     string  `json:"Zipcode"`
+	Name        string  `json:"Event_name"`
+	Photo       string  `json:"Picture_ID"`
+	Description string  `json:"Info"`
+	Attending	uint64  `json:"Attending"`
 }
 
 //Picture struct
@@ -85,11 +87,11 @@ A Picture is composed of
 	Preview 	a shrunken down picture
 */
 type Picture struct {
-	PhotoId uint64 `json:"photoId"`
-	EventId uint64 `json:"idEvent"`
-	UserId  uint64 `json:"userID"`
-	Picture string `json:"photo"`
-	Preview string `json:"preview"`
+	PhotoId uint64 `json:"Photo_ID"`
+	EventId uint64 `json:"Event_ID"`
+	Picture string `json:"Photo"`
+	Preview string `json:"Preview"`
+	//UserId  uint64 `json:"userID"`
 }
 
 // a custom type that we can use for handling errors and formatting responses
@@ -133,7 +135,7 @@ func (fn handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	This function lists all users from the db
 */
 func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -172,7 +174,7 @@ func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handler
 func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
 	//mux.Vars(r)["id"] grabs variables from the path
 	param := mux.Vars(r)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	
 	if err != nil {
 		log.Fatal(err)
@@ -227,7 +229,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	if e != nil {
 		return Stair{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
@@ -281,12 +283,12 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 		return nil, &handlerError{e, "Can't read request", http.StatusBadRequest}
 	}
-	var payload Stair
+	var payload Event
 	e = json.Unmarshal(data, &payload)
 
 	if e != nil {
 
-		return Stair{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
+		return Event{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
 	//handle photos
 	//l, _ := base64.StdEncoding.DecodeString(payload.Photo)
@@ -300,7 +302,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	photo, _, err := image.Decode(strings.NewReader(s))
 	if err != nil {
 
-		return Stair{}, &handlerError{e, "Could'nt fix this image", http.StatusInternalServerError}
+		return Event{}, &handlerError{e, "Could'nt fix this image", http.StatusInternalServerError}
 	}
 
 	// resize photo
@@ -320,15 +322,15 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	// adds the header from the website again
 	payload.Photo = a[0] + "," + payload.Photo
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
 	defer db.Close()
 
-	//inputs the stair to the db
-	_, err = db.Exec("insert into Event(position, eventname, description, uid, photo) values(?,?,?,?,?)", payload.Position, payload.Name, payload.Description, payload.User, payload.Photo)
+	//inputs the event to the db
+	_, err = db.Exec("insert into Event_Table(Date, Address, Zipcode, Event_name, Info, Picture_ID) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Event_name, payload.Info, payload.Picture_ID)
 
 	if err != nil {
 
@@ -390,7 +392,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 
 	// adds the header from the website again
 	payload.Preview = a[0] + "," + payload.Preview
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
@@ -411,22 +413,22 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 }
 
 /*
-	Get event from DB
+	Get user event from DB
 	Grabs a event from the db.
 */
 
 func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
 	}
 	defer db.Close()
 
-	row, err := db.Query("select id, position, stairname, uid from Stairs where uid =?", param)
+	row, err := db.Query("select id, position, eventname, uid from Event where uid =?", param)
 	if err == sql.ErrNoRows {
-		return nil, &handlerError{err, "Error no stairs found", http.StatusBadRequest}
+		return nil, &handlerError{err, "Error no event found", http.StatusBadRequest}
 		//log.Printf("No user with that ID")
 	}
 
@@ -459,11 +461,58 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 }
 
 /*
+	Get specific event from DB
+	Grabs a event from the db.
+*/
+
+func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
+	param := mux.Vars(req)["id"]
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
+	if err != nil {
+		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	row, err := db.Query("select id, position, eventname, description, uid from Event where id =?", param)
+	if err == sql.ErrNoRows {
+		return nil, &handlerError{err, "Error event not found", http.StatusBadRequest}
+
+	}
+
+	if err != nil {
+		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
+		//panic(err)
+	}
+
+	event := new(Event)
+	for row.Next() {
+		var position, eventname, description string
+		var uid, id uint64
+
+		if err := row.Scan(&id, &position, &eventname, &description, &uid); err != nil {
+			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
+			//log.Fatal(err)
+		}
+
+		event.Id = id
+		event.Name = eventname
+		event.Photo = Picture_ID
+		event.User = uid
+		event.Description = description
+		event.Position = position
+
+	}
+
+	return event, nil
+}
+
+/*
 	Get all events from DB
 	Returns all the events in the db
 */
 func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -503,7 +552,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 */
 func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -542,7 +591,7 @@ func getPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 */
 func retriveUserPictures(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -586,7 +635,7 @@ func retriveUserPictures(rw http.ResponseWriter, req *http.Request) (interface{}
 */
 func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -629,7 +678,7 @@ func retriveEventPictures(rw http.ResponseWriter, req *http.Request) (interface{
 */
 func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -712,7 +761,7 @@ func retriveUserPicturesPreview(rw http.ResponseWriter, req *http.Request) (inte
 */
 func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/M7011E")
+	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -770,16 +819,16 @@ func main() {
 	router.Handle("/users/picture/preview/{id}", handler(retriveUserPicturesPreview)).Methods("GET")
 
 	// Handlers for event
-	router.Handle("/event", handler(addStair)).Methods("POST")
-	router.Handle("/event/{id}", handler(getStair)).Methods("GET")
-	router.Handle("/event", handler(getAllStairs)).Methods("GET")
+	router.Handle("/event", handler(addEvent)).Methods("POST")
+	router.Handle("/event/{id}", handler(getEvent)).Methods("GET")
+	router.Handle("/event", handler(getAllEvent)).Methods("GET")
 
-	// Get all event a user have added..
-	router.Handle("/users/event/{id}", handler(getUserStairs)).Methods("GET")
+	// Get all event a user have added
+	router.Handle("/users/event/{id}", handler(getUserEvent)).Methods("GET")
 	//Get all pictures for a event
-	router.Handle("/event/picture/{id}", handler(retriveStairPictures)).Methods("GET")
+	router.Handle("/event/picture/{id}", handler(retriveEventPictures)).Methods("GET")
 	//Get all preview pictures for a event
-	router.Handle("/event/picture/preview/{id}", handler(retriveStairPreview)).Methods("GET")
+	router.Handle("/event/picture/preview/{id}", handler(retriveEventPreview)).Methods("GET")
 
 	// Handlers for pictures
 	router.Handle("/picture", handler(addPicture)).Methods("POST")

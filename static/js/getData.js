@@ -14,7 +14,7 @@ function getLocations(recData, status, stairID)
       return "Error";
     }
   };
-  xmlHttp.open( "GET", "http://130.240.170.56/stairs", false );   
+  xmlHttp.open( "GET", "http://130.240.170.56:8000/stairs", false );   
   xmlHttp.send( null );
 }
 
@@ -31,7 +31,7 @@ function getUserEvent(user_id){
     }
   };
   
-     xmlHttp.open( "GET", "http://130.240.170.56:8000/stairs/"+user_id, false );
+     xmlHttp.open( "GET", "http://130.240.170.56:8000/users/event/"+user_id, false );
   
   xmlHttp.send( null ); 
 
@@ -119,7 +119,6 @@ function uploadPhoto(form){
         
      reader.readAsDataURL(photo.files[0]);
                 
-/*
          var xmlHttp = null;
          xmlHttp = new XMLHttpRequest();
          xmlHttp.onreadystatechange=function() {
@@ -129,9 +128,8 @@ function uploadPhoto(form){
             return "ERROR";
           }
         };
-        xmlHttp.open( "POST", "http://79.136.28.106:8888/picture", true );
+        xmlHttp.open( "POST", "http://130.240.170.56:8000/picture", true );
         xmlHttp.send(JSON.stringify(data)); 
-  */ 
 
     }
   }
