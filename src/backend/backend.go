@@ -67,7 +67,7 @@ A Event is composed of
 	Photo 		of the event
 	Description	of the event
 */
-type Event_Table struct {
+type Event_table struct {
 	ID          uint64  `json:"Event_ID"`
 	Date 		string 	`json:"Date"`
 	Address     string  `json:"Address"`
@@ -400,7 +400,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 	}
 	defer db.Close()
 
-	_, err = db.Exec("insert into Picture(Photo, Preview) values(?,?,?,?)", payload.Photo, payload.Preview)
+	_, err = db.Exec("insert into Picture(Photo, Preview) values(?,?)", payload.Photo, payload.Preview)
 
 	if err != nil {
 
@@ -437,11 +437,12 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 		//panic(err)
 	}
+	var result []Event_table // create an array of events
 	var Address, Name, Date, Zipcode, Description string
 	var ID uint64
 	for row.Next() {
 
-		event := new(Event)
+		event := new(Event_table)
 		if err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
