@@ -150,12 +150,12 @@ func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handler
 		//log.Printf("No user with that ID")
 	}
 
-	var result []User // create an array of users
+	var result []User_table // create an array of users
 	var uid uint64
 	var name string
 
 	for rows.Next() {
-		user := new(User)
+		user := new(User_table)
 		err = rows.Scan(&name, &uid)
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
@@ -192,7 +192,7 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 		panic(err)
 	}
 
-	user := new(User)
+	user := new(User_table)
 	for row.Next() {
 		var idToken string
 		var uid uint64
@@ -224,11 +224,11 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	}
 
 	// create new user called payload
-	var payload User
+	var payload User_table
 	e = json.Unmarshal(data, &payload)
 
 	if e != nil {
-		return User{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
+		return User_table{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
 	db, err := sql.Open("mysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
@@ -284,12 +284,12 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 		return nil, &handlerError{e, "Can't read request", http.StatusBadRequest}
 	}
-	var payload Event
+	var payload Event_table
 	e = json.Unmarshal(data, &payload)
 
 	if e != nil {
 
-		return Event{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
+		return Event_table{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
 	//handle photos
 	//l, _ := base64.StdEncoding.DecodeString(payload.Photo)
@@ -303,7 +303,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	photo, _, err := image.Decode(strings.NewReader(s))
 	if err != nil {
 
-		return Event{}, &handlerError{e, "Could'nt fix this image", http.StatusInternalServerError}
+		return Event_table{}, &handlerError{e, "Could'nt fix this image", http.StatusInternalServerError}
 	}
 
 	// resize photo
@@ -315,7 +315,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	//encodes the image again and saves it to buf
 	err = jpeg.Encode(buf, newphoto, nil)
 	if err != nil {
-		return Event{}, &handlerError{e, "Could'nt fix this image", http.StatusInternalServerError}
+		return Event_table{}, &handlerError{e, "Could'nt fix this image", http.StatusInternalServerError}
 	}
 
 	//encodes the photo to base64 agian
@@ -400,7 +400,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 	}
 	defer db.Close()
 
-	_, err = db.Exec("insert into Picture(Photo_ID, Event_ID, Photo, Preview) values(?,?,?,?)", payload.Photo_ID, payload.Event_ID, payload.Photo, payload.Preview)
+	_, err = db.Exec("insert into Picture(Photo, Preview) values(?,?,?,?)", payload.Photo, payload.Preview)
 
 	if err != nil {
 
@@ -427,7 +427,7 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 	}
 	defer db.Close()
 
-	row, err := db.Query("select Event_ID, Date, Address, Zipcode, Event_name, Info, ID_token from Event_table where ID_token =?", param)
+	row, err := db.Query("select Date, Address, Zipcode, Event_name, Info, ID_token from Event_table where ID_token =?", param)
 	if err == sql.ErrNoRows {
 		return nil, &handlerError{err, "Error no event found", http.StatusBadRequest}
 		//log.Printf("No user with that ID")
