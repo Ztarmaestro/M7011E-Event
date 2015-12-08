@@ -80,7 +80,7 @@ func eventHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	pageEventbutton := "Event/templates/create_event_form.html"
 	//pageMapbutton := "Event/templates/map.html"
 
-	if t, err := template.ParseFiles(pagePath, pageTemplate, pageSidemeny, pageEventbutton); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageSidemeny, pageTemplate, pageEventbutton); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
