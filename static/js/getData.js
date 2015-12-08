@@ -26,7 +26,8 @@ function getUserEvent(user_id){
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);  
-    }else{
+    }
+    else{
       return "Error";
     }
   };
@@ -34,6 +35,25 @@ function getUserEvent(user_id){
      xmlHttp.open( "GET", "http://130.240.170.56:8000/users/event/"+user_id, false );
   
   xmlHttp.send( null ); 
+
+}
+
+function getAllEvent(){
+   var xmlHttp = null;
+
+  xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange=function() {
+    if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+        var json = xmlHttp.responseText;
+        var obj = JSON.parse(json);  
+    }
+    else{
+      return "Error";
+    }
+  };
+  
+     xmlHttp.open( "GET", "http://130.240.170.56:8000/event/", false );
+     xmlHttp.send( null ); 
 
 }
 
@@ -46,18 +66,21 @@ function getEvent(id, marker, action){
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);  
         console.log(obj);
-      }else{ 
-        
+      }
+      else{  
         console.log('Finish loading event: ' + obj); 
         appendToMarker(obj, marker);
       }
-    }else{
+    
+    else{
       return "Error";
     }
   };
   xmlHttp.open( "GET", "http://130.240.170.56:8000/event/"+id, false );
   xmlHttp.send( null ); 
 }
+
+''
 
 function getUser(id, data, action){
   var xmlHttp = null;
@@ -233,7 +256,7 @@ function getEventUser(userID){
   xmlHttp.send( null );
 }
 
-function sendForm(data, type) {
+function sendForm(data) {
 
   var xhr = new XMLHttpRequest();
 
