@@ -55,9 +55,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     // you access the cached templates with the defined name, not the filename
 
-    pagePath := "templates/main.html"
+    pagePath := "Event/templates/main.html"
 
-	pageTemplate := "templates/startpage.html"
+	pageTemplate := "Event/templates/startpage.html"
 
 	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
@@ -117,7 +117,7 @@ func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
 
 	pageTemplate := "Event/templates/create_event.html"
 	pageEventbutton := "Event/templates/create_event_form.html"
-	//pageMapbutton := "Event/templates/map.html"
+	pageMapbutton := "Event/templates/map.html"
 
 	if t, err := template.ParseFiles(pagePath, pageEventbutton, pageSidemeny, pageTemplate, pageMapbutton); err != nil {
 		// Something gnarly happened.
