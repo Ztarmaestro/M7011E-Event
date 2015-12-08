@@ -1,5 +1,4 @@
-function getLocations(recData, status, stairID)
-{
+function getLocations(recData, status, stairID){
   var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
@@ -32,8 +31,7 @@ function getUserEvent(user_id){
     }
   };
   
-     xmlHttp.open( "GET", "http://130.240.170.56:8000/users/event/"+user_id, false );
-  
+  xmlHttp.open( "GET", "http://130.240.170.56:8000/users/event/"+user_id, false );
   xmlHttp.send( null ); 
 
 }
@@ -52,9 +50,8 @@ function getAllEvent(){
     }
   };
   
-     xmlHttp.open( "GET", "http://130.240.170.56:8000/event/", false );
-     xmlHttp.send( null ); 
-
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/event/", false );
+    xmlHttp.send( null ); 
 }
 
 function getEvent(id, marker, action){
@@ -66,21 +63,15 @@ function getEvent(id, marker, action){
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);  
         console.log(obj);
-      }
-      else{  
-        console.log('Finish loading event: ' + obj); 
-        appendToMarker(obj, marker);
-      }
-    
+    }    
     else{
       return "Error";
     }
   };
-  xmlHttp.open( "GET", "http://130.240.170.56:8000/event/"+id, false );
-  xmlHttp.send( null ); 
-}
 
-''
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/event/"+id, false );
+    xmlHttp.send( null ); 
+}
 
 function getUser(id, data, action){
   var xmlHttp = null;
