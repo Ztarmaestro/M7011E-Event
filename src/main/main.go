@@ -117,7 +117,7 @@ func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
 
 	pageTemplate := "Event/templates/create_event.html"
 	pageEventbutton := "Event/templates/create_event_form.html"
-	pageMapbutton := "Event/templates/map.html"
+	//pageMapbutton := "Event/templates/map.html"
 
 	if t, err := template.ParseFiles(pagePath, pageEventbutton, pageSidemeny, pageTemplate, pageMapbutton); err != nil {
 		// Something gnarly happened.
