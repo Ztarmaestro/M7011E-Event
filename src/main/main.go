@@ -73,9 +73,9 @@ func eventHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     // you access the cached templates with the defined name, not the filename
 
-    pagePath := "Event/templates/main.html"
+    pagePath := "templates/main.html"
 
-	pageTemplate := "Event/templates/overview_events.html"
+	pageTemplate := "templates/overview_events.html"
 
 	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
