@@ -55,9 +55,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     // you access the cached templates with the defined name, not the filename
 
-    pagePath := "Event/templates/main.html"
+    pagePath := "templates/main.html"
 
-	pageTemplate := "Event/templates/startpage.html"
+	pageTemplate := "templates/startpage.html"
 
 	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
 		// Something gnarly happened.
