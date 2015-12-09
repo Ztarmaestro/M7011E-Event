@@ -284,6 +284,7 @@ function sendForm(form) {
   };
 
   reader.onload = success;
+  reader.readAsDataURL(photo.files[0]);
   
   }
 }
