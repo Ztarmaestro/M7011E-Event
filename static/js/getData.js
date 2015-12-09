@@ -264,6 +264,9 @@ function sendForm(data) {
       return false;
     }
   }
+  if(HTMLButtonElement!=undefined){
+      xhr.send(JSON.stringify(data));
+  }
   //if(type!=undefined){
     //xhr.send(JSON.stringify(data));
   //}
