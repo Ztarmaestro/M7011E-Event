@@ -247,7 +247,16 @@ function getEventUser(userID){
   xmlHttp.send( null );
 }
 
-function sendForm(data) {
+function sendForm(form) {
+  console.log(form);
+  document.getElementById('modalComment').value = '';
+  var data = {};
+  for (var i = 0, ii = form.length; i < ii; ++i) {
+    var input = form[i];
+    if (input.name) {
+      data[input.name] = input.value;
+    }
+  }
   console.log(data);
   var xhr = new XMLHttpRequest();
 

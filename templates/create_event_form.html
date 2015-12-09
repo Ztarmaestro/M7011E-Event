@@ -63,13 +63,15 @@
                         <br><textarea placeholder="Enter information about your event" rows="4" cols="36" name="Info" id="Info"></textarea>
                     </div>
                 </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="sendForm(this.form);">Save event</button> 
+                    </div>
             </form>
+
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="javascript:sendForm(this.form);">Save event</button> 
-      </div>
+
 
     </div>
   </div>
