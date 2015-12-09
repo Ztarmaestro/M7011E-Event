@@ -256,7 +256,8 @@ function sendForm(form) {
       data[input.name] = input.value;
     }
   }
-  if(data.Picture_ID.files.length){
+  var photo = document.getElementById('Picture_ID');
+  if(photo.files.length){
     var reader = new FileReader();
         function success(evt){
           data.Picture_ID = evt.target.result; 
