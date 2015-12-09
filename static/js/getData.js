@@ -265,7 +265,7 @@ function sendForm(data) {
     }
   }
   //if(type!=undefined){
-    //xhr.send(JSON.stringify(data));
+    xhr.send(JSON.stringify(data));
  // }
   
 }
