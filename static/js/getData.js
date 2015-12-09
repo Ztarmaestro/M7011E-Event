@@ -284,4 +284,5 @@ function sendForm(form) {
 
   reader.onload = success;
   
+  }
 }
