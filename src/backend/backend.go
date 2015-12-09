@@ -319,7 +319,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	}
 
 	//encodes the photo to base64 agian
-	payload.Photo = base64.StdEncoding.EncodeToString(buf.Bytes())
+	Preview := base64.StdEncoding.EncodeToString(buf.Bytes())
 
 	// adds the header from the website again
 	payload.Photo = a[0] + "," + payload.Photo
@@ -331,8 +331,8 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	defer db.Close()
 
 	//inputs the event to the db
-	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description, Photo) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Photo)
-	_, err = db.Exec("insert into Picture(preview, Photo) values(?,?,)", payload.Preview, payload.Photo)
+	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description) values(?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description)
+	_, err = db.Exec("insert into Picture(preview, Photo) values(?,?)", Preview, payload.Photo)
 
 	if err != nil {
 
