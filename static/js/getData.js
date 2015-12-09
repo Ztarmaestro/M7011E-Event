@@ -256,6 +256,10 @@ function sendForm(form) {
       data[input.name] = input.value;
     }
   }
+  
+  data["Event_ID"] = "";
+  data["Attending"] = "";
+
   var photo = document.getElementById('Picture_ID');
   if(photo.files.length){
     var reader = new FileReader();

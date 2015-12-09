@@ -332,7 +332,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	//inputs the event to the db
 	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description) values(?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description)
-	_, err = db.Exec("insert into Picture(preview, Photo) values(?,?)", Preview, payload.Photo)
+	_, err = db.Exec("insert into Picture(Event_ID, preview, Photo) values(?,?,?)",1337, Preview, payload.Photo)
 
 	if err != nil {
 
@@ -401,7 +401,7 @@ func addPicture(rw http.ResponseWriter, req *http.Request) (interface{}, *handle
 	}
 	defer db.Close()
 
-	_, err = db.Exec("insert into Picture(Picture, Preview) values(?,?)", payload.Picture, payload.Preview)
+	_, err = db.Exec("insert into Picture(Picture_ID ,Picture, Preview) values(?,?,?)", payload.Picture, payload.Preview)
 
 	if err != nil {
 
