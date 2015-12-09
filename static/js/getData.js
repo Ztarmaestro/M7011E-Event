@@ -249,7 +249,6 @@ function getEventUser(userID){
 
 function sendForm(form) {
   console.log(form);
-  document.getElementById('modalComment').value = '';
   var data = {};
   for (var i = 0, ii = form.length; i < ii; ++i) {
     var input = form[i];
