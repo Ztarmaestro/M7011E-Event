@@ -256,24 +256,32 @@ function sendForm(form) {
       data[input.name] = input.value;
     }
   }
-  console.log(data);
-  var xhr = new XMLHttpRequest();
+  if(data.Picture_ID.files.length){
+    var reader = new FileReader();
+        function success(evt){
+          data.Picture_ID = evt.target.result; 
 
-    //data.user = parseInt(data.user);
-    xhr.open('POST',"http://130.240.170.56:8000/event" , true);
-  
-  xhr.onreadystatechange=function() {
-    if (xhr.readyState==4 && xhr.status==200) {
-      console.log("SUCCESSFULLY UPLOADED");
-      document.getElementById('newLoc').reset();
-      markerPlaced = 0;
-      $('#main-map-canvas').empty;
-      initialize();
-      return false;
-    }
-  }
-  //if(type!=undefined){
+            console.log(data);
+            var xhr = new XMLHttpRequest();
+
+            //data.user = parseInt(data.user);
+            xhr.open('POST',"http://130.240.170.56:8000/event" , true);
+            
+            xhr.onreadystatechange=function() {
+              if (xhr.readyState==4 && xhr.status==200) {
+                console.log("SUCCESSFULLY UPLOADED");
+                document.getElementById('newLoc').reset();
+                markerPlaced = 0;
+                $('#main-map-canvas').empty;
+                initialize();
+                return false;
+              }
+            }
+
     xhr.send(JSON.stringify(data));
- // }
+
+  };
+
+  reader.onload = success;
   
 }
