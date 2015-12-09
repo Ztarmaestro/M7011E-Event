@@ -248,7 +248,7 @@ function getEventUser(userID){
 }
 
 function sendForm(data) {
-
+  console.log(data);
   var xhr = new XMLHttpRequest();
 
     //data.user = parseInt(data.user);

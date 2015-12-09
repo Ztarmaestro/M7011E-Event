@@ -332,6 +332,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	//inputs the event to the db
 	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Name, Description, Photo) values(?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Photo)
+	_, err = db.Exec("insert into Picture(preview, Photo) values(?,?,)", payload.Preview, payload.Photo)
 
 	if err != nil {
 
