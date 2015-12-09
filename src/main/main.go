@@ -20,10 +20,10 @@ func main() {
 	// Instantiate a new router
 
 	//Real address for server, change back before pushing to git 
-	bindAddr := "130.240.170.56:8080"
+	//bindAddr := "130.240.170.56:8080"
 
 	//Address for testing server on LAN
-	//bindAddr := "127.0.0.1:8080"
+	bindAddr := "127.0.0.1:8050"
 
 	r := httprouter.New()
 	r.NotFound = http.FileServer(http.Dir("Event/"))
@@ -32,7 +32,7 @@ func main() {
 	r.GET("/", indexHandler)
 	r.GET("/events", eventHandler)
     r.GET("/profile", profileHandler)
-    r.GET("/create_event", createHandler)
+    r.GET("/show_event", showroomHandler)
     r.GET("/about", aboutHandler)
     r.GET("/search_result", searchHandler)
 
@@ -75,9 +75,11 @@ func eventHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     pagePath := "Event/templates/main.html"
 
-	pageTemplate := "Event/templates/startpage.html"
-
-	if t, err := template.ParseFiles(pagePath, pageTemplate); err != nil {
+	pageTemplate := "Event/templates/overview_events.html"
+	pageSidemeny := "Event/templates/sidemeny.html"
+	pageEventbutton := "Event/templates/create_event_form.html"
+	
+	if t, err := template.ParseFiles(pagePath, pageTemplate, pageSidemeny, pageEventbutton); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
@@ -105,18 +107,18 @@ func profileHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 
 }
 
-func createHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func showroomHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
     // you access the cached templates with the defined name, not the filename
 
     pagePath := "Event/templates/main.html"
-	pageSidemeny := "Event/templates/sidemeny.html"
 
-	pageTemplate := "Event/templates/create_event.html"
-	pageEventbutton := "Event/templates/create_event_form.html"
+	pageSidemeny := "Event/templates/sidemeny.html"
+	pageTemplate := "Event/templates/view_event.html"
+	pageMapbutton := "Event/templates/map.html"
 	
 
-	if t, err := template.ParseFiles(pagePath, pageEventbutton, pageSidemeny, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageMapbutton, pageSidemeny, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
