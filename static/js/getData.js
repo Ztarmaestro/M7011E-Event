@@ -43,24 +43,27 @@ function getAllEvent(){
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
-        var obj = JSON.parse(json);  
+        console.log(json); 
+        var obj = JSON.parse(json); 
+        console.log(obj); 
     }
     else{
       return "Error";
     }
   };
   
-    xmlHttp.open( "GET", "http://130.240.170.56:8000/event/", false );
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/event", false );
     xmlHttp.send( null ); 
 }
 
-function getEvent(id, marker, action){
+function getEvent(id){
   var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
+        console.log(json);
         var obj = JSON.parse(json);  
         console.log(obj);
     }    
@@ -257,14 +260,14 @@ function sendForm(form) {
     }
   }
   
-  data["Event_ID"] = 8008;
-  data["Attending"] = 123;
+  data["Event_ID"] = 9001;
+  data["User"] = 1337;
 
-  var photo = document.getElementById('Picture_ID');
+  var photo = document.getElementById('Photo');
   if(photo.files.length){
     var reader = new FileReader();
         function success(evt){
-          data.Picture_ID = evt.target.result; 
+          data.Photo = evt.target.result; 
 
             console.log(data);
             var xhr = new XMLHttpRequest();
