@@ -261,11 +261,11 @@ function sendForm(form) {
   data["User"] = 1337;
 
 
-  var photo = document.getElementById('Picture_ID');
+  var photo = document.getElementById('Photo');
   if(photo.files.length){
     var reader = new FileReader();
         function success(evt){
-          data.Picture_ID = evt.target.result; 
+          data.Photo = evt.target.result; 
 
             console.log(data);
             var xhr = new XMLHttpRequest();
