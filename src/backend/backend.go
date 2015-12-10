@@ -199,7 +199,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	defer db.Close()
 
 	//inputs the event to the db
-	_, err = db.Exec("insert into Event_table(Event_ID, Date, Address, Zipcode, Name, Description, Photo, Preview, User) values(?,?,?,?,?,?,?,?,?)", payload.Event_ID, payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Photo, Preview, payload.User)
+	_, err = db.Exec("insert into Event_table(Event_ID, Date, Address, Zipcode, Event_name, Description, Photo, Preview, User) values(?,?,?,?,?,?,?,?,?)", payload.Event_ID, payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Photo, Preview, payload.User)
 
 	if err != nil {
 
