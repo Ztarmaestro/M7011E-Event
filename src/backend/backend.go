@@ -2,11 +2,13 @@ package main
 
 import (
 	"database/sql"
-	//	"encoding/base64"
 	"encoding/json"
 	"flag"
 	"fmt"
 	//_ "github.com/ziutek/mymysql/godrv"
+	  "github.com/ziutek/mymysql/mysql"
+    _ "github.com/ziutek/mymysql/native" // Native engine
+    // _ "github.com/ziutek/mymysql/thrsafe" // Thread safe engine
 	"io/ioutil"
 	"log"
 	//"math"
@@ -180,7 +182,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	//encodes the image again and saves it to buf
 	err = jpeg.Encode(buf, newphoto, nil)
 	if err != nil {
-		return Event_table{}, &handlerError{e, "Could'nt fix this image", http.StatusInternalServerError}
+		return Event_table{}, &handlerError{err, "Could'nt fix this image", http.StatusInternalServerError}
 	}
 
 	//encodes the photo to base64 agian
