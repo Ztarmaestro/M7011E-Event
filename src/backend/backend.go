@@ -242,7 +242,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 			//log.Fatal(err)
 		}
 
-		event.ID = Event_ID
+		event.Event_ID = ID
 		event.Name = Name
 		event.Address = Address
 		event.Zipcode = Zipcode
@@ -283,7 +283,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
 
-		event.ID = Event_ID
+		event.Event_ID = ID
 		event.Name = Name
 		event.Address = Address
 		event.Zipcode = Zipcode
@@ -331,7 +331,7 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 			//log.Fatal(err)
 		}
 
-		event.ID = Event_ID
+		event.Event_ID = ID
 		event.Name = Name
 		event.Address = Address
 		event.Zipcode = Zipcode
@@ -527,18 +527,18 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 		//panic(err)
 	}
 
-	var result []Picture
+	var result []Event_table
 	var Photo string
 
 	for row.Next() {
-		picture := new(Picture)
+		picture := new(Event_table)
 
 		if err := row.Scan(&Photo); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
 		}
 
-		picture.Picture = Photo
+		picture.Event_table = Photo
 		result = append(result, *picture)
 
 	}
@@ -567,17 +567,17 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 	if err != nil {
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 	}
-	var result []Picture
+	var result []Event_table
 	var Preview string
 
 	for row.Next() {
-		picture := new(Picture)
+		picture := new(Event_table)
 
 		if err := row.Scan(&Preview); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 		}
 
-		picture.Preview = Preview
+		picture.Event_table = Preview
 		result = append(result, *picture)
 
 	}
