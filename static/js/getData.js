@@ -262,7 +262,6 @@ function sendForm(form) {
   data["Event_ID"] = 9001;
   data["User"] = 1337;
 
-
   var photo = document.getElementById('Photo');
   if(photo.files.length){
     var reader = new FileReader();
