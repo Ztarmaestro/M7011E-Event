@@ -43,7 +43,8 @@ function getAllEvent(){
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
-        var obj = JSON.parse(json);  
+        var obj = JSON.parse(json); 
+        console.log(obj); 
     }
     else{
       return "Error";
@@ -54,7 +55,7 @@ function getAllEvent(){
     xmlHttp.send( null ); 
 }
 
-function getEvent(id, marker, action){
+function getEvent(id){
   var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
