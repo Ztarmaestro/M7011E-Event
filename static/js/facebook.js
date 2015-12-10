@@ -7,9 +7,7 @@ function statusChangeCallback(response) {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      
-        testAPI();
-    
+      testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -31,50 +29,25 @@ function statusChangeCallback(response) {
     });
   }
 
-    function logout(){
-        FB.logout()
-        window.location.reload();
-    }
-    function login() {
-      FB.login(function(response) {
-          if (response.authResponse) {
-              // connected
+    //window.fbAsyncInit = function() {
+    //FB.init({
+    //appId      : '101921540181193',
+    //cookie      : true,    
+    //xfbml      : true,
+    //version    : 'v2.5'
+    //        });
+    //};
 
-	    checkLoginState();
-	      //window.location.href = "http://trollegeuna.se:9999/map/";
-          } else {
-              // cancelled
-              replace_login(false);
-		alert('User cancelled login or did not fully authorize.');
-          }
-      });
-  }
-
-
-    window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '101921540181193',
-        cookie      : true,    
-        xfbml      : true,
-        version    : 'v2.5'
-            });
-    };
-
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-        });
-
-    };
-
-
-    (function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); 
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    //(function(d, s, id){
+    //var js, fjs = d.getElementsByTagName(s)[0];
+    //if (d.getElementById(id)) {
+    //    return;
+    //}
+    //js = d.createElement(s); 
+    //js.id = id;
+    //js.src = "//connect.facebook.net/en_US/sdk.js";
+    //fjs.parentNode.insertBefore(js, fjs);
+    //}(document, 'script', 'facebook-jssdk'));
 
 
   // Here we run a very simple test of the Graph API after login is
