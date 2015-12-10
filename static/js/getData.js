@@ -56,6 +56,7 @@ function getAllEvent(){
 }
 
 function getEvent(id){
+  async: true;
   var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
