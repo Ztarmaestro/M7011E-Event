@@ -237,9 +237,9 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	//var result []Event_table // create an array of events
 	var Address, Name, Date, Zipcode, Description string
 	var ID, User uint64
-	
+	event := new(Event_table)
 	for row.Next() {
-		event := new(Event_table)
+	
 		if err := row.Scan(&ID, &Address, &Name, &Zipcode, &Date, &Description, &User); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
