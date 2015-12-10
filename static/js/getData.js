@@ -278,9 +278,9 @@ function sendForm(form) {
             xhr.onreadystatechange=function() {
               if (xhr.readyState==4 && xhr.status==200) {
                 console.log("SUCCESSFULLY UPLOADED");
-                document.getElementById('newLoc').reset();
-                markerPlaced = 0;
-                $('#main-map-canvas').empty;
+                //document.getElementById('newLoc').reset();
+                //markerPlaced = 0;
+                //$('#main-map-canvas').empty;
                 initialize();
                 return false;
               }
