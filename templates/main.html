@@ -52,8 +52,10 @@
 <body>
     <div id="status"></div>
     <div id="fb-root"></div>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
         
-    <script>
+    <!--<script>
         window.fbAsyncInit = function() {
         FB.init({
         appId      : '101921540181193',
@@ -71,7 +73,8 @@
             fjs.parentNode.insertBefore(js, fjs);
             }
          (document, 'script', 'facebook-jssdk'));
-    </script>
+    </script>  
+-->
             
 
 <!-- NAVBAR
