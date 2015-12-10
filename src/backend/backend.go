@@ -532,23 +532,19 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 		//panic(err)
 	}
 
-	var result []Event_table
 	var Photo string
-
+	picture := new(Event_table)
 	for row.Next() {
-		picture := new(Event_table)
-
+		
 		if err := row.Scan(&Photo); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
-			//log.Fatal(err)
 		}
 
 		picture.Photo = Photo
-		result = append(result, *picture)
 
 	}
 
-	return result, nil
+	return picture, nil
 }
 
 /*
@@ -572,22 +568,19 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 	if err != nil {
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 	}
-	var result []Event_table
 	var Preview string
-
+	picture := new(Event_table)
 	for row.Next() {
-		picture := new(Event_table)
-
+		
 		if err := row.Scan(&Preview); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 		}
 
 		picture.Preview = Preview
-		result = append(result, *picture)
 
 	}
 
-	return result, nil
+	return picture, nil
 }
 
 func main() {
