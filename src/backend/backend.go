@@ -190,7 +190,8 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	// adds the header from the website again
 	payload.Photo = a[0] + "," + payload.Photo
-	db, err := sql.Open("mymysql", "dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf"
+		"dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
