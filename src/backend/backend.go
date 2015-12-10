@@ -538,7 +538,7 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 			//log.Fatal(err)
 		}
 
-		picture.Event_table = Photo
+		picture.Photo = Photo
 		result = append(result, *picture)
 
 	}
@@ -577,7 +577,7 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 		}
 
-		picture.Event_table = Preview
+		picture.Preview = Preview
 		result = append(result, *picture)
 
 	}
@@ -614,7 +614,7 @@ func main() {
 	// Get all event a user have added
 	router.Handle("/users/event/{id}", handler(getUserEvent)).Methods("GET")
 	//Get all pictures for a event
-	router.Handle("/event/picture/{id}", handler(retriveEventPictures)).Methods("GET")
+	router.Handle("/event/picture/{id}", handler(retriveEventPhoto)).Methods("GET")
 	//Get all preview pictures for a event
 	router.Handle("/event/picture/preview/{id}", handler(retriveEventPreview)).Methods("GET")
 
