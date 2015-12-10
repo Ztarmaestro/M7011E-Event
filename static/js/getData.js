@@ -176,7 +176,7 @@ function send(data){
 }
 
 
-function getPreviewEvent(stairID){
+function getPreviewEvent(eventID){
   var xmlHttp = null;
 
   xmlHttp = new XMLHttpRequest();
@@ -190,10 +190,9 @@ function getPreviewEvent(stairID){
       return "Error";
     }
   };
-  xmlHttp.open( "GET", "http://130.240.170.56:8000/stair/picture/preview/"+stairID, false );   
+  xmlHttp.open( "GET", "http://130.240.170.56:8000/event/picture/preview/"+eventID, false );   
   xmlHttp.send( null );
 }
-
 
 function getPreviewUser(userID){
   var xmlHttp = null;
