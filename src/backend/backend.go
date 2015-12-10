@@ -234,7 +234,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 		//panic(err)
 	}
 
-	var result []Event_table // create an array of events
+	//var result []Event_table // create an array of events
 	var Address, Name, Date, Zipcode, Description string
 	var ID, User uint64
 	
@@ -255,7 +255,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	}
 
-	return result, nil
+	return event, nil
 }
 
 /*
