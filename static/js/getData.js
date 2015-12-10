@@ -260,8 +260,8 @@ function sendForm(form) {
     }
   }
   
-  data["Event_ID"] = 9001;
-  data["User"] = 1337;
+  data["Event_ID"] = 2;
+  data["User"] = 2;
 
   var photo = document.getElementById('Photo');
   if(photo.files.length){
