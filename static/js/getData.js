@@ -51,7 +51,7 @@ function getAllEvent(){
     }
   };
   
-    xmlHttp.open( "GET", "http://130.240.170.56:8000/event/", false );
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/event", false );
     xmlHttp.send( null ); 
 }
 
