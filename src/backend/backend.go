@@ -70,13 +70,13 @@ A Event is composed of
 
 */
 type Event_table struct {
-	EventID     uint64  `json:"Event_ID"`
+	Event_ID    uint64  `json:"Event_ID"`
 	Date 		string 	`json:"Date"`
 	Address     string  `json:"Address"`
 	Zipcode     string  `json:"Zipcode"`
 	Name        string  `json:"Event_name"`
-	Photo       uint64  `json:"Photo"`
-	Preview 	uint64  `json:"Preview"`
+	Photo       string  `json:"Photo"`
+	Preview 	string  `json:"Preview"`
 	Description string  `json:"Info"`
 	User        uint64  `json:"User"`
 
@@ -242,7 +242,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 			//log.Fatal(err)
 		}
 
-		event.ID = ID
+		event.ID = Event_ID
 		event.Name = Name
 		event.Address = Address
 		event.Zipcode = Zipcode
@@ -283,7 +283,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
 
-		event.ID = ID
+		event.ID = Event_ID
 		event.Name = Name
 		event.Address = Address
 		event.Zipcode = Zipcode
@@ -331,7 +331,7 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 			//log.Fatal(err)
 		}
 
-		event.ID = ID
+		event.ID = Event_ID
 		event.Name = Name
 		event.Address = Address
 		event.Zipcode = Zipcode
@@ -344,6 +344,23 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 
 	return result, nil
 
+}
+
+/*
+	Remove Event from DB
+	Function not yet implemented
+*/
+
+func removeEvent(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
+	param := mux.Vars(r)["id"]
+	id, e := strconv.Atoi(param)
+	if e != nil {
+		return nil, &handlerError{e, "Id should be an integer", http.StatusBadRequest}
+	}
+	id = id
+
+	returnable := string("removeEvent")
+	return returnable, nil
 }
 
 /*
@@ -509,20 +526,24 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 		return nil, &handlerError{err, "Internal Error when req DB", http.StatusInternalServerError}
 		//panic(err)
 	}
+
+	var result []Picture
 	var Photo string
 
-	picture := new(Picture)
 	for row.Next() {
+		picture := new(Picture)
 
 		if err := row.Scan(&Photo); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
 		}
+
 		picture.Picture = Photo
+		result = append(result, *picture)
 
 	}
 
-	return picture, nil
+	return result, nil
 }
 
 /*
