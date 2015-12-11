@@ -252,7 +252,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 		event.Name = Name
 		event.Description = Description
 		event.User = User
-		event.User = Preview
+		event.Preview = Preview
 
 	}
 
@@ -283,7 +283,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 
 	for rows.Next() {
 		event := new(Event_table)
-		err := rows.Scan(&ID, &Date, &Address, &Zipcode, &Name, &Description, &User &Preview); //err != nil 
+		err := rows.Scan(&ID, &Date, &Address, &Zipcode, &Name, &Description, &User, &Preview); //err != nil 
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
@@ -295,7 +295,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 		event.Date = Date
 		event.Description = Description
 		event.User = User
-		event.User = Preview
+		event.Preview = Preview
 
 		result = append(result, *event)
 	}
