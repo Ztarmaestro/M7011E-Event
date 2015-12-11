@@ -190,7 +190,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 	// adds the header from the website again
 	payload.Photo = a[0] + "," + payload.Photo
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 		//"dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
 
@@ -216,7 +216,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 
 func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -263,7 +263,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	Returns all the events in the db
 */
 func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -308,7 +308,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 
 func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -388,7 +388,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	if e != nil {
 		return User_table{}, &handlerError{e, "Could'nt parse JSON", http.StatusInternalServerError}
 	}
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
@@ -419,7 +419,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	This function lists all users from the db
 */
 func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -458,7 +458,7 @@ func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handler
 func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
 	//mux.Vars(r)["id"] grabs variables from the path
 	param := mux.Vars(r)["id"]
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	
 	if err != nil {
 		log.Fatal(err)
@@ -514,7 +514,7 @@ func removeUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerEr
 */
 func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
@@ -552,7 +552,7 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 */
 func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
-	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/krnhw4twf")
+	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
 		return nil, &handlerError{err, "Local error opening DB", http.StatusInternalServerError}
 		log.Fatal(err)
