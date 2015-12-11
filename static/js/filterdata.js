@@ -7,7 +7,7 @@ function filterEvent(data){
 	Address = document.getElementById('Address');
 	Zipcode = document.getElementById('Zipcode');
 	date = document.getElementById('Date');
-	Info = document.getElementById('Information');
+	Info = document.getElementById('Description');
 	//Preview = document.getElementById('Preview');
 	Photo= document.getElementById('Photo');
 
@@ -15,7 +15,7 @@ function filterEvent(data){
 	Address.innerHTML = Address.innerHTML + data.Address;
 	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
 	date.innerHTML = date.innerHTML + data.Date;
-	Info.innerHTML = Info.innerHTML + data.Information;
+	Info.innerHTML = Info.innerHTML + data.Info;
 	//Preview.innerHTML = Preview.innerHTML + data.Preview;
 	Photo.src = data.Photo;
 
