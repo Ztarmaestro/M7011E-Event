@@ -223,7 +223,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	}
 	defer db.Close()
 
-	row, err := db.Query("select Event_ID, Date, Address, Zipcode, Event_name, Info, User from Event_table where Event_ID =?", param)
+	row, err := db.Query("select Event_ID, Date, Address, Zipcode, Event_name, Info, User Preview from Event_table where Event_ID =?", param)
 	if err == sql.ErrNoRows {
 		return nil, &handlerError{err, "Error event not found", http.StatusBadRequest}
 
@@ -235,12 +235,12 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	}
 
 	//var result []Event_table // create an array of events
-	var Address, Name, Date, Zipcode, Description string
+	var Address, Name, Date, Zipcode, Description, Preview string
 	var ID, User uint64
 	event := new(Event_table)
 	for row.Next() {
 	
-		if err := row.Scan(&ID, &Date, &Address, &Zipcode, &Name, &Description, &User); err != nil {
+		if err := row.Scan(&ID, &Date, &Address, &Zipcode, &Name, &Description, &User, &Preview); err != nil {
 			return nil, &handlerError{err, "Internal Error when reading req from DB", http.StatusInternalServerError}
 			//log.Fatal(err)
 		}
@@ -252,6 +252,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 		event.Name = Name
 		event.Description = Description
 		event.User = User
+		event.User = Preview
 
 	}
 
@@ -270,19 +271,19 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 	}
 	defer db.Close()
 
-	rows, err := db.Query("select Event_ID, Date, Address, Zipcode, Event_name, Info, User from Event_table")
+	rows, err := db.Query("select Event_ID, Date, Address, Zipcode, Event_name, Info, User, Preview from Event_table")
 	if err != nil {
 		return nil, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		//log.Printf("No user with that ID")
 	}
 
 	var result []Event_table // create an array of Event
-	var Address, Name, Date, Zipcode, Description string
+	var Address, Name, Date, Zipcode, Description, Preview string
 	var ID, User uint64
 
 	for rows.Next() {
 		event := new(Event_table)
-		err := rows.Scan(&ID, &Date, &Address, &Zipcode, &Name, &Description, &User); //err != nil 
+		err := rows.Scan(&ID, &Date, &Address, &Zipcode, &Name, &Description, &User &Preview); //err != nil 
 		if err != nil {
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
@@ -294,6 +295,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 		event.Date = Date
 		event.Description = Description
 		event.User = User
+		event.User = Preview
 
 		result = append(result, *event)
 	}
