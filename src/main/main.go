@@ -35,6 +35,7 @@ func main() {
     r.GET("/show_event", showroomHandler)
     r.GET("/about", aboutHandler)
     r.GET("/search_result", searchHandler)
+    r.GET("/events_nologin", eventHandler_nologin)
 
 	fmt.Println("Server running on", bindAddr)
 	log.Fatal(http.ListenAndServe(bindAddr, r))
@@ -161,6 +162,26 @@ func searchHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
 		// return to client via t.Execute
 		t.Execute(w, nil)
 	}
+
+func eventHandler_nologin(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+
+    // you access the cached templates with the defined name, not the filename
+
+    pagePath := "Event/templates/main.html"
+
+	pageTemplate := "Event/templates/overview_events_nologin.html"
+	pageSidemeny := "Event/templates/sidemeny_nologin.html"
+
+	
+	if t, err := template.ParseFiles(pagePath, pageTemplate, pageSidemeny); err != nil {
+		// Something gnarly happened.
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	} else {
+		// return to client via t.Execute
+		t.Execute(w, nil)
+	}
+
+}
 
 }
 
