@@ -10,6 +10,8 @@ function filterEvent(data){
  	printDiv.innerHTML = data.Event_ID;
  	headline.innerHTML = data.Event_name;
 
+ 	console.log(data.Event_ID);
+	console.log(data.Event_name);
 
 /*	
 	Event_name = document.getElementById('Event_name');
