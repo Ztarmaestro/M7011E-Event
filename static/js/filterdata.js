@@ -8,16 +8,28 @@ function filterEvent(data){
 	Zipcode = document.getElementById('Zipcode2');
 	date = document.getElementById('Date2');
 	Info = document.getElementById('Description2');
-	//Preview = document.getElementById('Preview');
 	Photo= document.getElementById('Photo2');
+	//Preview = document.getElementById('Preview');
 
-	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
-	date.innerHTML = date.innerHTML + data.Date;
-	Photo.src = data.Photo;
-	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
-	Address.innerHTML = Address.innerHTML + data.Address;
-	Info.innerHTML = Info.innerHTML + data.Info;
+	if(document.getElementById("Event_name2") != null){
+    	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
+	}
+	if(document.getElementById("Address2") != null){
+    	Address.innerHTML = Address.innerHTML + data.Address;
+	}
+	if(document.getElementById("Zipcode2") != null){
+    	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
+	}
+	if(document.getElementById("Date2") != null){
+    	date.innerHTML = date.innerHTML + data.Date;
+	}
+	if(document.getElementById("Description2") != null){
+    	Info.innerHTML = Info.innerHTML + data.Info;
+	}
+	if(document.getElementById("Photo2") != null){
+    	Photo.src = data.Photo;
+	}
+
 	//Preview.innerHTML = Preview.innerHTML + data.Preview;
-
 
 }
