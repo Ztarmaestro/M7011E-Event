@@ -591,7 +591,7 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 /*
 	Get a user from the db
 	!DONE FOR TESTING!
-*/
+
 func GetUser(w http.ResponseWriter, r *http.Request) (interface{}, *HandlerError) {
 	//mux.Vars(r)["id"] grabs variables from the path
 	param := mux.Vars(r)["id"]
@@ -634,7 +634,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) (interface{}, *HandlerError
 /*
 	ADD USER TO DB
 	!DONE for TESTING!
-*/
+
 
 func AddUser(w http.ResponseWriter, r *http.Request) (interface{}, *HandlerError) {
 
@@ -691,6 +691,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) (interface{}, *HandlerError
 	return payload, nil
 	//row, err := con.Query("select * from users where uid =?", param)
 }
+*/
 
 func main() {
 	// command line flags
