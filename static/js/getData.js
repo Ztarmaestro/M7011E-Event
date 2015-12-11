@@ -317,10 +317,10 @@ function addUser(idToken){
 
     xhr.send(JSON.stringify(data));
 
-  };
+  
 
   reader.onload = success;
   reader.readAsDataURL(photo.files[0]);
   
-  }
+  
 }
