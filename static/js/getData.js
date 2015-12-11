@@ -298,30 +298,11 @@ function sendForm(form) {
   }
 }
 
-function addUser(id){
-  console.log(form);
-  var data = {};
-  for (var i = 0, ii = form.length; i < ii; ++i) {
-    var input = form[i];
-    if (input.name) {
-      data[input.name] = input.value;
-    }
-  }
+function addUser(idToken){
+  console.log(idToken);
   
-  data["Event_ID"] = 1;
-  data["User"] = 1;
-
-  var photo = document.getElementById('Photo');
-  if(photo.files.length){
-    var reader = new FileReader();
-        function success(evt){
-          data.Photo = evt.target.result; 
-
-            console.log(data);
-            var xhr = new XMLHttpRequest();
-
-            //data.user = parseInt(data.user);
-            xhr.open('POST',"http://130.240.170.56:8000/event" , true);
+              //data.user = parseInt(data.user);
+            xhr.open('POST',"http://130.240.170.56:8000/users" , true);
             
             xhr.onreadystatechange=function() {
               if (xhr.readyState==4 && xhr.status==200) {

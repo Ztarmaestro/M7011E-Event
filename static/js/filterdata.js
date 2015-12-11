@@ -3,13 +3,13 @@ function filterEvent(data){
 
 	console.log(data);
 	
-	Event_name = document.getElementById('Event_name');
-	Address = document.getElementById('Address');
-	Zipcode = document.getElementById('Zipcode');
-	date = document.getElementById('Date');
-	Info = document.getElementById('Description');
+	Event_name = document.getElementById('Event_name2');
+	Address = document.getElementById('Address2');
+	Zipcode = document.getElementById('Zipcode2');
+	date = document.getElementById('Date2');
+	Info = document.getElementById('Description2');
 	//Preview = document.getElementById('Preview');
-	Photo= document.getElementById('Photo');
+	Photo= document.getElementById('Photo2');
 
 	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
 	date.innerHTML = date.innerHTML + data.Date;
