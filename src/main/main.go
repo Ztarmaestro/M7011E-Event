@@ -162,6 +162,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) 
 		// return to client via t.Execute
 		t.Execute(w, nil)
 	}
+}
 
 func eventHandler_nologin(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
