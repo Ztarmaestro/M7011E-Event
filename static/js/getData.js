@@ -298,7 +298,7 @@ function sendForm(form) {
   }
 }
 
-function addUserform) {
+function addUser(id){
   console.log(form);
   var data = {};
   for (var i = 0, ii = form.length; i < ii; ++i) {
