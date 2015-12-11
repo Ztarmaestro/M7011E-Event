@@ -9,14 +9,13 @@
 ================================================================================= --> 
 
     <script type="text/javascript">
-        window.onload = getAllEvent();
-        //window.onload = getEvent(2);
+        window.onload = function() {
+  			getEvent(2);
+		};
     </script>
    
 <nav class="Event-flow">
     <div class="col-xs-10 col-sm-7" id="flow">
-    	<button type="button" class="btn btn-primary" onclick="getAllEvent();">Load All Event</button>
-    	<button type="button" class="btn btn-primary" onclick="getEvent(1);">Load Event</button>
         <a href="/show_event" id="" class="list-group-item">
 
         <h1 id="Event_name"> </h1>
