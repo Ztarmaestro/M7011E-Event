@@ -15,8 +15,9 @@ function filterEvent(data){
 	Address.innerHTML = Address.innerHTML + data.Address;
 	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
 	date.innerHTML = date.innerHTML + data.Date;
+	Photo.src = data.Photo;
 	Info.innerHTML = Info.innerHTML + data.Info;
 	//Preview.innerHTML = Preview.innerHTML + data.Preview;
-	Photo.src = data.Photo;
+
 
 }
