@@ -66,6 +66,7 @@ function getEvent(id){
         console.log(json);
         var obj = JSON.parse(json);  
         console.log(obj);
+        filterEvent(obj);
     }    
     else{
       return "Error";
