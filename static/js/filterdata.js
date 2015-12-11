@@ -16,7 +16,7 @@ function filterEvent(data){
 	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
 	date.innerHTML = date.innerHTML + data.Date;
 	Info.innerHTML = Info.innerHTML + data.Info;
-	Preview.innerHTML = Preview.innerHTML + data.Preview;
+	//Preview.innerHTML = Preview.innerHTML + data.Preview;
 	Photo.src = data.Photo;
 
 }
