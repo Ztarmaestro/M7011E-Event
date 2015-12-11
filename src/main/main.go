@@ -184,6 +184,6 @@ func eventHandler_nologin(w http.ResponseWriter, r *http.Request, p httprouter.P
 
 }
 
-}
+
 
 
