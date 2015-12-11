@@ -11,12 +11,12 @@ function filterEvent(data){
 	Preview = document.getElementById('Preview');
 
 
-	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
-	Address.innerHTML = Address.innerHTML + data.Address;
-	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
-	date.innerHTML = date.innerHTML + data.date;
-	Info.innerHTML = Info.innerHTML + data.Info;
-	Preview.innerHTML = Preview.innerHTML + data.Preview;
+	Event_name.innerHTML = data.Event_name;
+	Address.innerHTML = data.Address;
+	Zipcode.innerHTML = data.Zipcode;
+	date.innerHTML = data.date;
+	Info.innerHTML = data.Info;
+	Preview.innerHTML = data.Preview;
 
 /*	
 	Event_name = document.getElementById('Event_name');
