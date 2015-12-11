@@ -189,7 +189,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	Preview := base64.StdEncoding.EncodeToString(buf.Bytes())
 
 	// adds the header from the website again
-	payload.Photo = a[0] + "," + payload.Photo
+	payload.Photo = a[0] + "," + Preview
 	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 		//"dbadmin:krnhw4twf@tcp(130.240.170.56:3306)/mydb")
 	if err != nil {
