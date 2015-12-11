@@ -12,10 +12,9 @@ function filterEvent(data){
 	Photo= document.getElementById('Photo');
 
 	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
-	Address.innerHTML = Address.innerHTML + data.Address;
-	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
 	date.innerHTML = date.innerHTML + data.Date;
 	Photo.src = data.Photo;
+	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
 	Address.innerHTML = Address.innerHTML + data.Address;
 	Info.innerHTML = Info.innerHTML + data.Info;
 	//Preview.innerHTML = Preview.innerHTML + data.Preview;
