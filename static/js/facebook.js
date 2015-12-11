@@ -50,6 +50,26 @@
   //    your app or not.
   //
   // These three cases are handled in the callback function.
+      
+    
+        window.fbAsyncInit = function() {
+        FB.init({
+        appId      : '101305660242781',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.5'
+        });
+    };
+
+        (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));   
+    
+
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
