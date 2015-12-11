@@ -283,7 +283,7 @@ function sendForm(form) {
                 //document.getElementById('newLoc').reset();
                 //markerPlaced = 0;
                 //$('#main-map-canvas').empty;
-                initialize();
+                //initialize();
                 return false;
               }
             }
