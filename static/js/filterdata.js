@@ -13,7 +13,7 @@ function filterEvent(data){
 	Preview = document.getElementById('Preview');
 	
 
-	Event_name.innerHTML = data.Event_name;
+	//Event_name.innerHTML = data.Event_name;
 	Address.innerHTML = data.Address;
 	Zipcode.innerHTML = data.Zipcode;
 	date.innerHTML = data.date;
