@@ -3,6 +3,15 @@ function filterEvent(data){
 
 	console.log(data);
 	
+	printDiv = document.getElementById('Event_ID');
+	headline = document.getElementById('Event_name');
+
+
+ 	printDiv.innerHTML = data.Event_ID;
+ 	headline.innerHTML = data.Event_name;
+
+
+/*	
 	Event_name = document.getElementById('Event_name');
 	Address = document.getElementById('Address');
 	Zipcode = document.getElementById('Zipcode');
@@ -13,7 +22,7 @@ function filterEvent(data){
 	Preview = document.getElementById('Preview');
 	
 
-	//Event_name.innerHTML = data.Event_name;
+	Event_name.innerHTML = data.Event_name;
 	Address.innerHTML = data.Address;
 	Zipcode.innerHTML = data.Zipcode;
 	date.innerHTML = data.date;
@@ -24,5 +33,6 @@ function filterEvent(data){
 
 	console.log(data.Event_ID);
 	console.log(data.Event_name);
+	*/
 
 }
