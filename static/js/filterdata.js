@@ -9,6 +9,7 @@ function filterEvent(data){
 	date = document.getElementById('Date');
 	Info = document.getElementById('Info');
 	Preview = document.getElementById('Preview');
+	Photo= document.getElementById('Photo');
 
 	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
 	Address.innerHTML = Address.innerHTML + data.Address;
@@ -16,5 +17,6 @@ function filterEvent(data){
 	date.innerHTML = date.innerHTML + data.Date;
 	Info.innerHTML = Info.innerHTML + data.Info;
 	Preview.innerHTML = Preview.innerHTML + data.Preview;
+	Photo.innerHTML = Photo.innerHTML + data.Photo;
 
 }
