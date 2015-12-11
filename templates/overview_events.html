@@ -10,7 +10,7 @@
 
     <script type="text/javascript">
         window.onload = getAllEvent();
-        window.onload = getEvent();
+        window.onload = getEvent(2);
     </script>
     
 <nav class="Event-flow">
@@ -18,17 +18,17 @@
     	<button type="button" class="btn btn-primary" onclick="getAllEvent();">Load All Event</button>
     	<button type="button" class="btn btn-primary" onclick="getEvent(2);">Load Event</button>
     	<button type="button" class="btn btn-primary" onclick="getPreviewEvent(2);">Load Preview</button>
-        <a href="/show_event" id="Event_name" class="list-group-item">
+        <a href="/show_event" id="Event_name" class="list-group-item"></a>
 
     	<h2 id="Address"></h2>
     	<h2 id="Zipcode"></h2>
-    	<h2 id="Date"></h2>
+    	<h2 id="date"></h2>
     	<h2 id="Info"></h2>
     	<h2 id="User"></h2>
     	<h2 id="Event_ID"></h2>
     	<h2 id="Preview"></h2>
        
-    	</a>
+    	
        
     </div>
 </nav>

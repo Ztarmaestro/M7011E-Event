@@ -6,7 +6,7 @@ function filterEvent(data){
 	Event_name = document.getElementById('Event_name');
 	Address = document.getElementById('Address');
 	Zipcode = document.getElementById('Zipcode');
-	Date = document.getElementById('Date');
+	date = document.getElementById('Date');
 	Info = document.getElementById('Info');
 	User = document.getElementById('User');
 	Event_id = document.getElementById('Event_ID');
@@ -16,7 +16,7 @@ function filterEvent(data){
 	Event_name.innerHTML = data.Event_name;
 	Address.innerHTML = data.Address;
 	Zipcode.innerHTML = data.Zipcode;
-	Date.innerHTML = data.Date;
+	date.innerHTML = data.date;
 	Info.innerHTML = data.Info;
 	User.innerHTML = data.User;
 	Event_id.innerHTML = data.Event_ID;
