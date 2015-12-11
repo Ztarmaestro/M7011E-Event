@@ -7,8 +7,8 @@ function filterEvent(data){
 	Address = document.getElementById('Address');
 	Zipcode = document.getElementById('Zipcode');
 	date = document.getElementById('Date');
-	Info = document.getElementById('Info');
-	Preview = document.getElementById('Preview');
+	Info = document.getElementById('Information');
+	//Preview = document.getElementById('Preview');
 	Photo= document.getElementById('Photo');
 
 	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
