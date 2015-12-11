@@ -223,7 +223,7 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	}
 	defer db.Close()
 
-	row, err := db.Query("select Event_ID, Date, Address, Zipcode, Event_name, Info, User Preview from Event_table where Event_ID =?", param)
+	row, err := db.Query("select Event_ID, Date, Address, Zipcode, Event_name, Info, User, Preview from Event_table where Event_ID =?", param)
 	if err == sql.ErrNoRows {
 		return nil, &handlerError{err, "Error event not found", http.StatusBadRequest}
 
