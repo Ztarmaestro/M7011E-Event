@@ -17,6 +17,6 @@ function filterEvent(data){
 	date.innerHTML = date.innerHTML + data.Date;
 	Info.innerHTML = Info.innerHTML + data.Info;
 	Preview.innerHTML = Preview.innerHTML + data.Preview;
-	Photo.innerHTML = Photo.innerHTML + data.Photo;
+	Photo.src = data.Photo;
 
 }
