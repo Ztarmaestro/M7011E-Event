@@ -297,3 +297,49 @@ function sendForm(form) {
   
   }
 }
+
+function addUserform) {
+  console.log(form);
+  var data = {};
+  for (var i = 0, ii = form.length; i < ii; ++i) {
+    var input = form[i];
+    if (input.name) {
+      data[input.name] = input.value;
+    }
+  }
+  
+  data["Event_ID"] = 1;
+  data["User"] = 1;
+
+  var photo = document.getElementById('Photo');
+  if(photo.files.length){
+    var reader = new FileReader();
+        function success(evt){
+          data.Photo = evt.target.result; 
+
+            console.log(data);
+            var xhr = new XMLHttpRequest();
+
+            //data.user = parseInt(data.user);
+            xhr.open('POST',"http://130.240.170.56:8000/event" , true);
+            
+            xhr.onreadystatechange=function() {
+              if (xhr.readyState==4 && xhr.status==200) {
+                console.log("SUCCESSFULLY UPLOADED");
+                //document.getElementById('newLoc').reset();
+                //markerPlaced = 0;
+                //$('#main-map-canvas').empty;
+                //initialize();
+                return false;
+              }
+            }
+
+    xhr.send(JSON.stringify(data));
+
+  };
+
+  reader.onload = success;
+  reader.readAsDataURL(photo.files[0]);
+  
+  }
+}
