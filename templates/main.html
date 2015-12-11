@@ -23,7 +23,7 @@
     <!-- Code for different GET/POST function -->
     <script language="JavaScript" type="text/javascript" src="static/js/getData.js"></script>
     
-    <script src="static/js/facebook.js"></script>
+    
 
     <!-- Optional custom theme -->
     <title>Bootstrap Example</title>
@@ -51,27 +51,6 @@
 
 <body>
     
-    <div id="status"></div>
-    <div id="fb-root"></div>
-        
-    <script>
-        window.fbAsyncInit = function() {
-        FB.init({
-        appId      : '101921540181193',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.5'
-        });
-    };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-    </script>
     
             
 
@@ -99,7 +78,6 @@
                     <ul class="nav navbar-nav">
                         <li class=""><a href="/">Home <span class="sr-only">(current)</span></a></li>
                         <li><a href="/events" >Events</a></li>
-                        <li><div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-                                     link="false"></div></li>
                     </ul>
 
                     <form class="navbar-form navbar-left" role="search" action="/search_result">
@@ -118,7 +96,6 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-                                     link="false"></div></li>
                                 <li><a href="/profile">Profile</a></li>
                                 <li><a href="#">My events</a></li>
                                 <li role="separator" class="divider"></li>
