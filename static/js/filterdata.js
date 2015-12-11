@@ -3,15 +3,20 @@ function filterEvent(data){
 
 	console.log(data);
 	
-	printDiv = document.getElementById('Event_ID');
-	headline = document.getElementById('Event_name');
+	Event_name = document.getElementById('Event_name');
+	Address = document.getElementById('Address');
+	Zipcode = document.getElementById('Zipcode');
+	date = document.getElementById('Date');
+	Info = document.getElementById('Info');
+	Preview = document.getElementById('Preview');
 
 
- 	printDiv.innerHTML = data.Event_ID;
- 	headline.innerHTML = data.Event_name;
-
- 	console.log(data.Event_ID);
-	console.log(data.Event_name);
+	Event_name.innerHTML = printDiv.innerHTML + data.Event_ID;
+	Address.innerHTML = printDiv.innerHTML + data.Address;
+	Zipcode.innerHTML = printDiv.innerHTML + data.Zipcode;
+	date.innerHTML = printDiv.innerHTML + data.date;
+	Info.innerHTML = printDiv.innerHTML + data.Info;
+	Preview.innerHTML = printDiv.innerHTML + data.Preview;
 
 /*	
 	Event_name = document.getElementById('Event_name');
