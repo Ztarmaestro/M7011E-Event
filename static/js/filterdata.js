@@ -11,7 +11,7 @@ function filterEvent(data){
 	Preview = document.getElementById('Preview');
 
 
-	Event_name.innerHTML = Event_name.innerHTML + data.Event_ID;
+	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
 	Address.innerHTML = Address.innerHTML + data.Address;
 	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
 	date.innerHTML = date.innerHTML + data.date;
