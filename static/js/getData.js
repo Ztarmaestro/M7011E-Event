@@ -66,6 +66,7 @@ function getEvent(id){
         console.log(json);
         var obj = JSON.parse(json);  
         console.log(obj);
+        filterEvent(obj);
     }    
     else{
       return "Error";
@@ -74,7 +75,6 @@ function getEvent(id){
 
     xmlHttp.open( "GET", "http://130.240.170.56:8000/event/"+id, false );
     xmlHttp.send( null ); 
-    filterEvent(obj);
 }
 
 function getUser(id, data, action){
