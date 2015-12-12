@@ -48,10 +48,22 @@ function filterAllEvent(data){
 
 	for( var i=0, l=data.length; i<l; i++ ) {
     	console.log( data[i] );
+	    document.write("
+	    	<nav class="Event-flow">
+			    <div class="col-xs-10 col-sm-7" id="flow">
+			        <a href="/show_event" id="" class="list-group-item">
+
+			        	<h1 id="Event_name2"> </h1>
+			    		<p id="Date2">Date: </p>
+			    		<img src="" id="Photo2">
+			      
+			    	</a>       
+			    </div>
+			</nav>
+");
 
 		if(document.getElementById("Event_name2") != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data[i].Event_name;
-	    	console.log( data.Event_name );
 		}
 		if(document.getElementById("Address2") != null){
 	    	Address.innerHTML = Address.innerHTML + data[i].Address;
