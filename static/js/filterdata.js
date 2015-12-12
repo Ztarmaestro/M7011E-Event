@@ -37,6 +37,7 @@ function filterEvent(data){
 function filterAllEvent(data){
 
 	console.log(data);
+	createEventlist(data);
 
 	Event_name = document.getElementById('Event_name2');
 	Address = document.getElementById('Address2');
@@ -47,15 +48,17 @@ function filterAllEvent(data){
 	//Preview = document.getElementById('Preview');
 
 	for( var i=0, l=data.length; i<l; i++ ) {
+		/*
 
 		var a = document.createElement("a");
-    	a.className = list-group-item;
+    	document.getElementById("a").className = "list-group-item";
+    	HTMLElementObject.id=  
     	a.id = linkevent;
 		a.href = "/show_event";
     	document.getElementById("flow").appendChild(a);
 
     	var head = document.createElement("h1");
-    	head.id = Event_name2;
+    	head. = Event_name2;
     	document.getElementById("linkevent").appendChild(head);
 
     	var para = document.createElement("p");
@@ -66,6 +69,8 @@ function filterAllEvent(data){
     	pic.id = Photo2;
     	pic.src = "";
     	document.getElementById("linkevent").appendChild(pic);
+
+    	*/
 
 		if(document.getElementById("Event_name2") != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data[i].Event_name;
@@ -89,4 +94,15 @@ function filterAllEvent(data){
 		//Preview.innerHTML = Preview.innerHTML + data.Preview;
 	}
 	
+}
+
+function createEventlist(data){
+
+	for( var i=0, l=data.length; i<l; i++ ) {
+
+		var a = document.createElement("a");
+    	document.getElementById("flow").appendChild(a);
+
+	}
+
 }
