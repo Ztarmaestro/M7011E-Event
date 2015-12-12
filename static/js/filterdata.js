@@ -39,35 +39,28 @@ function filterAllEvent(data){
 	console.log(data);
 	createEventlist(data);
 
-	Event_name = document.getElementById('Event_name2');
-	Address = document.getElementById('Address2');
-	Zipcode = document.getElementById('Zipcode2');
-	date = document.getElementById('Date2');
-	Info = document.getElementById('Description2');
-	Photo= document.getElementById('Photo2');
-	//Preview = document.getElementById('Preview');
-
 	for( var i=0, l=data.length; i<l; i++ ) {
-
-		var idstr = document.getElementById(i).id;
-		console.log(idstr);
 
     	var head = document.createElement("h1");
     	head.id = "Event_name"+[i];
     	document.getElementById(i).appendChild(head);
-    	console.log(head.id);
 
     	var para = document.createElement("p");
     	para.id = "Date"+[i];
     	document.getElementById(i).appendChild(para);
-    	console.log(para.id);
 
     	var pic = document.createElement("IMG");
     	pic.id = "Photo"+[i];
     	pic.src = "";
     	document.getElementById(i).appendChild(pic);
-    	console.log(pic.id);
-    	console.log(pic.src);
+
+    	Event_name = document.getElementById('Event_name'+[i]);
+		Address = document.getElementById('Address'+[i]);
+		Zipcode = document.getElementById('Zipcode'+[i]);
+		date = document.getElementById('Date'+[i]);
+		Info = document.getElementById('Description'+[i]);
+		Photo= document.getElementById('Photo'+[i]);
+		//Preview = document.getElementById('Preview');
 
 
 		if(document.getElementById("Event_name"+[i]) != null){
