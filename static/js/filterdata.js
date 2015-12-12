@@ -37,7 +37,6 @@ function filterEvent(data){
 function filterAllEvent(data){
 
 	console.log(data);
-	createEventdiv(data)
 	createEventlist(data);
 
 	for( var i=0, l=data.length; i<l; i++ ) {
