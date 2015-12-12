@@ -53,17 +53,17 @@ function filterAllEvent(data){
 		console.log(idstr);
 
     	var head = document.createElement("h1");
-    	head.id = Event_name+[i];
+    	head.id = "Event_name"+[i];
     	document.getElementById(i).appendChild(head);
     	console.log(head.id);
 
     	var para = document.createElement("p");
-    	para.id = Date+[i];
+    	para.id = "Date"+[i];
     	document.getElementById(i).appendChild(para);
     	console.log(para.id);
 
-    	var pic = document.createElement("img");
-    	pic.id = Photo+[i];
+    	var pic = document.createElement("IMG");
+    	pic.id = "Photo"+[i];
     	pic.src = "";
     	document.getElementById(i).appendChild(pic);
     	console.log(pic.id);
