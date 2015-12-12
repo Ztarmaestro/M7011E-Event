@@ -102,36 +102,50 @@ $('#myModal').on('shown.bs.modal', (function() {
 </script>
 -->
 
-<div class="modal hide fade" id="myModal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3></h3>
-  </div>
-  <div class="modal-body">
-    <div id="mapCanvas" style="width: 500px; height: 400px"></div>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-  </div>
-</div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-<script>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Google Maps</h4>
+                </div>
+                <div class="modal-body">
 
-    function initialize() {
-  var mapOptions = {
-    center: new google.maps.LatLng(51.219987, 4.396237),
-    zoom: 12,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  var map = new google.maps.Map(document.getElementById("mapCanvas"),
-    mapOptions);
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(51.219987, 4.396237)
-  });
-  marker.setMap(map);
-}
+                    <div id="map_canvas" style="width:auto; height: 500px;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">View Map</button>
+
+<script type="text/javascript">
+    function initializeMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(51.219987, 4.396237),
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+          mapOptions);
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(51.219987, 4.396237)
+        });
+        marker.setMap(map);
+    }
+
+    //show map on modal
+    $('#myModal').on('shown.bs.modal', function () {
+        initializeMap();
+    });
 
 </script>
-
 
 {{end}}

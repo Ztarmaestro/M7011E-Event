@@ -82,9 +82,9 @@
     });
   }
 
-    FB.logout(function(response) {
+ //   FB.logout(function(response) {
   // user is now logged out
-        });
+   //     });
 
 
     /* make the API call */
