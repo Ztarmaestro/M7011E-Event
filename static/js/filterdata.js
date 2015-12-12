@@ -95,7 +95,7 @@ function createEventlist(data){
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.href = "/show_event";
-    	document.getElementById("nav"+i).appendChild(a);
+    	document.getElementById("div"+i).appendChild(a);
 
 	}
 
