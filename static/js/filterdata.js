@@ -101,6 +101,8 @@ function createEventlist(data){
 	for( var i=0, l=data.length; i<l; i++ ) {
 
 		var a = document.createElement("a");
+		var t = document.createTextNode("Hello World");
+    	a.appendChild(t);
     	document.getElementById("flow").appendChild(a);
 
 	}
