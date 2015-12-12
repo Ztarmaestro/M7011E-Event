@@ -38,16 +38,16 @@ function filterAllEvent(data){
 
 	console.log(data);
 
+	Event_name = document.getElementById('Event_name2');
+	Address = document.getElementById('Address2');
+	Zipcode = document.getElementById('Zipcode2');
+	date = document.getElementById('Date2');
+	Info = document.getElementById('Description2');
+	Photo= document.getElementById('Photo2');
+	//Preview = document.getElementById('Preview');
+
 	for( var i=0, l=data.length; i<l; i++ ) {
     	console.log( data[i] );
-
-   		Event_name = document.getElementById('Event_name2');
-		Address = document.getElementById('Address2');
-		Zipcode = document.getElementById('Zipcode2');
-		date = document.getElementById('Date2');
-		Info = document.getElementById('Description2');
-		Photo= document.getElementById('Photo2');
-		//Preview = document.getElementById('Preview');
 
 		if(document.getElementById("Event_name2") != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
