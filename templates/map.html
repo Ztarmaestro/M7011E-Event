@@ -61,7 +61,7 @@
         </script>
 -->
 
-
+<!--Kartan som bara stängs ner 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -100,9 +100,38 @@ $('#myModal').on('shown.bs.modal', (function() {
 })());
     
 </script>
+-->
 
+<div class="modal hide fade" id="myModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3></h3>
+  </div>
+  <div class="modal-body">
+    <div id="mapCanvas" style="width: 500px; height: 400px"></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
 
+<script>
 
+    function initialize() {
+  var mapOptions = {
+    center: new google.maps.LatLng(51.219987, 4.396237),
+    zoom: 12,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("mapCanvas"),
+    mapOptions);
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(51.219987, 4.396237)
+  });
+  marker.setMap(map);
+}
+
+</script>
 
 
 {{end}}
