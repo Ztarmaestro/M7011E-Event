@@ -37,6 +37,10 @@ function filterEvent(data){
 function filterAllEvent(data){
 
 	console.log(data);
+
+	for( var i=0, l=data.length; i<l; i++ ) {
+    	console.log( data[i] );
+	}
 	
 	Event_name = document.getElementById('Event_name2');
 	Address = document.getElementById('Address2');
