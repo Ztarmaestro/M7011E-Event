@@ -49,8 +49,8 @@ function filterAllEvent(data){
 
 	for( var i=0, l=data.length; i<l; i++ ) {
 
-		var idstr = a.id;
-		console.log(a.id);
+		var idstr = document.getElementById(i).id;
+		console.log(idstr);
 		/*
 
 		var a = document.createElement("a");
