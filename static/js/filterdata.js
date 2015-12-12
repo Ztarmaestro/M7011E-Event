@@ -46,6 +46,7 @@ function filterAllEvent(data){
 	Photo= document.getElementById('Photo2');
 	//Preview = document.getElementById('Preview');
 
+/*
 	for( var i=0, l=data.length; i<l; i++ ) {
     	console.log( data[i] );
 	    document.write("
@@ -61,6 +62,7 @@ function filterAllEvent(data){
 			    </div>
 			</nav>
 ");
+*/
 
 		if(document.getElementById("Event_name2") != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data[i].Event_name;
