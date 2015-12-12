@@ -51,34 +51,29 @@ function filterAllEvent(data){
 
 		var idstr = document.getElementById(i).id;
 		console.log(idstr);
-		/*
-
-		var a = document.createElement("a");
-    	document.getElementById("a").className = "list-group-item";
-    	HTMLElementObject.id=  
-    	a.id = linkevent;
-		a.href = "/show_event";
-    	document.getElementById("flow").appendChild(a);
 
     	var head = document.createElement("h1");
-    	head. = Event_name2;
+    	head.id = Event_name+[i];
     	document.getElementById("linkevent").appendChild(head);
+    	console.log(head.id);
 
     	var para = document.createElement("p");
-    	para.id = Date2;
+    	para.id = Date+[i];
     	document.getElementById("linkevent").appendChild(para);
+    	console.log(para.id);
 
     	var pic = document.createElement("img");
-    	pic.id = Photo2;
+    	pic.id = Photo+[i];
     	pic.src = "";
     	document.getElementById("linkevent").appendChild(pic);
+    	console.log(pic.id);
+    	console.log(pic.src);
 
-    	*/
 
 		if(document.getElementById("Event_name2") != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data[i].Event_name;
 		}
-		if(document.getElementById("Address2") != null){
+		if(document.getElementById("Address"+i) != null){
 	    	Address.innerHTML = Address.innerHTML + data[i].Address;
 		}
 		if(document.getElementById("Zipcode2") != null){
@@ -105,6 +100,7 @@ function createEventlist(data){
 
 		var a = document.createElement("a");
 		a.id = i
+		a.href = "/show_event"
     	document.getElementById("flow").appendChild(a);
 
 	}
