@@ -109,7 +109,6 @@ function createEventdiv(data){
 		list.id = "list"+i;
 		list.classname = "list-group-item"
     	document.getElementById("Eventlist").appendChild(list);
-    	console.log(div.classname);
 
 	}
 
