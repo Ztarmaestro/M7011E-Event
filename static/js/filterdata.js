@@ -94,6 +94,7 @@ function createEventlist(data){
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.href = "/show_event";
+		a.classname="panel-body";
     	document.getElementById("flow").appendChild(a);
 
 	}
