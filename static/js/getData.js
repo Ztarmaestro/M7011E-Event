@@ -46,7 +46,7 @@ function getAllEvent(){
         //console.log(json); 
         var obj = JSON.parse(json); 
         //console.log(obj); 
-        filterEvent(obj);
+        filterAllEvent(obj);
     }
     else{
       return "Error";
