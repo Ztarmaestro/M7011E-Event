@@ -37,22 +37,23 @@ function filterEvent(data){
 function filterAllEvent(data){
 
 	console.log(data);
+	createEventdiv(data)
 	createEventlist(data);
 
 	for( var i=0, l=data.length; i<l; i++ ) {
 
     	var head = document.createElement("h1");
-    	head.id = "Event_name"+[i];
-    	document.getElementById(i).appendChild(head);
+    	head.id = "Event_name"+i;
+    	document.getElementById("a"+i).appendChild(head);
 
     	var para = document.createElement("p");
-    	para.id = "Date"+[i];
-    	document.getElementById(i).appendChild(para);
+    	para.id = "Date"+i;
+    	document.getElementById("a"+i).appendChild(para);
 
     	var pic = document.createElement("IMG");
-    	pic.id = "Photo"+[i];
+    	pic.id = "Photo"+i;
     	pic.src = "";
-    	document.getElementById(i).appendChild(pic);
+    	document.getElementById("a"+i).appendChild(pic);
 
     	Event_name = document.getElementById('Event_name'+[i]);
 		Address = document.getElementById('Address'+[i]);
@@ -92,9 +93,22 @@ function createEventlist(data){
 	for( var i=0, l=data.length; i<l; i++ ) {
 
 		var a = document.createElement("a");
-		a.id = i
-		a.href = "/show_event"
-    	document.getElementById("flow").appendChild(a);
+		a.id = "a"+i;
+		a.href = "/show_event";
+    	document.getElementById("div"+i).appendChild(a);
+
+	}
+
+}
+
+function createEventdiv(data){
+
+	for( var i=0, l=data.length; i<l; i++ ) {
+
+		var div = document.createElement("div");
+		div.id = "div"+i;
+		div.classname = "col-xs-10 col-sm-7";
+    	document.getElementById("nav").appendChild(div);
 
 	}
 
