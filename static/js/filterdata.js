@@ -51,6 +51,7 @@ function filterAllEvent(data){
 
 		if(document.getElementById("Event_name2") != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
+	    	console.log( data.Event_name );
 		}
 		if(document.getElementById("Address2") != null){
 	    	Address.innerHTML = Address.innerHTML + data.Address;
