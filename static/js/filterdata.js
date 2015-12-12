@@ -107,7 +107,7 @@ function createEventdiv(data){
 
 		var div = document.createElement("div");
 		div.id = "div"+i;
-		div.classname = "panel panel-default"
+		div.classname = "panel-body"
     	document.getElementById("flow").appendChild(div);
     	console.log(div.classname);
 
