@@ -70,22 +70,22 @@ function filterAllEvent(data){
     	console.log(pic.src);
 
 
-		if(document.getElementById("Event_name2") != null){
+		if(document.getElementById("Event_name"+[i]) != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data[i].Event_name;
 		}
-		if(document.getElementById("Address"+i) != null){
+		if(document.getElementById("Address") != null){
 	    	Address.innerHTML = Address.innerHTML + data[i].Address;
 		}
-		if(document.getElementById("Zipcode2") != null){
+		if(document.getElementById("Zipcode") != null){
 	    	Zipcode.innerHTML = Zipcode.innerHTML + data[i].Zipcode;
 		}
-		if(document.getElementById("Date2") != null){
+		if(document.getElementById("Date"+[i]) != null){
 	    	date.innerHTML = date.innerHTML + data[i].Date;
 		}
-		if(document.getElementById("Description2") != null){
+		if(document.getElementById("Description"+[i]) != null){
 	    	Info.innerHTML = Info.innerHTML + data[i].Info;
 		}
-		if(document.getElementById("Photo2") != null){
+		if(document.getElementById("Photo"+[i]) != null){
 	    	Photo.src = data[i].Photo;
 		}
 
