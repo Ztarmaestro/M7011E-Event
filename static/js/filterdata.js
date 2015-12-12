@@ -37,7 +37,6 @@ function filterEvent(data){
 function filterAllEvent(data){
 
 	console.log(data);
-	createEventdiv(data)
 	createEventlist(data);
 
 	for( var i=0, l=data.length; i<l; i++ ) {
@@ -95,21 +94,9 @@ function createEventlist(data){
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.href = "/show_event";
-    	document.getElementById("div"+i).appendChild(a);
+    	document.getElementById("flow").appendChild(a);
 
 	}
 
 }
 
-function createEventdiv(data){
-
-	for( var i=0, l=data.length; i<l; i++ ) {
-
-		var div = document.createElement("div");
-		div.id = "div"+i;
-		div.classname = "col-xs-10 col-sm-7"
-    	document.getElementById("nav").appendChild(div);
-
-	}
-
-}
