@@ -95,21 +95,9 @@ function createEventlist(data){
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.href = "/show_event";
-    	document.getElementById("list"+i).appendChild(a);
+    	document.getElementById("flow").appendChild(a);
 
 	}
 
 }
 
-function createEventdiv(data){
-
-	for( var i=0, l=data.length; i<l; i++ ) {
-
-		var list = document.createElement("li");
-		list.id = "list"+i;
-		list.classname = "list-group-item"
-    	document.getElementById("Eventlist").appendChild(list);
-
-	}
-
-}
