@@ -50,23 +50,23 @@ function filterAllEvent(data){
     	console.log( data[i] );
 
 		if(document.getElementById("Event_name2") != null){
-	    	Event_name.innerHTML = Event_name.innerHTML + data.Event_name;
+	    	Event_name.innerHTML = Event_name.innerHTML + data[i].Event_name;
 	    	console.log( data.Event_name );
 		}
 		if(document.getElementById("Address2") != null){
-	    	Address.innerHTML = Address.innerHTML + data.Address;
+	    	Address.innerHTML = Address.innerHTML + data[i].Address;
 		}
 		if(document.getElementById("Zipcode2") != null){
-	    	Zipcode.innerHTML = Zipcode.innerHTML + data.Zipcode;
+	    	Zipcode.innerHTML = Zipcode.innerHTML + data[i].Zipcode;
 		}
 		if(document.getElementById("Date2") != null){
-	    	date.innerHTML = date.innerHTML + data.Date;
+	    	date.innerHTML = date.innerHTML + data[i].Date;
 		}
 		if(document.getElementById("Description2") != null){
-	    	Info.innerHTML = Info.innerHTML + data.Info;
+	    	Info.innerHTML = Info.innerHTML + data[i].Info;
 		}
 		if(document.getElementById("Photo2") != null){
-	    	Photo.src = data.Photo;
+	    	Photo.src = data[i].Photo;
 		}
 
 		//Preview.innerHTML = Preview.innerHTML + data.Preview;
