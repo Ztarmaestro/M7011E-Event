@@ -48,6 +48,9 @@ function filterAllEvent(data){
 	//Preview = document.getElementById('Preview');
 
 	for( var i=0, l=data.length; i<l; i++ ) {
+
+		var idstr = a.id;
+		console.log(a.id);
 		/*
 
 		var a = document.createElement("a");
@@ -101,8 +104,7 @@ function createEventlist(data){
 	for( var i=0, l=data.length; i<l; i++ ) {
 
 		var a = document.createElement("a");
-		var t = document.createTextNode("Hello World");
-    	a.appendChild(t);
+		a.id = i
     	document.getElementById("flow").appendChild(a);
 
 	}
