@@ -95,7 +95,7 @@ function createEventlist(data){
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.href = "/show_event";
-    	document.getElementById("div"+i).appendChild(a);
+    	document.getElementById("list"+i).appendChild(a);
 
 	}
 
@@ -105,10 +105,10 @@ function createEventdiv(data){
 
 	for( var i=0, l=data.length; i<l; i++ ) {
 
-		var div = document.createElement("div");
-		div.id = "div"+i;
-		div.classname = "panel-body"
-    	document.getElementById("flow").appendChild(div);
+		var list = document.createElement("li");
+		list.id = "list"+i;
+		list.classname = "list-group-item"
+    	document.getElementById("list").appendChild(div);
     	console.log(div.classname);
 
 	}
