@@ -1,29 +1,4 @@
-// This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
 
-  // This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
 
   window.fbAsyncInit = function() {
   FB.init({
@@ -50,7 +25,7 @@
     statusChangeCallback(response);
   });
 
-  };
+ 
 
   // Load the SDK asynchronously
   (function(d, s, id) {
@@ -72,35 +47,6 @@
         addUser(response);
     });
   }
-
-
-  function addUser(fbjson){
-    var data = {};
-    console.log(fbjson);
-    data.id = fbjson.id;
-    data.first_name = fbjson.first_name;
-    console.log(data);
-    
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange=function() {
-    if (xhr.readyState==4 && xhr.status==200) {
-      console.log('User added to DB');
-      console.log(data.id);
-      getUser (data.id);
-
-    }else{
-       console.log("User already exists");
-       console.log(data.id);
-       getUser (data.id);
-    }
-  }
-  
-  xhr.open('POST','http://130.240.170.56:8000/users', true);
-  
-
- xhr.send(JSON.stringify(data));
-  //closeSelf();
-}
 
 function checklogin(){
 
@@ -133,3 +79,61 @@ function logout(){
           }
       });
   }
+
+
+ // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  } 
+
+ };
+
+function addUser(fbjson){
+    var data = {};
+    console.log(fbjson);
+    data.id = fbjson.id;
+    data.first_name = fbjson.first_name;
+    console.log(data);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function() {
+    if (xhr.readyState==4 && xhr.status==200) {
+      console.log('User added to DB');
+      console.log(data.id);
+      getUser (data.id);
+
+    }else{
+       console.log("User already exists");
+       console.log(data.id);
+       getUser (data.id);
+    }
+  }
+  
+  xhr.open('POST','http://130.240.170.56:8000/users', true);
+  
+
+ xhr.send(JSON.stringify(data));
+  //closeSelf();
+}
