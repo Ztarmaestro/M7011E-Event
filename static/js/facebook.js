@@ -101,7 +101,7 @@
  xhr.send(JSON.stringify(data));
   //closeSelf();
   
-  }
+  
 }
 
 function checklogin(){

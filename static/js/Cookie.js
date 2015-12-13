@@ -2,7 +2,7 @@
 
 function setCookie(cname, idToken, cevent, eventID) {
 
-    document.cookie = cname + "=" + idToken + "; " cevent "=" + eventID;
+    document.cookie = cname + "=" + idToken + "; " cevent "=" + eventID + "; ";
 
 }
 

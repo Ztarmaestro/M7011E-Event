@@ -92,7 +92,7 @@ console.log(data);
 
 	var default_eventid = "X"
 	var idToken = data.IdToken;
-	setCookie("username", idToken, "event", default_eventid)
+	setCookie("username", idToken, "event", default_eventid);
 
 }
 
