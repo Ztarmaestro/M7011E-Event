@@ -45,16 +45,6 @@
   //    your app or not.
   //
   // These three cases are handled in the callback function.
-      
-    
-        window.fbAsyncInit = function() {
-        FB.init({
-        appId      : '101305660242781',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.5'
-        });
-    };
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
@@ -83,8 +73,9 @@
     });
   }
 
+
   function addUser(fbjson){
-    var data = ();
+    var data = {};
     console.log(fbjson);
     data.id = fbjson.id;
     data.first_name = fbjson.first_name;
@@ -144,14 +135,3 @@ function logout(){
           }
       });
   }
-
-
-    /* make the API call */
-   // FB.api(
-     //   "/{user-id}",
-        //function (response) {
-      //      if (response && !response.error) {
-                
-          //  }
-    //    }
-    //);
