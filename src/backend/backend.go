@@ -14,7 +14,7 @@ import (
 	//"math"
 	"github.com/gorilla/mux"
 	"net/http"
-	"strconv"
+	//"strconv"
 	//"time"
 
 	// this is test for photos
@@ -718,22 +718,22 @@ func main() {
 
 	// Handlers for Users
 	router.Handle("/users", handler(addUser)).Methods("POST")
-	router.Handle("/users", handler(listAllUsers)).Methods("GET")
+	//router.Handle("/users", handler(listAllUsers)).Methods("GET")
 	router.Handle("/users/{id}", handler(getUser)).Methods("GET")
-	router.Handle("/users/{id}", handler(removeUser)).Methods("DELETE")
+	//router.Handle("/users/{id}", handler(removeUser)).Methods("DELETE")
 
 	// Handlers for event
 	router.Handle("/event", handler(addEvent)).Methods("POST")
 	router.Handle("/event/{id}", handler(getEvent)).Methods("GET")
 	router.Handle("/event", handler(getAllEvent)).Methods("GET")
-	router.Handle("/event/{id}", handler(removeEvent)).Methods("DELETE")
+	//router.Handle("/event/{id}", handler(removeEvent)).Methods("DELETE")
 
 	// Get all event a user have added
-	router.Handle("/users/event/{id}", handler(getUserEvent)).Methods("GET")
+	//router.Handle("/users/event/{id}", handler(getUserEvent)).Methods("GET")
 	//Get all pictures for a event
-	router.Handle("/event/picture/{id}", handler(retriveEventPhoto)).Methods("GET")
+	//router.Handle("/event/picture/{id}", handler(retriveEventPhoto)).Methods("GET")
 	//Get all preview pictures for a event
-	router.Handle("/event/picture/preview/{id}", handler(retriveEventPreview)).Methods("GET")
+	//router.Handle("/event/picture/preview/{id}", handler(retriveEventPreview)).Methods("GET")
 
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static", fileHandler))
 	http.Handle("/", router)
