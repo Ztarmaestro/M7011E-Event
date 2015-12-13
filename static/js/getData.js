@@ -280,3 +280,33 @@ function sendForm(form) {
   
   }
 }
+
+function addUser(fbjson){
+    var data = ();
+    console.log(fbjson);
+    data.id = fbjson.id;
+    data.first_name = fbjson.first_name;
+    console.log(data);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function() {
+    if (xhr.readyState==4 && xhr.status==200) {
+      console.log('User added to DB');
+      console.log(data.id);
+      getUser (data.id);
+
+    }else{
+       console.log("User already exists");
+       console.log(data.id);
+       getUser (data.id);
+    }
+  }
+  
+  xhr.open('POST','http://130.240.170.56:8000/users', true);
+  
+
+ xhr.send(JSON.stringify(data));
+  //closeSelf();
+  
+  }
+}
