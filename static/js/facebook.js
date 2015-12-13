@@ -115,11 +115,11 @@
 
 
     /* make the API call */
-    FB.api(
-        "/{user-id}",
-        function (response) {
-            if (response && !response.error) {
+   // FB.api(
+     //   "/{user-id}",
+        //function (response) {
+      //      if (response && !response.error) {
                 
-            }
-        }
-    );
+          //  }
+    //    }
+    //);
