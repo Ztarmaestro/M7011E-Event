@@ -77,13 +77,13 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      sendUser(response);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+        addUser(response);
     });
   }
 
-  function sendUser(fbjson){
+  function addUser(fbjson){
     var data = ();
     console.log(fbjson);
     data.id = fbjson.id;
@@ -94,9 +94,13 @@
     xhr.onreadystatechange=function() {
     if (xhr.readyState==4 && xhr.status==200) {
       console.log('User added to DB');
+      console.log(data.id);
+      getUser (data.id);
+
     }else{
-        console.log("Use already exists");
-        getUser (data);
+       console.log("User already exists");
+       console.log(data.id);
+       getUser (data.id);
     }
   }
   

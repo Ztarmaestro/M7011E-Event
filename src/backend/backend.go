@@ -50,7 +50,7 @@ A  User is composed of a
 	and a Photo witch is a url to that persons fb profile pic
 */
 type User_table struct {
-	UserID    	uint64 `json:"UserID"`
+	//UserID    	uint64 `json:"UserID"`
 	IdToken   	string `json:"IdToken"`
 	Name 		string `json:"Username"`
 	//LastName  string `json:"last_name"`
@@ -80,7 +80,7 @@ type Event_table struct {
 	Photo       string  `json:"Photo"`
 	Preview 	string  `json:"Preview"`
 	Description string  `json:"Info"`
-	User        uint64  `json:"User"`
+	User        string  `json:"User"`
 
 	//Attending	uint64  `json:"Attending"`
 }
@@ -199,7 +199,7 @@ func addEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	defer db.Close()
 
 	//inputs the event to the db
-	_, err = db.Exec("insert into Event_table(Event_ID, Date, Address, Zipcode, Event_name, Info, Photo, Preview, User) values(?,?,?,?,?,?,?,?,?)", payload.Event_ID, payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Photo, Preview, payload.User)
+	_, err = db.Exec("insert into Event_table(Date, Address, Zipcode, Event_name, Info, Photo, Preview, User) values(?,?,?,?,?,?,?,?)", payload.Date, payload.Address, payload.Zipcode, payload.Name, payload.Description, payload.Photo, Preview, payload.User)
 
 	if err != nil {
 
@@ -235,8 +235,8 @@ func getEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerE
 	}
 
 	//var result []Event_table // create an array of events
-	var Address, Name, Date, Zipcode, Description, Preview, Photo string
-	var ID, User uint64
+	var Address, Name, Date, Zipcode, Description, Preview, Photo, User string
+	var ID uint64
 	event := new(Event_table)
 	for row.Next() {
 	
@@ -279,8 +279,8 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 	}
 
 	var result []Event_table // create an array of Event
-	var Address, Name, Date, Zipcode, Description, Preview, Photo string
-	var ID, User uint64
+	var Address, Name, Date, Zipcode, Description, Preview, Photo, User string
+	var ID uint64
 
 	for rows.Next() {
 		event := new(Event_table)
@@ -408,7 +408,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 
 	}
 
-	_, err = db.Exec("insert into User_table(Username, IdToken, UserID) values(?,?,?)", payload.Name, payload.IdToken, payload.UserID)
+	_, err = db.Exec("insert into User_table(Username, IdToken) values(?,?)", payload.Name, payload.IdToken)
 
 	if err != nil {
 		return nil, &handlerError{err, "Error adding to DB", http.StatusInternalServerError}
@@ -481,14 +481,14 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	user := new(User_table)
 	for row.Next() {
 		var idToken string
-		var uid uint64
+		//var uid uint64
 		var name string
 
-		if err := row.Scan(&uid, &name, &idToken); err != nil {
+		if err := row.Scan(&name, &idToken); err != nil {
 			log.Fatal(err)
 		}
 		user.IdToken = idToken
-		user.UserID = uid
+		//user.UserID = uid
 		user.Name = name
 	
 	}
@@ -708,8 +708,8 @@ func main() {
 	router.Handle("/", http.RedirectHandler("/static/", 302))
 
 	// Handlers for Users
-	router.Handle("/users", handler(listAllUsers)).Methods("GET")
 	router.Handle("/users", handler(addUser)).Methods("POST")
+	router.Handle("/users", handler(listAllUsers)).Methods("GET")
 	router.Handle("/users/{id}", handler(getUser)).Methods("GET")
 	router.Handle("/users/{id}", handler(removeUser)).Methods("DELETE")
 

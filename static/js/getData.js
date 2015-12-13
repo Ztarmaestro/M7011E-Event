@@ -78,35 +78,17 @@ function getEvent(id){
     xmlHttp.send( null ); 
 }
 
-function getUser(id, data, action){
+function getUser(id){
   var xmlHttp = null;
-  console.log(id + " " + data + " " + action); 
+  console.log(id); 
   xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);
-        console.log('HJAHSJ');
-        if(action == 'form'){
-          data = JSON.parse(data);
-          data.user = obj.userID;
-          sendForm(data, action);
-
-        } else if(action == 'comment'){
-          createComments(data, obj);
-          
-        }else if(action == 'user'){
-          loadUser(obj);
-        }else if(action == 'me'){
-            me = document.getElementById('me')
-            me.value = id;
-            me.name = obj.userID;
-          console.log(me);
-            
-        }
-        
-      }
-    else{
+        console.log(obj);  
+        filterUser(obj);    
+    }else{
       return "ERROR";
     }
   };
@@ -263,8 +245,8 @@ function sendForm(form) {
     }
   }
   
-  data["Event_ID"] = 1;
-  data["User"] = 1;
+  var user = getCookie("username");
+  data["User"] = user;
 
   var photo = document.getElementById('Photo');
   if(photo.files.length){
@@ -297,31 +279,4 @@ function sendForm(form) {
   reader.readAsDataURL(photo.files[0]);
   
   }
-}
-
-function addUser(idToken){
-  console.log(idToken);
-  
-              //data.user = parseInt(data.user);
-            xhr.open('POST',"http://130.240.170.56:8000/users" , true);
-            
-            xhr.onreadystatechange=function() {
-              if (xhr.readyState==4 && xhr.status==200) {
-                console.log("SUCCESSFULLY UPLOADED");
-                //document.getElementById('newLoc').reset();
-                //markerPlaced = 0;
-                //$('#main-map-canvas').empty;
-                //initialize();
-                return false;
-              }
-            }
-
-    xhr.send(JSON.stringify(data));
-
-  
-
-  reader.onload = success;
-  reader.readAsDataURL(photo.files[0]);
-  
-  
 }
