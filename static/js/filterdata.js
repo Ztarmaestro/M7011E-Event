@@ -87,15 +87,6 @@ function filterAllEvent(data){
 	
 }
 
-function filterUser(data){
-console.log(data);
-
-	var default_eventid = "X"
-	var idToken = data.IdToken;
-	setCookie("username", idToken, "event", default_eventid);
-
-}
-
 function createEventlist(data){
 
 	for( var i=0, l=data.length; i<l; i++ ) {
@@ -103,7 +94,7 @@ function createEventlist(data){
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.href = "/show_event";
-		a.object.onclick=function(){makeEventcookie(a.id)};
+		a.object.onclick=function(){getEvent(a.id)};
     	document.getElementById("flow").appendChild(a);
 
 	}

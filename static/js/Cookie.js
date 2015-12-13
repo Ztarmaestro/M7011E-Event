@@ -1,15 +1,8 @@
 
 
-function setCookie(cname, idToken, cevent, eventID) {
+function setCookie(cname, idToken) {
 
-    document.cookie = cname + "=" + idToken + "; " cevent "=" + eventID + "; ";
-
-}
-
-function makeEventcookie (eventID) {
-
-	var user = getCookie("username");
-	setCookie ("username", user, "event", eventID);
+    document.cookie = cname + "=" + idToken + "; ";
 
 }
 
@@ -23,6 +16,7 @@ function getCookie(cname) {
     }
     return "";
 }
+
 
 
 
