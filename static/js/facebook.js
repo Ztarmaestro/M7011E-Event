@@ -19,11 +19,29 @@
   }
 
   // This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
-  function checkLoginState() {
+function checkLoginState(value) {
+
+  if (value == 1) {
+      FB.getLoginStatus(function(response) {
+      checklogin(response);
+     });
+   }
+  else {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
   }
+}
+
+function checklogin(response){
+  if (response.status === 'connected') {
+    console.log('Logged in.');
+    logout();
+  }
+  else {
+    login();
+  }
+}
 
   window.fbAsyncInit = function() {
   FB.init({
@@ -100,21 +118,7 @@
 
  xhr.send(JSON.stringify(data));
   //closeSelf();
-  
-  
-}
 
-function checklogin(){
-
-  FB.getLoginStatus(function(response) {
-  if (response.status === 'connected') {
-    console.log('Logged in.');
-    logout();
-  }
-  else {
-    login();
-    }
-  });
 }
 
 function logout(){
