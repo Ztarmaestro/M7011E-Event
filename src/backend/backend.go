@@ -310,6 +310,7 @@ func getAllEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handl
 	Grabs an event from the db.
 */
 
+/*
 func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
 	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
@@ -354,11 +355,12 @@ func getUserEvent(rw http.ResponseWriter, req *http.Request) (interface{}, *hand
 	return result, nil
 
 }
+*/
 
 /*
 	Remove Event from DB
 	Function not yet implemented
-*/
+
 
 func removeEvent(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(r)["id"]
@@ -371,6 +373,8 @@ func removeEvent(w http.ResponseWriter, r *http.Request) (interface{}, *handlerE
 	returnable := string("removeEvent")
 	return returnable, nil
 }
+
+*/
 
 /*
 	ADD USER TO DB
@@ -421,7 +425,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 /*
 	List all users in the db
 	This function lists all users from the db
-*/
+
 func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
 	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
 	if err != nil {
@@ -447,12 +451,13 @@ func listAllUsers(w http.ResponseWriter, r *http.Request) (interface{}, *handler
 			return result, &handlerError{err, "Error in DB", http.StatusInternalServerError}
 		}
 		user.Name = name
-		user.UserID = uid
+		user.UserID = IdToken
 		result = append(result, *user)
 	}
 
 	return result, nil
 }
+*/
 
 /*
 	Get a user from the db
@@ -499,7 +504,7 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 /*
 	Remove user from DB
 	Function not yet implemented
-*/
+
 
 func removeUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(r)["id"]
@@ -513,9 +518,10 @@ func removeUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerEr
 	return returnable, nil
 }
 
+*/
 /*
 	Retrive a event photo
-*/
+
 func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
 	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
@@ -551,9 +557,11 @@ func retriveEventPhoto(rw http.ResponseWriter, req *http.Request) (interface{}, 
 	return picture, nil
 }
 
+*/
+
 /*
 	Retrive a events preview pictures from the db
-*/
+
 func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}, *handlerError) {
 	param := mux.Vars(req)["id"]
 	db, err := sql.Open("mymysql", "tcp:130.240.170.56:3306*mydb/dbadmin/eventdb")
@@ -586,6 +594,7 @@ func retriveEventPreview(rw http.ResponseWriter, req *http.Request) (interface{}
 
 	return picture, nil
 }
+*/
 
 
 /*
