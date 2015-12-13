@@ -107,22 +107,37 @@ google.maps.event.addDomListener(window, 'load', initialize);
     
 -->
 
--<!-- Button trigger modal -->		
+<!-- Button trigger modal -->		
  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Show map
  </button>
  		 
-- <!-- Modal -->
+<!-- Modal -->
  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">		 
    <div class="modal-dialog" role="document">		   
      <div class="modal-content">
          <h4 class="modal-title" id="myModalLabel">Location Event</h4>
        <div class="modal-body">
-       <div id="map"></div>		   
+           <div id="map">
+           <script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<div id="googleMap" style="width:500px;height:380px;"></div>
+           
+           </div>		   
        </div>		     
        		       
        <div class="modal-footer">		       
            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           <h4 class="modal-title" id="myModalLabel">Location Event</h4>
    </div>
  </div>
      </div>
