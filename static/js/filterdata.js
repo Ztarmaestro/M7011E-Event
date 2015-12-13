@@ -89,9 +89,10 @@ function filterAllEvent(data){
 
 function filterUser(data){
 console.log(data);
-	
-	idToken = data.IdToken;
-	setCookie("username", idToken, "event", null)
+
+	var default_eventid = "X"
+	var idToken = data.IdToken;
+	setCookie("username", idToken, "event", default_eventid)
 
 }
 

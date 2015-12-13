@@ -113,6 +113,38 @@
   }
 }
 
+function checklogin(){
+
+  FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    console.log('Logged in.');
+    logout();
+  }
+  else {
+    login();
+    }
+  });
+}
+
+function logout(){
+  FB.logout() 
+  window.location.reload();
+}
+
+  function login() {
+      FB.login(function(response) {
+      if (response.authResponse) {
+          // connected
+          checkLoginState();
+        //window.location.href = "http://trollegeuna.se:9999/map/";
+      } else {
+          // cancelled
+          logout();
+          alert('User cancelled login or did not fully authorize. Login again');
+          }
+      });
+  }
+
 
     /* make the API call */
    // FB.api(

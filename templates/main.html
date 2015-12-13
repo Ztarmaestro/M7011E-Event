@@ -23,6 +23,9 @@
     <!-- Code for different GET/POST function -->
     <script language="JavaScript" type="text/javascript" src="static/js/getData.js"></script>
     <script language="JavaScript" type="text/javascript" src="static/js/filterdata.js"></script>
+    <script language="JavaScript" type="text/javascript" src="static/js/facebook.js"></script>
+    <script language="JavaScript" type="text/javascript" src="static/js/Cookie.js"></script>
+
     
     <!--<script src="static/js/facebook.js"></script>-->
 
@@ -116,6 +119,9 @@
         });
       }
 
+    var el = document.getElementById("FBbutton");
+    el.onclick = checklogin();
+
 </script>
     
     
@@ -157,7 +163,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         
-                        <li><div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="false" data-auto-logout-link="true">                               </div>
+                        <li><div class="fb-login-button" id="FBbutton" data-max-rows="1" data-size="small" data-show-faces="false" data-auto-logout-link="true">                            </div>
                         </li>
                         
                         <li class="dropdown">
