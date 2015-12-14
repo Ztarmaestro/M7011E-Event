@@ -1,20 +1,19 @@
 
 
 function setCookie(cname, idToken) {
-    var cookiename = getCookie("username");
-    if (cookiename != idToken) {
         console.log("Create cookie");
         document.cookie = cname + "=" + idToken + "; ";
-    }else{
         console.log("Cookie already exist")
-    }
+    
 }
 
-function setEventCookie(cname, idToken) {
-    console.log(cname);
-    console.log(idToken);
+function addEventCookie(eID) {
+    
+    var cookiename = getCookie("username");
+    var userID = "username"+ "=" + cookiename;
+    var eventID = "event" + "-" + eID;
 
-    document.cookie = cname + "-" + idToken + "; ";
+    document.cookie = userID + "; " + eventID + "/ ";
     console.log(document.cookie);
 }
 
@@ -31,7 +30,7 @@ function getCookie(cname) {
 
 function getEventid_Cookie(cname){
     var name = cname + "-";
-    var ca = document.cookie.split(';');
+    var ca = document.cookie.split('/');
     for(var i=0; i<ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1);
@@ -42,11 +41,13 @@ function getEventid_Cookie(cname){
 }
 
 function setEventid_Cookie(aid){
-    var cookiename = getCookie("username");
-    console.log("sets event id to cookie")
 
-    setEventCookie(cookiename, aid);
+    console.log("sets event id to cookie");
 
+    addEventCookie(cookiename, aid);
+    var x = getEventid_Cookie();
+    console.log(x);
+    
 }
 
 
