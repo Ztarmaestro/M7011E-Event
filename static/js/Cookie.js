@@ -3,8 +3,7 @@
 function setCookie(cname, idToken) {
         console.log("Create cookie");
         document.cookie = cname + "=" + idToken + "; ";
-        console.log("Cookie already exist")
-    
+        console.log(document.cookie);   
 }
 
 function addEventCookie(eID) {
