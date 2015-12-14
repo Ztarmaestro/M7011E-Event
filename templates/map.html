@@ -1,6 +1,6 @@
 {{define "map"}} 
 
-<!-- karta visar my position utan markers. 
+<!-- karta visar my position utan markers. -->
 
 <button onclick="getLocation()">Show map</button>
 
@@ -26,7 +26,7 @@
     function initMap() {
         var myLatLng = {lat: -25.363, lng: 131.044};
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
+            zoom: 2,
             center: myLatLng
         });
         //var infoWindow = new google.maps.InfoWindow({map: map});
@@ -75,9 +75,9 @@
  
 
 </script>
--->
 
 
+<!--
 
     <title>Geolocation</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -140,7 +140,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     </script>
 
 
-
+-->
 
 <!--W3schools, map tutorial 
 
