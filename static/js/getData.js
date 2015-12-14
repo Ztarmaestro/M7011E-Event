@@ -285,6 +285,7 @@ function sendForm(form) {
 }
 
 function redirect(data){
+  console.log(data);
 
   setEventid_Cookie(data);
 
