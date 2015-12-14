@@ -212,19 +212,19 @@ function log_check() {
         console.log("/events");
           // connected
           var abutton = document.createElement("a");
-          abutton.id = "event";
+          abutton.id = "event_a";
           abutton.href = "/events";
           document.getElementById("event").appendChild(abutton);
-          document.getElementById("event").innerHTML = "Events";
+          document.getElementById("event_a").innerHTML = "Events";
           
       } else {
         console.log("/events_nologin");
           // not connected
           var abutton = document.createElement("a");
-          abutton.id = "event";
+          abutton.id = "event_a";
           abutton.href = "/events_nologin";
           document.getElementById("event").appendChild(abutton);
-          document.getElementById("event").innerHTML = "Events";
+          document.getElementById("event_a").innerHTML = "Events";
           }
       });
   }
