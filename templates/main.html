@@ -175,7 +175,6 @@ function addUser(fbjson){
     if (xhr.readyState==4 && xhr.status==200) {
       console.log('User added to DB');
       console.log(data.id);
-      getUser (data.id);
 
     }else{
        console.log("User already exists");
