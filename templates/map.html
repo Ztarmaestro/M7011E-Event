@@ -2,22 +2,30 @@
 
 <!--W3schools, map tutorial -->
 
-<script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
-function initialize() {
+function initialize()
+{
   var mapProp = {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
+    center: new google.maps.LatLng(51.508742,-0.120850),
+    zoom:7,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
-google.maps.event.addDomListener(window, 'load', initialize);
+
+function loadScript()
+{
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://cloud-56.skelabb.ltu.se:8080/show_event?key=AIzaSyBpWG18-q2ubos2VmetQlOteN2MYf3BBe4";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
 </script>
 
-<div id="googleMap" style="width:500px;height:380px;"></div>
 
-
+<div id="googleMap" style="width:500px;height:500px;"></div>
 
 
 <!-- karta med sökfält 
@@ -76,7 +84,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         }
 
     </script>
-    <script src="http://cloud-56.skelabb.ltu.se:8080/show_event?key=AIzaSyBpWG18-q2ubos2VmetQlOteN2MYf3BBe4&signed_in=true&callback=initMap"
+    <script src="http://cloud-56.skelabb.ltu.se:8080/show_event?key=AIzaSyBpWG18-q2ubos2VmetQlOteN2MYf3BBe4"
         async defer></script>
 
 -->
