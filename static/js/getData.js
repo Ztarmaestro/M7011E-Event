@@ -285,11 +285,10 @@ function sendForm(form) {
 }
 
 function redirect(data){
-  console.log("nu körs jag "+data);
-
-  setEventid_Cookie(data);
 
   window.location.replace("/show_event");
+  console.log("nu körs jag "+data);
+  setEventid_Cookie(data);
 
 }
 

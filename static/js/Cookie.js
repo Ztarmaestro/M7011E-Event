@@ -2,9 +2,8 @@
 
 function setCookie(cname, idToken) {
     var cookiename = getCookie("username");
-    console.log(cookiename);
-    console.log(idToken);
     if (cookiename != idToken) {
+        console.log("Create cookie");
         document.cookie = cname + "=" + idToken + "; ";
     }else{
         console.log("Cookie already exist")

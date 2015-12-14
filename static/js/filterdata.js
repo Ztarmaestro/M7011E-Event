@@ -93,7 +93,7 @@ function createEventlist(data){
 
 		var a = document.createElement("a");
 		a.id = "a"+i;
-		a.onclick=function() {redirect(a.id)};
+		a.onclick=function(){redirect(a.id)};
     	document.getElementById("flow").appendChild(a);
 
 	}
