@@ -474,7 +474,7 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	}
 	defer db.Close()
 
-	row, err := db.Query("select * from User_table where IdToken =?", param)
+	row, err := db.Query("select * from User_table where IdToken=?", param)
 	if err == sql.ErrNoRows {
 		log.Printf("No user with that ID")
 	}
