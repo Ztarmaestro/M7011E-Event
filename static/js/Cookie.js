@@ -10,7 +10,7 @@ function addEventCookie(eID) {
     
     var cookiename = getCookie("username");
     console.log(cookiename);
-    var userID = "username"+ "=" + cookiename;
+    var userID = "username"+ "+" + cookiename;
     console.log(userID);
     var eventID = "event" + "-" + eID;
     console.log(eventID);
