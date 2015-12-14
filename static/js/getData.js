@@ -83,21 +83,18 @@ function getUser(id){
   var xmlHttp = null;
   console.log(id); 
   xmlHttp = new XMLHttpRequest();
-
-  xmlHttp.open( "GET", "http://130.240.170.56:8000/users/"+id, false );
-
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);
         console.log(obj);  
         console.log(obj.IdToken);
-        setCookie("username", obj.IdToken);  
+        setCookie("username", id);  
     }else{
       return "ERROR";
     }
   };
- 
+  xmlHttp.open( "GET", "http://130.240.170.56:8000/users/"+id, false );
   xmlHttp.send( null );
 }
 
