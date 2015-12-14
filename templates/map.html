@@ -1,7 +1,6 @@
 {{define "map"}} 
 
-
-<!-- karta visar my position utan markers. -->
+<!-- karta visar my position utan markers. 
 
 <button onclick="getLocation()">Show map</button>
 
@@ -76,6 +75,7 @@
  
 
 </script>
+-->
 
 <!--
 
@@ -142,7 +142,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 -->
 
-<!--W3schools, map tutorial
+<!--W3schools, map tutorial -->
 
 <script>
 function initialize()
@@ -159,7 +159,7 @@ function loadScript()
 {
   var script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBpWG18-q2ubos2VmetQlOteN2MYf3BBe4&signed_in=true&libraries=places&callback=initMap"
+  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyACAVHQY3N4Z1FXqV7jePUkl56QZ9Guy3M&signed_in=true&libraries=places&callback=initMap"
         async defer";
   document.body.appendChild(script);
 }
@@ -170,7 +170,6 @@ window.onload = loadScript;
 
 <div id="googleMap" style="width:500px;height:500px;"></div>
 
--->
 
 
 {{end}}
