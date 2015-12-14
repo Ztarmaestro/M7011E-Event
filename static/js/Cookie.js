@@ -2,13 +2,13 @@
 
 function setCookie(cname, idToken) {
         console.log("Create cookie");
-        document.cookie = cname + "=" + idToken + "=";
+        document.cookie = cname + "=" + idToken + "; ";
         console.log(document.cookie);   
 }
 
 function addEventCookie(eID) {
     
-    var cookiename = getCookie("username");
+    var cookiename = getCookie2("username");
     console.log(cookiename);
     var userID = "username" + "-" + cookiename;
     console.log(userID);
@@ -20,6 +20,17 @@ function addEventCookie(eID) {
 }
 
 function getCookie(cname) {
+    var name = cname + "-";
+    var ca = document.cookie.split('=');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+function getCookie2(cname) {
     var name = cname + "-";
     var ca = document.cookie.split('=');
     for(var i=0; i<ca.length; i++) {
