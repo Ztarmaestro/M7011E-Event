@@ -55,10 +55,10 @@ function filterAllEvent(data){
     	document.getElementById("a"+i).appendChild(pic);
 
     	Event_name = document.getElementById('Event_name'+[i]);
-		Address = document.getElementById('Address'+[i]);
-		Zipcode = document.getElementById('Zipcode'+[i]);
+		//Address = document.getElementById('Address'+[i]);
+		//Zipcode = document.getElementById('Zipcode'+[i]);
 		date = document.getElementById('Date'+[i]);
-		Info = document.getElementById('Description'+[i]);
+		//Info = document.getElementById('Description'+[i]);
 		Photo= document.getElementById('Photo'+[i]);
 		//Preview = document.getElementById('Preview');
 
@@ -66,18 +66,18 @@ function filterAllEvent(data){
 		if(document.getElementById("Event_name"+[i]) != null){
 	    	Event_name.innerHTML = Event_name.innerHTML + data[i].Event_name;
 		}
-		if(document.getElementById("Address") != null){
+		/*if(document.getElementById("Address") != null){
 	    	Address.innerHTML = Address.innerHTML + data[i].Address;
 		}
 		if(document.getElementById("Zipcode") != null){
 	    	Zipcode.innerHTML = Zipcode.innerHTML + data[i].Zipcode;
-		}
+		}*/
 		if(document.getElementById("Date"+[i]) != null){
 	    	date.innerHTML = date.innerHTML + data[i].Date;
 		}
-		if(document.getElementById("Description"+[i]) != null){
+		/*if(document.getElementById("Description"+[i]) != null){
 	    	Info.innerHTML = Info.innerHTML + data[i].Info;
-		}
+		}*/
 		if(document.getElementById("Photo"+[i]) != null){
 	    	Photo.src = data[i].Photo;
 		}
@@ -93,7 +93,7 @@ function createEventlist(data){
 
 		var a = document.createElement("a");
 		a.id = "a"+i;
-		a.href = "/show_event"+a.id;
+		a.href = "/show_event";
 		a.onclick=function(){setEventid_Cookie(a.id);};
     	document.getElementById("flow").appendChild(a);
 
