@@ -31,7 +31,11 @@
    <div id="map" style="width: 400px; height: 300px;"></div> 
 
    <script type="text/javascript"> 
-
+       
+function geoaddress(data){
+    
+console.log(data);
+    
    var address = 'Vänortsvägen 9, Luleå, 97754, SV';
 
    var map = new google.maps.Map(document.getElementById('map'), { 
@@ -53,7 +57,7 @@
          map.setCenter(results[0].geometry.location);
       }
    });
-
+}
    </script> 
 </body>
 
