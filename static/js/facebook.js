@@ -1,4 +1,4 @@
-
+/*
 
   window.fbAsyncInit = function() {
   FB.init({
@@ -137,3 +137,4 @@ function addUser(fbjson){
  xhr.send(JSON.stringify(data));
   //closeSelf();
 }
+*/
