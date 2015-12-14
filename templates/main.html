@@ -168,7 +168,7 @@ function addUser(fbjson){
     data.IdToken = fbjson.id;
     data.Username = fbjson.name;
     console.log(data.IdToken);
-    console.log(data.Username;
+    console.log(data.Username);
     
     var xhr = new XMLHttpRequest();
 
@@ -176,7 +176,11 @@ function addUser(fbjson){
 
     xhr.onreadystatechange=function() {
     if (xhr.readyState==4 && xhr.status==200) {
+        var json = xmlHttp.responseText;
+        var obj = JSON.parse(json);
       console.log('User added to DB');
+      console.log("obj.IdToken");
+      console.log("obj.Username");
       return false;
     }else{
        console.log("User already exists");
