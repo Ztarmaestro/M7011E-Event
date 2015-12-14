@@ -72,9 +72,8 @@
     });
 
     FB.getLoginStatus(function(response) {
-    console.log("Done loading");
+    console.log("Done loading")
     statusChangeCallback(response);
-    event_check();
   });
 
   };
@@ -198,6 +197,11 @@ function log_check() {
           }
       });
   }
+
+  window.onload = function() {
+    console.log("jag körs");
+            event_check();
+        };
 
   function event_check() {
         console.log("hej");
