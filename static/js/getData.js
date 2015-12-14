@@ -287,10 +287,16 @@ function sendForm(form) {
 function redirect(data){
 
   console.log("nu körs jag "+data);
-  setEventid_Cookie(data);
+  console.log("sets event id to cookie");
+
+  addEventCookie(data);
+  
+  var x = getEventid_Cookie("event");
+  console.log(x);
+
   var x = getCookie("username");
   console.log(x);
-  setCookie("username")
+ 
   //window.location.replace("/show_event");
 
 }

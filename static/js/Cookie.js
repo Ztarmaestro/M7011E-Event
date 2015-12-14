@@ -10,8 +10,11 @@ function setCookie(cname, idToken) {
 function addEventCookie(eID) {
     
     var cookiename = getCookie("username");
+    console.log(cookiename);
     var userID = "username"+ "=" + cookiename;
+    console.log(userID);
     var eventID = "event" + "-" + eID;
+    console.log(eventID);
 
     document.cookie = userID + "; " + eventID + "/ ";
     console.log(document.cookie);
@@ -37,16 +40,6 @@ function getEventid_Cookie(cname){
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return "";
-
-}
-
-function setEventid_Cookie(aid){
-
-    console.log("sets event id to cookie");
-
-    addEventCookie(aid);
-    var x = getEventid_Cookie("event");
-    console.log(x);
 
 }
 
