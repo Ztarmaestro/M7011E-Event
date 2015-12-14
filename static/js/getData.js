@@ -87,7 +87,6 @@ function getUser(id){
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);
         console.log(obj);  
-        console.log(obj.UserID);
         setCookie("username", obj.UserID);  
     }else{
       return "ERROR";
