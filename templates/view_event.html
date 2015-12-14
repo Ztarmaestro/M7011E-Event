@@ -35,9 +35,10 @@
 function geoaddress(data){
     
 console.log(data);
-    
-   var address = 'Vänortsvägen 9, Luleå, 97754, SV';
-
+    var geoaddress = data.Address;
+    var geozipcode = data.Zipcode;
+   var address = geoaddress + ", " + geozipcode + ", " + 'SV';
+console.log(address);
    var map = new google.maps.Map(document.getElementById('map'), { 
        mapTypeId: google.maps.MapTypeId.TERRAIN,
        zoom: 6
