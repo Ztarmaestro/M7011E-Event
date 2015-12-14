@@ -43,9 +43,9 @@ function getAllEvent(){
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
-        //console.log(json); 
+        console.log(json); 
         var obj = JSON.parse(json); 
-        //console.log(obj); 
+        console.log(obj); 
 
         filterAllEvent(obj);
     }
@@ -290,7 +290,7 @@ function redirect(data){
   console.log("sets event id to cookie");
 
   addEventCookie(data);
-  
+
   var x = getEventid_Cookie("event");
   console.log(x);
 
