@@ -144,13 +144,9 @@ function logout(){
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       console.log('2');
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
       console.log('3');
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
     }
   }
 
@@ -161,13 +157,13 @@ function logout(){
     });
   } 
 
-
 function addUser(fbjson){
     var data = {};
     console.log(fbjson);
     data.id = fbjson.id;
     data.first_name = fbjson.first_name;
-    console.log(data);
+    console.log(data.id);
+    console.log(data.first_name);
     
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function() {
@@ -231,7 +227,7 @@ function addUser(fbjson){
 
                     <ul class="nav navbar-nav navbar-right">
                         
-                        <li><div class="fb-login-button" id="FBbutton" data-max-rows="1" data-size="small" data-show-faces="false"
+                        <li><div class="fb-login-button" id="FBbutton" onclick="login();" data-max-rows="1" data-size="small" data-show-faces="false"
                                  data-auto-logout-link="true"></div>
                         </li>
                         
