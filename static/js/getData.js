@@ -288,8 +288,8 @@ function redirect(data){
 
   console.log("nu körs jag "+data);
   setEventid_Cookie(data);
-  getCookie("username");
-
+  var x = getCookie("username");
+  console.log(x);
   //window.location.replace("/show_event");
 
 }
