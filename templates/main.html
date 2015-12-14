@@ -207,8 +207,8 @@ function log_check() {
 
   function event_check() {
         console.log("hej");
-      FB.login(function(response) {
-      if (response.authResponse) {
+      FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
         console.log("/events");
           // connected
             var a = document.createElement("a");
