@@ -44,6 +44,7 @@ function getEventid_Cookie(cname){
 
 function setEventid_Cookie(aid){
     var cookiename = getCookie("username");
+    console.log("sets event id to cookie")
 
     setEventCookie(cookiename, aid);
 
