@@ -7,6 +7,7 @@ function setCookie(cname, idToken) {
         console.log(document.cookie);
     }else{
         console.log("Cookie already exist")
+        console.log(document.cookie);
     }
 }
 
