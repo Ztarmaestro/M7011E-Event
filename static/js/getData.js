@@ -291,11 +291,11 @@ function redirect(data){
 
   addEventCookie(data);
 
-  var x = getEventid_Cookie("event");
-  console.log(x);
+  var x1 = getEventid_Cookie("event");
+  console.log(x1);
 
-  var x = getCookie("username");
-  console.log(x);
+  var x2 = getCookie("username");
+  console.log(x2);
  
   //window.location.replace("/show_event");
 
