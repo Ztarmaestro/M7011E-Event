@@ -76,6 +76,8 @@
     statusChangeCallback(response);
   });
 
+    event_check();
+
   };
 
   (function(d, s, id){
@@ -197,11 +199,6 @@ function log_check() {
           }
       });
   }
-
-  window.onload = function() {
-    console.log("jag körs");
-            event_check();
-        };
 
   function event_check() {
         console.log("hej");
