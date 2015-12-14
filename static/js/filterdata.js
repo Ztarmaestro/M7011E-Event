@@ -43,16 +43,16 @@ function filterAllEvent(data){
 
     	var head = document.createElement("h1");
     	head.id = "Event_name"+i;
-    	document.getElementById(i).appendChild(head);
+    	document.getElementById("a"+[i]).appendChild(head);
 
     	var para = document.createElement("p");
     	para.id = "Date"+i;
-    	document.getElementById(i).appendChild(para);
+    	document.getElementById("a"+[i]).appendChild(para);
 
     	var pic = document.createElement("IMG");
     	pic.id = "Photo"+i;
     	pic.src = "";
-    	document.getElementById(i).appendChild(pic);
+    	document.getElementById("a"[i]).appendChild(pic);
 
     	Event_name = document.getElementById('Event_name'+[i]);
 		//Address = document.getElementById('Address'+[i]);
@@ -92,8 +92,8 @@ function createEventlist(data){
 	for( var i=1, l=data.length; i<l; i++ ) {
 
 		var a = document.createElement("a");
-		a.id = i;
-		a.onclick=function(){redirect(a.id)};
+		a.id = "a"+i;
+		a.onclick=function(){redirect(i)};
     	document.getElementById("flow").appendChild(a);
 
 	}
