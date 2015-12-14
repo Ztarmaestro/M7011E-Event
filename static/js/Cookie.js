@@ -5,7 +5,7 @@ function setCookie(cname, idToken) {
     if (cookiename != idToken) {
         document.cookie = cname + "=" + idToken + "; ";
         console.log(document.cookie);
-    };else{
+    }else{
         console.log("Cookie already exist")
     }
 }
