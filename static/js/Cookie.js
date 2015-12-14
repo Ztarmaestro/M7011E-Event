@@ -1,6 +1,9 @@
 
 
 function setCookie(cname, idToken) {
+    console.log(cname);
+    console.log(idToken);
+
 
     document.cookie = cname + "=" + idToken + "; ";
     console.log(document.cookie);
