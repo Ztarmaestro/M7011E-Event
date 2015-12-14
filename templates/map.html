@@ -48,10 +48,11 @@ function showError(error) {
             zoom: 4,
             center: myLatLng
         });
-        var infoWindow = new google.maps.InfoWindow({map: map});
+        //var infoWindow = new google.maps.InfoWindow({map: map});
     var marker = new google.maps.Marker({
+        position: myLatLng,
         map: map,
-        animation: google.maps.Animation.DROP,
+        //animation: google.maps.Animation.DROP,
         title: 'You are here'
     });
 
@@ -74,30 +75,7 @@ function showError(error) {
     }
 }
     
-    //var currentMark;
-    //var loc;
-    //function createMarker(location) {
-    //    var marker = new google.maps.Marker({
-      //      id: location.id,
-    //        position: location.position,
-    //        map: map,
-    //        title: location.stairname,
-     //       description: location.description,
-    //        photo:"",
-    //        creator:location.user,
-    //        avg: location.average
-    //    });   
-        
-    //    document.getElementById('myModalLabel').innerHTML = marker.getTitle();
-    //    google.maps.event.addListener(marker, 'click', function () {
-    //        getStair(this.id,this);
-    //        getPreviewStair(this.id);
-    //        document.getElementById('originalPic').style.display='none';
-    //        document.getElementById('previews').style.display='block';
-    //        document.getElementById('modalUser').value = this.creator;
-    //        document.getElementById('modalStair').value = this.id;
-    //    });
-    //}
+    
 
 </script>
 
