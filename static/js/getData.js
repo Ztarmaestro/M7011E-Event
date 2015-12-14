@@ -291,7 +291,7 @@ function redirect(data){
 
   addEventCookie(data);
  
-  //window.location.replace("/show_event");
+  window.location.replace("/show_event");
 
 }
 
