@@ -401,7 +401,7 @@ func addUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 		return nil, &handlerError{err, "Internal server error", http.StatusInternalServerError}
 	}
 	defer db.Close()
-	row, _ := db.Query("select count(*) from User_table where idToken=?", payload.IdToken)
+	row, _ := db.Query("select count(*) from User_table where IdToken=?", payload.IdToken)
 	var count int
 	for row.Next() {
 		row.Scan(&count)
