@@ -69,6 +69,7 @@ function getEvent(id){
         var obj = JSON.parse(json);  
         //console.log(obj);
         filterEvent(obj);
+        geoaddress(obj);
     }    
     else{
       return "Error";
