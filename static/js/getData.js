@@ -290,14 +290,8 @@ function redirect(data){
   console.log("sets event id to cookie");
 
   addEventCookie(data);
-
-  var x1 = getEventid_Cookie("event");
-  console.log(x1);
-
-  var x2 = getCookie("username");
-  console.log(x2);
  
-  //window.location.replace("/show_event");
+  window.location.replace("/show_event");
 
 }
 
