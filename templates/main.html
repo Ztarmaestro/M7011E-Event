@@ -171,16 +171,19 @@ function addUser(fbjson){
     console.log(data.name);
     
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange=function() {
-    if (xhr.readyState==6 && xhr.status==200) {
-      console.log('User added to DB');
 
+    xhr.open('POST','http://130.240.170.56:8000/users', true);
+
+    xhr.onreadystatechange=function() {
+    if (xhr.readyState==4 && xhr.status==200) {
+      console.log('User added to DB');
+      return false;
     }else{
        console.log("User already exists");
     }
   }
   
-  xhr.open('POST','http://130.240.170.56:8000/users', true);
+  
   
 
  xhr.send(JSON.stringify(data));
