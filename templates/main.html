@@ -165,10 +165,10 @@ function logout(){
 function addUser(fbjson){
     var data = {};
     console.log(fbjson);
-    data.id = fbjson.id;
-    data.name = fbjson.name;
-    console.log(data.id);
-    console.log(data.name);
+    data.IdToken = fbjson.id;
+    data.Username = fbjson.name;
+    console.log(data.IdToken);
+    console.log(data.Username;
     
     var xhr = new XMLHttpRequest();
 
