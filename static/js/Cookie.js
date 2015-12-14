@@ -2,12 +2,12 @@
 
 function setCookie(cname, idToken) {
     var cookiename = getCookie("username");
+    console.log(cookiename);
+    console.log(idToken);
     if (cookiename != idToken) {
         document.cookie = cname + "=" + idToken + "; ";
-        console.log(document.cookie);
     }else{
         console.log("Cookie already exist")
-        console.log(document.cookie);
     }
 }
 
@@ -44,7 +44,6 @@ function getEventid_Cookie(cname){
 
 function setEventid_Cookie(aid){
     var cookiename = getCookie("username");
-    console.log(cookiename);
 
     setEventCookie(cookiename, aid);
 
