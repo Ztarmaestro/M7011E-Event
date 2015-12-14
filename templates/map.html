@@ -1,5 +1,42 @@
 {{define "map"}} 
 
+<script>
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map-canvas-0'), {
+        center: {lat: 65.6177455, lng: 22.137957}, //The start coordinates is the classroom where we have our lectures!
+        zoom: 16
+    });
+    var infoWindow = new google.maps.InfoWindow({map: map});
+    var marker = new google.maps.Marker({
+        map: map,
+        animation: google.maps.Animation.DROP,
+        title: 'You are here'
+    });
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            marker.setPosition(pos);
+            map.setCenter(pos);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+}
+
+</script>
+
+<!-- karta visar my position utan markers. 
+
 <button onclick="getLocation()">Show map</button>
 
 <div id="mapholder"></div>
@@ -98,6 +135,8 @@ function showError(error) {
     //}
 
 </script>
+
+-->
 
 <!--
 
