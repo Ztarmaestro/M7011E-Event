@@ -89,7 +89,7 @@ function filterAllEvent(data){
 
 function createEventlist(data){
 
-	for( var i=1, l=data.length; i<l; i++ ) {
+	for( var i=0, l=data.length; i<l; i++ ) {
 
 		var a = document.createElement("a");
 		a.id = "a"+i;
