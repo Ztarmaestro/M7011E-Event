@@ -95,7 +95,7 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       console.log(response.id);
-        addUser(response);
+      addUser(response);
     });
   }
 
@@ -122,7 +122,6 @@ function logout(){
       if (response.authResponse) {
           // connected
           checkLoginState();
-        //window.location.href = "http://trollegeuna.se:9999/map/";
       } else {
           // cancelled
           logout();
@@ -161,9 +160,9 @@ function addUser(fbjson){
     var data = {};
     console.log(fbjson);
     data.id = fbjson.id;
-    data.first_name = fbjson.first_name;
+    data.name = fbjson.name;
     console.log(data.id);
-    console.log(data.first_name);
+    console.log(data.name);
     
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function() {
@@ -175,6 +174,7 @@ function addUser(fbjson){
     }else{
        console.log("User already exists");
        console.log(data.id);
+       console.log(data.name);
        getUser (data.id);
     }
   }
@@ -185,6 +185,40 @@ function addUser(fbjson){
  xhr.send(JSON.stringify(data));
   //closeSelf();
 }
+
+function log_check() {
+      FB.login(function(response) {
+      if (response.authResponse) {
+          // connected
+          login();
+      } else {
+          // not connected
+          logout();
+          }
+      });
+  }
+
+  window.onload = function() {
+            event_check();
+        };
+
+  function event_check() {
+      FB.login(function(response) {
+      if (response.authResponse) {
+          // connected
+            var a = document.createElement("a");
+            a.href = "/events";
+            document.getElementById("Event_page").appendChild(a);
+          
+      } else {
+          // not connected
+          var a = document.createElement("a");
+          a.href = "/events_nologin";
+          document.getElementById("Event_page").appendChild(a);
+          
+          }
+      });
+  }
 
 </script>
     
@@ -212,7 +246,7 @@ function addUser(fbjson){
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class=""><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                        <li><a href="/events_nologin" >Events</a></li>
+                        <li id="Event_page"><a>Events</a></li>
                     </ul>
 
                     <form class="navbar-form navbar-left" role="search" action="/search_result">
@@ -227,7 +261,7 @@ function addUser(fbjson){
 
                     <ul class="nav navbar-nav navbar-right">
                         
-                        <li><div class="fb-login-button" id="FBbutton" onclick="login();" data-max-rows="1" data-size="small" data-show-faces="false"
+                        <li><div class="fb-login-button" id="FBbutton" onclick="log_check();" data-max-rows="1" data-size="small" data-show-faces="false"
                                  data-auto-logout-link="true"></div>
                         </li>
                         
