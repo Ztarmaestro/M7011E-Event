@@ -2,7 +2,7 @@
 
 function setCookie(cname, idToken) {
         console.log("Create cookie");
-        document.cookie = cname + "=" + idToken + "; ";
+        document.cookie = cname + "=" + idToken + "=";
         console.log(document.cookie);   
 }
 
@@ -12,16 +12,16 @@ function addEventCookie(eID) {
     console.log(cookiename);
     var userID = "username" + "+" + cookiename;
     console.log(userID);
-    var eventID = "event" + "-" + eID;
+    var eventID = "event" + "+" + eID;
     console.log(eventID);
 
-    document.cookie = userID + "=" + eventID + "; ";
+    document.cookie = userID + "=" + eventID + "=";
     console.log(document.cookie);
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
+    var name = cname + "+";
+    var ca = document.cookie.split('=');
     for(var i=0; i<ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1);
@@ -31,8 +31,8 @@ function getCookie(cname) {
 }
 
 function getEventid_Cookie(cname){
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
+    var name = cname + "+";
+    var ca = document.cookie.split('=');
     for(var i=0; i<ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1);
