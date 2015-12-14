@@ -246,6 +246,7 @@ function sendForm(form) {
   }
   
   var user = getCookie("username");
+  console.log(user);
   data["User"] = user;
 
   var photo = document.getElementById('Photo');
