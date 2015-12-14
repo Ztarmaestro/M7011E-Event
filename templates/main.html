@@ -65,7 +65,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '{101305660242781}',
+    appId      : '101305660242781',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -162,18 +162,16 @@ function logout(){
     }
   }
 
- 
-
- };
-
-   // This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
+  // This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
   function checkLoginState() {
     console.log("hej");
     FB.getLoginStatus(function(response) {
       console.log("hej2");
       statusChangeCallback(response);
     });
-  }
+  } 
+
+ };
 
 function addUser(fbjson){
     var data = {};
