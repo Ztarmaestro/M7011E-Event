@@ -162,34 +162,6 @@ function logout(){
     });
   } 
 
-function addUser(fbjson){
-    var data = {};
-    console.log(fbjson);
-    data.IdToken = fbjson.id;
-    data.Username = fbjson.name;
-    console.log(data.IdToken);
-    console.log(data.Username);
-    
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('POST','http://130.240.170.56:8000/users', true);
-
-    xhr.onreadystatechange=function() {
-    if (xhr.readyState==4 && xhr.status==200) {
-      console.log('User added to DB');
-      return false;
-    }else{
-       console.log("User already exists");
-    }
-  }
-  
-  
- getUser(data.IdToken);
-
- xhr.send(JSON.stringify(data));
-  //closeSelf();
-}
-
 function log_check() {
       FB.login(function(response) {
       if (response.authResponse) {
