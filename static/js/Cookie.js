@@ -3,7 +3,7 @@
 function setCookie(cname, idToken) {
 
     document.cookie = cname + "=" + idToken + "; ";
-
+    console.log(document.cookie);
 }
 
 function getCookie(cname) {
