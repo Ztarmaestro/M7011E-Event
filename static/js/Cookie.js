@@ -8,7 +8,7 @@ function setCookie(cname, idToken) {
 
 function addEventCookie(eID) {
     
-    var cookiename = getCookie2("username");
+    var cookiename = getCookie("username");
     console.log(cookiename);
     var userID = "username" + "-" + cookiename;
     console.log(userID);
@@ -20,8 +20,8 @@ function addEventCookie(eID) {
 }
 
 function getCookie(cname) {
-    var name = cname + "-";
-    var ca = document.cookie.split('=');
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
     for(var i=0; i<ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1);
