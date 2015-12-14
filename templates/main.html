@@ -172,7 +172,7 @@ function addUser(fbjson){
     
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function() {
-    if (xhr.readyState==4 && xhr.status==200) {
+    if (xhr.readyState==6 && xhr.status==200) {
       console.log('User added to DB');
 
     }else{
