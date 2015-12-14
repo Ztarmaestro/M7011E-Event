@@ -1,12 +1,13 @@
 
 
 function setCookie(cname, idToken) {
-    console.log(cname);
-    console.log(idToken);
-    var cookie = {};
-
-    document.cookie = cname + "=" + idToken + "; ";
-    console.log(document.cookie);
+    var cookiename = getCookie("username");
+    if (cookiename != idToken) {
+        document.cookie = cname + "=" + idToken + "; ";
+        console.log(document.cookie);
+    };else{
+        console.log("Cookie already exist")
+    }
 }
 
 function setEventCookie(cname, idToken) {
