@@ -10,7 +10,7 @@ function addEventCookie(eID) {
     
     var cookiename = getCookie("username");
     console.log(cookiename);
-    var userID = "username" + "+" + cookiename;
+    var userID = "username" + "-" + cookiename;
     console.log(userID);
     var eventID = "event" + "+" + eID;
     console.log(eventID);
@@ -20,7 +20,7 @@ function addEventCookie(eID) {
 }
 
 function getCookie(cname) {
-    var name = cname + "+";
+    var name = cname + "-";
     var ca = document.cookie.split('=');
     for(var i=0; i<ca.length; i++) {
         var c = ca[i];
