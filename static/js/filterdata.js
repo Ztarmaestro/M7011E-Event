@@ -52,7 +52,7 @@ function filterAllEvent(data){
     	var pic = document.createElement("IMG");
     	pic.id = "Photo"+i;
     	pic.src = "";
-    	document.getElementById("a"i).appendChild(pic);
+    	document.getElementById("a"+i).appendChild(pic);
 
     	Event_name = document.getElementById('Event_name'+[i]);
 		//Address = document.getElementById('Address'+[i]);
