@@ -32,7 +32,7 @@ func main() {
 	r.GET("/", indexHandler)
 	r.GET("/events", eventHandler)
     r.GET("/profile", profileHandler)
-    r.GET("/show_event", showroomHandler)
+    r.GET("/event", showroomHandler)
     r.GET("/about", aboutHandler)
     r.GET("/search_result", searchHandler)
     r.GET("/events_nologin", eventHandler_nologin)

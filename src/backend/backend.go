@@ -488,7 +488,7 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 		var IdToken, Name string
 		var UserID uint64
 
-		if err := row.Scan(&IdToken, &Name, &UserID); err != nil {
+		if err := row.Scan(&UserID, &Name, &UserID); err != nil {
 			log.Fatal(err)
 		}
 		user.IdToken = IdToken
