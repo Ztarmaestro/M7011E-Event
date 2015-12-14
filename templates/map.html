@@ -46,38 +46,56 @@ function showError(error) {
             zoom: 4,
             center: myLatLng
         });
-        
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Hello World!'
+        var infoWindow = new google.maps.InfoWindow({map: map});
+    var marker = new google.maps.Marker({
+        map: map,
+        animation: google.maps.Animation.DROP,
+        title: 'You are here'
+    });
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            marker.setPosition(pos);
+            map.setCenter(pos);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
         });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
 }
     
-    var currentMark;
-    var loc;
-    function createMarker(location) {
-        var marker = new google.maps.Marker({
-            id: location.id,
-            position: location.position,
-            map: map,
-            title: location.stairname,
-            description: location.description,
-            photo:"",
-            creator:location.user,
-            avg: location.average
-        });   
+    //var currentMark;
+    //var loc;
+    //function createMarker(location) {
+    //    var marker = new google.maps.Marker({
+      //      id: location.id,
+    //        position: location.position,
+    //        map: map,
+    //        title: location.stairname,
+     //       description: location.description,
+    //        photo:"",
+    //        creator:location.user,
+    //        avg: location.average
+    //    });   
         
-        document.getElementById('myModalLabel').innerHTML = marker.getTitle();
-        google.maps.event.addListener(marker, 'click', function () {
-            getStair(this.id,this);
-            getPreviewStair(this.id);
-            document.getElementById('originalPic').style.display='none';
-            document.getElementById('previews').style.display='block';
-            document.getElementById('modalUser').value = this.creator;
-            document.getElementById('modalStair').value = this.id;
-        });
-    }
+    //    document.getElementById('myModalLabel').innerHTML = marker.getTitle();
+    //    google.maps.event.addListener(marker, 'click', function () {
+    //        getStair(this.id,this);
+    //        getPreviewStair(this.id);
+    //        document.getElementById('originalPic').style.display='none';
+    //        document.getElementById('previews').style.display='block';
+    //        document.getElementById('modalUser').value = this.creator;
+    //        document.getElementById('modalStair').value = this.id;
+    //    });
+    //}
 
 </script>
 
