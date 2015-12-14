@@ -21,9 +21,9 @@ function addUser(fbjson){
     }else{
        console.log("User already exists");
     }
+    console.log("Gets user");
+    getUser(data.IdToken);
   }
-
- getUser(data.IdToken);
 
  xhr.send(JSON.stringify(data));
   //closeSelf();
