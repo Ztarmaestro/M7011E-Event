@@ -83,6 +83,9 @@ function getUser(id){
   var xmlHttp = null;
   console.log(id); 
   xmlHttp = new XMLHttpRequest();
+
+  xmlHttp.open( "GET", "http://130.240.170.56:8000/users/"+id, false );
+
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
@@ -94,7 +97,7 @@ function getUser(id){
       return "ERROR";
     }
   };
-  xmlHttp.open( "GET", "http://130.240.170.56:8000/users/"+id, false );
+ 
   xmlHttp.send( null );
 }
 
