@@ -214,9 +214,11 @@ function log_check() {
           var list = document.createElement("li");
           list.id = "event";
           document.getElementById("event_button").appendChild(list);
+          createref(1);
           var abutton = document.createElement("a");
           abutton.id = "event";
           abutton.href = "/events";
+          document.getElementById("event").appendChild(abutton);
           document.getElementById("event").innerHTML = "Events";
           
       } else {
@@ -225,11 +227,12 @@ function log_check() {
           var list = document.createElement("li");
           list.id = "event";
           document.getElementById("event_button").appendChild(list);
+          createref(2);
           var abutton = document.createElement("a");
           abutton.id = "event";
           abutton.href = "/events_nologin";
+          document.getElementById("event").appendChild(abutton);
           document.getElementById("event").innerHTML = "Events";
-          
           }
       });
   }
