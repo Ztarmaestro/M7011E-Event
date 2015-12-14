@@ -76,7 +76,7 @@
     statusChangeCallback(response);
   });
 
-    event_check();
+    //event_check();
 
   };
 
@@ -116,7 +116,7 @@ function checklogin(){
 
 function logout(){
   FB.logout() 
-  window.location.reload();
+  window.location.reload(true);
 }
 
   function login() {
@@ -195,6 +195,7 @@ function log_check() {
           login();
       } else {
           // not connected
+          console.log("log out");
           logout();
           }
       });
