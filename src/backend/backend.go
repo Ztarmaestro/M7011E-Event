@@ -485,16 +485,15 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 
 	user := new(User_table)
 	for row.Next() {
-		var idToken string
-		var uid uint64
-		var name string
+		var IdToken, Name string
+		var UserID uint64
 
-		if err := row.Scan(&uid, &name, &idToken); err != nil {
+		if err := row.Scan(&UserID, &Name, &IdToken); err != nil {
 			log.Fatal(err)
 		}
-		user.IdToken = idToken
-		user.UserID = uid
-		user.Name = name
+		user.IdToken = IdToken
+		user.UserID = UserID
+		user.Name = Name
 	
 	}
 
