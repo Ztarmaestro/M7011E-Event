@@ -1,4 +1,41 @@
 {{define "map"}} 
+<!-- google developer, make a marker
+<script>
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map-canvas-0'), {
+        center: {lat: 65.6177455, lng: 22.137957}, //The start coordinates is the classroom where we have our lectures!
+        zoom: 16
+    });
+    var infoWindow = new google.maps.InfoWindow({map: map});
+    var marker = new google.maps.Marker({
+        map: map,
+        animation: google.maps.Animation.DROP,
+        title: 'You are here'
+    });
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            marker.setPosition(pos);
+            map.setCenter(pos);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+}
+
+</script>
+-->
+<!-- karta visar my position utan markers.
 
 <button onclick="getLocation()">Show map</button>
 
@@ -99,6 +136,8 @@ function showError(error) {
 
 </script>
 
+-->
+
 <!--
 
     <title>Geolocation</title>
@@ -193,7 +232,7 @@ window.onload = loadScript;
 <div id="googleMap" style="width:500px;height:500px;"></div>
 
 -->
-<!-- karta med sökfält 
+<!-- karta med sökfält-->
 
 <style>
       #map {
@@ -211,6 +250,7 @@ window.onload = loadScript;
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
         padding-left: 10px;
+        float: right;
     }
 
     </style>
@@ -252,7 +292,7 @@ window.onload = loadScript;
     <script src="http://cloud-56.skelabb.ltu.se:8080/show_event?key=AIzaSyBpWG18-q2ubos2VmetQlOteN2MYf3BBe4"
         async defer></script>
 
--->
+
     
 <!--kartan i modal -->
 
