@@ -93,8 +93,7 @@ function createEventlist(data){
 
 		var a = document.createElement("a");
 		a.id = "a"+i;
-		a.href = "/show_event/";
-		a.onclick=setEventid_Cookie(a.id);
+		a.onclick=redirect(a.id);
     	document.getElementById("flow").appendChild(a);
 
 	}

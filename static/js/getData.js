@@ -46,6 +46,7 @@ function getAllEvent(){
         //console.log(json); 
         var obj = JSON.parse(json); 
         //console.log(obj); 
+
         filterAllEvent(obj);
     }
     else{
@@ -283,4 +284,11 @@ function sendForm(form) {
   }
 }
 
+function redirect(data){
+
+  setEventid_Cookie(data);
+
+  window.location.replace("/show_event");
+
+}
 
