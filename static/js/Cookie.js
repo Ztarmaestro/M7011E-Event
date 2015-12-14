@@ -15,7 +15,7 @@ function addEventCookie(eID) {
     var eventID = "event" + "-" + eID;
     console.log(eventID);
 
-    document.cookie = userID + " = " + eventID + "; ";
+    document.cookie = userID + "=" + eventID + "; ";
     console.log(document.cookie);
 }
 
