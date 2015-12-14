@@ -44,10 +44,10 @@ function setEventid_Cookie(aid){
 
     console.log("sets event id to cookie");
 
-    addEventCookie(cookiename, aid);
-    var x = getEventid_Cookie();
+    addEventCookie(aid);
+    var x = getEventid_Cookie("event");
     console.log(x);
-    
+
 }
 
 
