@@ -37,9 +37,9 @@ function filterEvent(data){
 function filterAllEvent(data){
 
 	console.log(data);
-	createEventlist(data);
 
 	for( var i=0, l=data.length; i<l; i++ ) {
+		createEventlist(data);
 
     	var head = document.createElement("h1");
     	head.id = "Event_name"+i;
