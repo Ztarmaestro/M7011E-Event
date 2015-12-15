@@ -123,7 +123,6 @@ function logout(){
           // cancelled
           logout();
           alert('User cancelled login or did not fully authorize. Login again');
-          reloadpage();
           }
       });
   }
@@ -143,7 +142,6 @@ function logout(){
       // The person is logged into Facebook, but not your app.
       event_check();
       console.log('2');
-      reloadpage()
     } else {
       // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
       event_check();
@@ -193,11 +191,6 @@ function log_check() {
           document.getElementById("event_a").innerHTML = "Events";
           }
       });
-  }
-
-  function reloadpage(){
-    console.log("Connection lost. Reloading homepage");
-    window.location.replace("/");
   }
 
 </script>
