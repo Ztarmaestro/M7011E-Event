@@ -39,7 +39,7 @@ function filterAllEvent(data){
 	console.log(data);
 	createEventlist(data);
 
-	for( var i=1, l=data.length; i<l; i++ ) {
+	for( var i=0, l=data.length; i<l; i++ ) {
 
     	var head = document.createElement("h1");
     	head.id = "Event_name"+i;
@@ -89,11 +89,10 @@ function filterAllEvent(data){
 
 function createEventlist(data){
 
-	for( var i=1, l=data.length; i<l; i++ ) {
-
+	for( var i=0, x=1, l=data.length; i<l; i++, x++) {
 		var a = document.createElement("a");
 		a.id = "a"+i;
-		a.className=i;
+		a.className=x;
 		a.onclick=function(){redirect(this.className)};
 		//a.onClick="redirect(this.className)";
 		console.log(a);
