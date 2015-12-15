@@ -94,6 +94,7 @@ function createEventlist(data){
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.onclick=function(){redirect(i)};
+		console.log(a);
     	document.getElementById("flow").appendChild(a);
 
 	}
