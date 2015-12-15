@@ -89,12 +89,13 @@ function filterAllEvent(data){
 
 function createEventlist(data){
 
-	for( var i=0, l=data.length; i<l; i++ ) {
+	for( var i=1, l=data.length; i<l; i++ ) {
 
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.className=i;
-		a.onClick="redirect(this.className)";
+		a.onclick=function(){redirect(this.className)};
+		//a.onClick="redirect(this.className)";
 		console.log(a);
     	document.getElementById("flow").appendChild(a);
 
