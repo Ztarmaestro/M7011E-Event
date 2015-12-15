@@ -262,7 +262,6 @@ function sendForm(form) {
             var xhr = new XMLHttpRequest();
 
             //data.user = parseInt(data.user);
-            xhr.open('POST',"http://130.240.170.56:8000/event" , true);
             
             xhr.onreadystatechange=function() {
               if (xhr.readyState==4 && xhr.status==200) {
@@ -274,6 +273,8 @@ function sendForm(form) {
                 return false;
               }
             }
+
+    xhr.open('POST',"http://130.240.170.56:8000/event" , true);
 
     xhr.send(JSON.stringify(data));
 
