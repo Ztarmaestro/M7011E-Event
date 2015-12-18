@@ -130,7 +130,6 @@ function login(){
     if (response.authResponse) {
         // connected
         statusChangeCallback(response);
-        homeredirect();
     } else {
         // cancelled
         logout();

@@ -1,7 +1,8 @@
 
 // Sets the users FB idtoken to cookie
 function setCookie(cname, idToken) {
-        document.cookie = cname + "=" + idToken + "; ";  
+    document.cookie = cname + "=" + idToken + "; ";  
+    homeredirect();
 }
 
 // Adds the event id you clicked on to the cookie
