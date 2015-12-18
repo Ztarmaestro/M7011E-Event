@@ -105,6 +105,10 @@ function redirect(data){
   window.location.replace("/show_event");
 }
 
+function homeredirect(){
+  window.location.replace("/");
+}
+
 /*
 Function not yet implemented
 function getEventUser(userID){

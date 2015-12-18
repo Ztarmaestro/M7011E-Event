@@ -120,22 +120,23 @@ function testAPI() {
     });
 }
 
-function logout(){
+function logout(data){
     console.log("log out");
-    FB.logout() 
-    window.location.reload(false);
+    FB.logout(data); 
+    homeredirect();
 }
 
 function login(){
-    console.log("Jag körs")
-    FB.login(function(response) {
+    FB.getLoginStatus(function(response) {
     if (response.authResponse) {
         // connected
-        checkLoginState();
+        console.log("log in")
+        homeredirect();
     } else {
         // cancelled
-        logout();
-        alert('User cancelled login or did not fully authorize. Login again');
+        var access_token = FB.getAuthResponse()['accessToken'];
+        logout(access_token);
+        //alert('User cancelled login or did not fully authorize. Login again');
         }
     });
 }
@@ -210,7 +211,7 @@ function event_check() {
                 
                     <ul class="nav navbar-nav navbar-right">
                         
-                        <li><div class="fb-login-button" id="FBbutton" onlogin="login()" data-max-rows="1" data-size="small" data-show-faces="false"
+                        <li><div class="fb-login-button" id="FBbutton" onclick="login()" data-max-rows="1" data-size="small" data-show-faces="false"
                                  data-auto-logout-link="true"></div>
                         </li>
                         
