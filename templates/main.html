@@ -121,7 +121,7 @@ function testAPI() {
 
 function logout(){
     console.log("log out");
-    FB.logout(); 
+    FB.logout(function(response)); 
     homeredirect();
 }
 
