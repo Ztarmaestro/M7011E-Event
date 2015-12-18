@@ -101,7 +101,7 @@ function createEventlist(data){
 		a.className=x;
 		a.onclick=function(){redirect(this.className)};
 		console.log(a);
-    	document.getElementById("flow2").appendChild(a);
+    	document.getElementById("flow").appendChild(a);
 
 	}
 
