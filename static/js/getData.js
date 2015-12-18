@@ -58,6 +58,30 @@ function getUser(id){
   xmlHttp.open( "GET", "http://130.240.170.56:8000/users/"+id, false );
   xmlHttp.send( null );
 }
+
+function addUser(fbjson){
+    var data = {};
+    data.IdToken = fbjson.id;
+    data.Username = fbjson.name;
+    
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST','http://130.240.170.56:8000/users', true);
+
+    xhr.onreadystatechange=function() {
+    if (xhr.readyState==4 && xhr.status==200) {
+      console.log('User added to DB');
+      return false;
+    }else{
+       console.log("User already exists");
+    }
+    //If user exists we get that user
+    getUser(data.IdToken);
+  }
+
+ xhr.send(JSON.stringify(data));
+  //closeSelf();
+}
  
 function sendForm(form) {
   console.log(form);
