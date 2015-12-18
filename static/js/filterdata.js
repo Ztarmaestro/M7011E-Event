@@ -50,6 +50,7 @@ function filterAllEvent(data){
     	document.getElementById("a"+i).appendChild(para);
 
     	var pic = document.createElement("IMG");
+    	pic.className="top-imgbottom";
     	pic.id = "Photo"+i;
     	pic.src = "";
     	document.getElementById("a"+i).appendChild(pic);
