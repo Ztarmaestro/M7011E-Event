@@ -50,7 +50,7 @@ A  User is composed of a
 	and a Photo witch is a url to that persons fb profile pic
 */
 type User_table struct {
-	UserID    	uint64 `json:"User_ID"`
+	//UserID    	uint64 `json:"User_ID"`
 	IdToken   	string `json:"IdToken"`
 	Name 		string `json:"Username"`
 	//LastName  string `json:"last_name"`
@@ -486,13 +486,13 @@ func getUser(w http.ResponseWriter, r *http.Request) (interface{}, *handlerError
 	user := new(User_table)
 	for row.Next() {
 		var IdToken, Name string
-		var UserID uint64
+		//var UserID uint64
 
-		if err := row.Scan(&UserID, &Name, &IdToken); err != nil {
+		if err := row.Scan(&Name, &IdToken); err != nil {
 			log.Fatal(err)
 		}
 		user.IdToken = IdToken
-		user.UserID = UserID
+		//user.UserID = UserID
 		user.Name = Name
 	
 	}
