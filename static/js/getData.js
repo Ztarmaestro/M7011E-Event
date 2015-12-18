@@ -45,7 +45,6 @@ function getEvent(id){
 
 function getUser(id){
   var xmlHttp = null;
-  console.log(id); 
   xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {

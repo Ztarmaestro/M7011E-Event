@@ -83,7 +83,6 @@ function createEventlist(data){
 		a.id = "a"+i;
 		a.className=x;
 		a.onclick=function(){redirect(this.className)};
-		console.log(a);
     	document.getElementById("flow").appendChild(a);
 
 	}
