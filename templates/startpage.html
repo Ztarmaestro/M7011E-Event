@@ -4,11 +4,8 @@
 
 function addUser(fbjson){
     var data = {};
-    console.log(fbjson);
     data.IdToken = fbjson.id;
     data.Username = fbjson.name;
-    console.log(data.IdToken);
-    console.log(data.Username);
     
     var xhr = new XMLHttpRequest();
 
@@ -117,5 +114,5 @@ function addUser(fbjson){
 
         <!-- /END THE FEATURETTES -->
     </div>
-    
+
 {{end}}

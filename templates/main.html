@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<!-- This page is always loaded, the {{template "content"}} is what is changing depending on what button on the navbar you press.
+<!-- This page is always loaded, the template content is what changing depending on what button on the navbar you press.
 This file contains the navbar, facebook login button, footer and loads all the js files so they are accessible -->
 
 <html lang="en">
 <head>
 
-<!-- BOOTSTRaP -->
+<!-- BOOTSTRAP -->
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,6 @@ function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response){
     console.log('Successful login for: ' + response.name);
-    console.log(response.id);
 
     // Adds the user when you done with login on facebook
     addUser(response);
