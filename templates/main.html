@@ -130,12 +130,11 @@ function login(){
     FB.getLoginStatus(function(response) {
     if (response.authResponse) {
         // connected
-        var access_token = FB.getAuthResponse()['accessToken'];
-        logout(access_token);
+        homeredirect();
     } else {
         // cancelled
-        console.log("log in")
-        homeredirect();
+        var access_token = FB.getAuthResponse()['accessToken'];
+        logout(access_token);
         //alert('User cancelled login or did not fully authorize. Login again');
         }
     });
@@ -211,7 +210,8 @@ function event_check() {
                 
                     <ul class="nav navbar-nav navbar-right">
                         
-                        <li><button class="fb-login-button" id="FBbutton" onclick="login();" data-max-rows="1" data-size="small" data-show-faces="false" data-auto-logout-link="true"></button>
+                        <li><div class="fb-login-button" id="FBbutton" onlogin="login();" data-max-rows="1" data-size="small" data-show-faces="false"
+                                 data-auto-logout-link="true"></div>
                         </li>
                         
                         <li class="dropdown">
