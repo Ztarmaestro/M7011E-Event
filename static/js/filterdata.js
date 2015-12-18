@@ -90,13 +90,18 @@ function filterAllEvent(data){
 function createEventlist(data){
 
 	for( var i=0, x=1, l=data.length; i<l; i++, x++) {
+		
+		var div = document.createElement("div");
+		div.id = flow2;
+		div.className = "col-xs-10 col-sm-3 panel panel-default";
+		document.getElementById("flow1").appendChild(div);
+	
 		var a = document.createElement("a");
 		a.id = "a"+i;
 		a.className=x;
 		a.onclick=function(){redirect(this.className)};
-		//a.onClick="redirect(this.className)";
 		console.log(a);
-    	document.getElementById("flow").appendChild(a);
+    	document.getElementById("flow2").appendChild(a);
 
 	}
 
