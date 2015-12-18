@@ -95,7 +95,6 @@ window.fbAsyncInit = function(){
 
 FB.getLoginStatus(function(response){
     console.log("Done loading")
-    statusChangeCallback(response);
 });
 
 };
@@ -122,7 +121,7 @@ function testAPI() {
 
 function logout(data){
     console.log("log out");
-    FB.logout(data); 
+    FB.logout(); 
     homeredirect();
 }
 
@@ -130,11 +129,11 @@ function login(){
     FB.getLoginStatus(function(response) {
     if (response.authResponse) {
         // connected
+        statusChangeCallback(response);
         homeredirect();
     } else {
         // cancelled
-        var access_token = FB.getAuthResponse()['accessToken'];
-        logout(access_token);
+        logout();
         //alert('User cancelled login or did not fully authorize. Login again');
         }
     });
