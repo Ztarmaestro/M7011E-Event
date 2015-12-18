@@ -59,8 +59,8 @@ This file contains the navbar, facebook login button, footer and loads all the j
 
 <body>
     
- <div id="status"></div>
- <div id="fb-root"></div>
+<div id="status"></div>
+<div id="fb-root"></div>
  
 <script>
 //Every time the page is loaded we check so that you're logged in.
@@ -93,6 +93,13 @@ window.fbAsyncInit = function(){
         version    : 'v2.5'
     });
 
+FB.getLoginStatus(function(response){
+    console.log("Done loading")
+    statusChangeCallback(response);
+});
+
+};
+
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
@@ -100,13 +107,6 @@ window.fbAsyncInit = function(){
     js.src="https://connect.facebook.net/en_US/all.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
-FB.getLoginStatus(function(response){
-    console.log("Done loading")
-    statusChangeCallback(response);
-});
-
-};
 
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.

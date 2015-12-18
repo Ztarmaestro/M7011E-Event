@@ -8,9 +8,9 @@ function getAllEvent(){
   xmlHttp.onreadystatechange=function() {
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
-        console.log(json); 
+        //console.log(json); 
         var obj = JSON.parse(json); 
-        console.log(obj); 
+        //console.log(obj); 
         filterAllEvent(obj);
     }
     else{
@@ -51,8 +51,6 @@ function getUser(id){
     if (xmlHttp.readyState==4 && xmlHttp.status==200) {
         var json = xmlHttp.responseText;
         var obj = JSON.parse(json);
-        console.log(obj);  
-        console.log(obj.IdToken);
         setCookie("username", id);  
     }else{
       return "ERROR";
