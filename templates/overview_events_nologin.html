@@ -1,5 +1,8 @@
 {{define "content"}} 
 
+<!-- You gets send to this page if your not logged in and presses "event" on the navbar, you cannot create a event.
+This is only possible if you're logged in -->
+
 <!-- SIDO MENY
 ================================================================================= -->
     
@@ -8,15 +11,16 @@
 <!-- EVENT FLÖDET 
 ================================================================================= --> 
 
-    <script type="text/javascript">
-        window.onload = function() {
-  			getAllEvent()
-		};
-    </script>
-   
+<script type="text/javascript">
+// When page loads gets all event from db
+    window.onload = function() {
+		getAllEvent()
+	};
+</script>
+
+<!-- Here a nice list of the events in db is created -->    
 <nav class="Event-flow" id="nav">
     <div class="col-xs-10 col-sm-7 panel panel-default" id="flow">
-        <!-- List group -->
     
     </div>
 </nav>

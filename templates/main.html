@@ -1,6 +1,13 @@
 <!DOCTYPE html>
+
+<!-- This page is always loaded, the {{template "content"}} is what is changing depending on what button on the navbar you press.
+This file contains the navbar, facebook login button, footer and loads all the js files so they are accessible -->
+
 <html lang="en">
 <head>
+
+<!-- BOOTSTRaP -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +28,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
 
     <!-- Code for different GET/POST function -->
-    <!-- <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script> -->
-    <!-- <script language="JavaScript" type="text/javascript" src="static/js/facebook.js"></script> -->
     <script language="JavaScript" type="text/javascript" src="static/js/getData.js"></script>
     <script language="JavaScript" type="text/javascript" src="static/js/filterdata.js"></script>
     <script language="JavaScript" type="text/javascript" src="static/js/Cookie.js"></script>
@@ -31,6 +36,7 @@
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
         .carousel-inner > .item > img {
             height: 500px;
@@ -48,10 +54,7 @@
             margin-bottom: 10px;
         }
     </style>
-
-    <!-- Custom styles for this template 
-    <link href="carousel.css" rel="stylesheet"> -->
-    
+   
 </head>
 
 <body>
@@ -60,141 +63,113 @@
  <div id="fb-root"></div>
  
 <script>
+//Every time the page is loaded we check so that you're logged in.
 
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '101305660242781',
-      cookie     : true,  
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-
-    FB.getLoginStatus(function(response) {
-    console.log("Done loading")
-    statusChangeCallback(response);
-  });
-
-
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src="https://connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-
-
-// Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      console.log(response.id);
-      addUser(response);
-    });
-  }
-
-function checklogin(){
-
-  FB.getLoginStatus(function(response) {
-  if (response.status === 'connected') {
-    console.log('Logged in.');
-    logout();
-  }
-  else {
-    login();
-    }
-  });
-}
-
-function logout(){
-  FB.logout() 
-  window.location.reload(false);
-  //window.location.replace("/");
-}
-
-  function login() {
-      FB.login(function(response) {
-      if (response.authResponse) {
-          // connected
-          checkLoginState();
-      } else {
-          // cancelled
-          logout();
-          alert('User cancelled login or did not fully authorize. Login again');
-          }
-      });
-  }
-
- // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
+// This is called with the results from from FB.getLoginStatus().
+function statusChangeCallback(response){
     console.log(response);
     // The response object is returned with a status field that lets the app know the current login status of the person.
     // Full docs on the response object can be found in the documentation for FB.getLoginStatus().
     if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      console.log('1');
-      event_check();
-      testAPI();
+        // Logged into your app and Facebook.
+        event_check();
+        testAPI();
     } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      event_check();
-      console.log('2');
+        // The person is logged into Facebook, but not your app.
+        event_check();
     } else {
-      // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
-      event_check();
-      console.log('3');
+        // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
+        event_check();
     }
-  }
+}
 
-  // This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
+// The Facebook code didn't work when calling from another file. But when we put it here on the main page it works fine.
+// Gets all the Facebook functions
+window.fbAsyncInit = function(){
+    FB.init({
+        appId      : '101305660242781',
+        cookie     : true,  
+        xfbml      : true,
+        version    : 'v2.5'
     });
-  } 
 
-function log_check() {
-      FB.login(function(response) {
-      if (response.authResponse) {
-          // connected
-          login();
-      } else {
-          // not connected
-          console.log("log out");
-          logout();
-          }
-      });
-  }
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src="https://connect.facebook.net/en_US/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
-  function event_check() {
-        console.log("hej");
-      FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
+FB.getLoginStatus(function(response){
+    console.log("Done loading")
+    statusChangeCallback(response);
+});
+
+};
+
+// Here we run a very simple test of the Graph API after login is
+// successful.  See statusChangeCallback() for when this call is made.
+function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response){
+    console.log('Successful login for: ' + response.name);
+    console.log(response.id);
+
+    // Adds the user when you done with login on facebook
+    addUser(response);
+    });
+}
+
+function logout(){
+    console.log("log out");
+    FB.logout() 
+    window.location.reload(false);
+}
+
+function login(){
+    FB.login(function(response) {
+    if (response.authResponse) {
+        // connected
+        checkLoginState();
+    } else {
+        // cancelled
+        logout();
+        alert('User cancelled login or did not fully authorize. Login again');
+        }
+    });
+}
+
+// This function is called when someone finishes with the Login Button. 
+function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+} 
+
+//Changes the path of event button in navbar depending on if you're logged in or not
+function event_check() {
+    FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
         console.log("/events");
-          // connected
-          var abutton = document.createElement("a");
-          abutton.id = "event_a";
-          abutton.href = "/events";
-          document.getElementById("event").appendChild(abutton);
-          document.getElementById("event_a").innerHTML = "Events";
+        // connected
+        var abutton = document.createElement("a");
+        abutton.id = "event_a";
+        abutton.href = "/events";
+        document.getElementById("event").appendChild(abutton);
+        document.getElementById("event_a").innerHTML = "Events";
           
-      } else {
-        console.log("/events_nologin");
-          // not connected
-          var abutton = document.createElement("a");
-          abutton.id = "event_a";
-          abutton.href = "/events_nologin";
-          document.getElementById("event").appendChild(abutton);
-          document.getElementById("event_a").innerHTML = "Events";
-          }
-      });
-  }
+    } else {
+    console.log("/events_nologin");
+        // not connected
+        var abutton = document.createElement("a");
+        abutton.id = "event_a";
+        abutton.href = "/events_nologin";
+        document.getElementById("event").appendChild(abutton);
+        document.getElementById("event_a").innerHTML = "Events";
+        }
+    });
+}
 
 </script>
     

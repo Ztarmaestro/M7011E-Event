@@ -1,24 +1,18 @@
 
-
+// Sets the users FB idtoken to cookie
 function setCookie(cname, idToken) {
-        console.log("Create cookie");
-        document.cookie = cname + "=" + idToken + "; ";
-        console.log(document.cookie);   
+        document.cookie = cname + "=" + idToken + "; ";  
 }
 
-function addEventCookie(eID) {
-    
+// Adds the event id you clicked on to the cookie
+function addEventCookie(eID) {   
     var cookiename = getCookie("username");
-    console.log(cookiename);
     var userID = "username" + "-" + cookiename;
-    console.log(userID);
     var eventID = "event" + "+" + eID;
-    console.log(eventID);
-
     document.cookie = userID + "=" + eventID + "=";
-    console.log(document.cookie);
 }
 
+// Gets the FB idtoken from cookie
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -30,17 +24,7 @@ function getCookie(cname) {
     return "";
 }
 
-function getCookie2(cname) {
-    var name = cname + "-";
-    var ca = document.cookie.split('=');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    }
-    return "";
-}
-
+// Gets the Eventid from cookie
 function getEventid_Cookie(cname){
     var name = cname + "+";
     var ca = document.cookie.split('=');
@@ -53,6 +37,16 @@ function getEventid_Cookie(cname){
 
 }
 
+function getCookie2(cname) {
+    var name = cname + "-";
+    var ca = document.cookie.split('=');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
 
 
 

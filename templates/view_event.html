@@ -3,17 +3,21 @@
 <!-- EVENTET
 ================================================================================= --> 
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
-   <title>Google Maps Geocoding Demo 1</title> 
-   <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>   
 
-    <script type="text/javascript">
-        window.onload = function() {
-            var eventid = getEventid_Cookie("event");
-            console.log(eventid);
-            getEvent(eventid);
-        };
-    </script>
+<title>Google Maps Geocoding Demo 1</title> 
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>   
 
+<script type="text/javascript">
+
+// When page load, get eventid from cookie and then get event from db
+    window.onload = function(){
+        var eventid = getEventid_Cookie("event");
+        getEvent(eventid);
+    };
+
+</script>
+
+<!-- Shows the data from event in a nice list  -->
 <nav class="Event-flow">
     <div class="col-xs-12 col-sm-3 col-sm-offset-1 panel panel-default" id="flow">
 
@@ -28,23 +32,23 @@
 </nav>
 
 <body> 
-    <div class="col-xs-10 col-sm-4" id="flow">
 
-   <div class="col-xs-10 col-sm-6 panel panel-default" id="map" style="width: 400px; height: 300px;"></div> 
+<div class="col-xs-10 col-sm-4" id="flow">
 
-   <script type="text/javascript"> 
-       
+<div class="col-xs-10 col-sm-6 panel panel-default" id="map" style="width: 400px; height: 300px;"></div> 
+
+<script type="text/javascript"> 
+ 
+// Takes address from event and showes it on map      
 function geoaddress(data){
-    
-console.log(data);
+
     var geoaddress = data.Address;
     var geozipcode = data.Zipcode;
-   var address = geoaddress + ", " + geozipcode + ", " + 'SV';
-console.log(address);
-   var map = new google.maps.Map(document.getElementById('map'), { 
+    var address = geoaddress + ", " + geozipcode + ", " + 'SV';
+    var map = new google.maps.Map(document.getElementById('map'), { 
        mapTypeId: google.maps.MapTypeId.TERRAIN,
        zoom: 13
-   });
+    });
 
    var geocoder = new google.maps.Geocoder();
 
@@ -61,7 +65,9 @@ console.log(address);
       }
    });
 }
-   </script> 
+
+</script> 
+
 </body>
 
 {{end}}
