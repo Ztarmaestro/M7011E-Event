@@ -75,8 +75,10 @@ function statusChangeCallback(response){
         testAPI();
     } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
+        logout();
     } else {
         // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
+        logout();
     }
 }
 
@@ -91,7 +93,7 @@ window.fbAsyncInit = function(){
     });
 
 FB.getLoginStatus(function(response){
-    console.log("Done loading")
+    //console.log("Done loading")
     event_check();
 });
 
@@ -117,7 +119,7 @@ function testAPI() {
     });
 }
 
-function logout(data){
+function logout(){
     console.log("log out");
     FB.logout(); 
     homeredirect();
@@ -148,7 +150,7 @@ function checkLoginState() {
 function event_check() {
     FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
-        console.log("/events");
+        //console.log("/events");
         // connected
         var abutton = document.createElement("a");
         abutton.id = "event_a";
@@ -157,7 +159,7 @@ function event_check() {
         document.getElementById("event_a").innerHTML = "Events";
           
     } else {
-    console.log("/events_nologin");
+        //console.log("/events_nologin");
         // not connected
         var abutton = document.createElement("a");
         abutton.id = "event_a";
