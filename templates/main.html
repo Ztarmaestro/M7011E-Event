@@ -130,12 +130,12 @@ function login(){
     FB.getLoginStatus(function(response) {
     if (response.authResponse) {
         // connected
-        console.log("log in")
-        homeredirect();
-    } else {
-        // cancelled
         var access_token = FB.getAuthResponse()['accessToken'];
         logout(access_token);
+    } else {
+        // cancelled
+        console.log("log in")
+        homeredirect();
         //alert('User cancelled login or did not fully authorize. Login again');
         }
     });
