@@ -127,6 +127,7 @@ function logout(){
 }
 
 function login(){
+    console.log("Jag körs")
     FB.login(function(response) {
     if (response.authResponse) {
         // connected
