@@ -86,13 +86,15 @@ function filterAllEventForMain(data){
 }
 
 function createEventlistForMain(data){
-	
-	for( var i=0, x=1, l=data.length; i<l; i++, x++) {
 
+	for( var i=0, l=data.length; i<l; i++) {
 		var div = document.createElement("div");
 		div.id = "slides2";
 		div.className = "item";
 		document.getElementById("slides").appendChild(div);
+	}
+	
+	for( var i=0, x=1, l=data.length; i<l; i++, x++) {
 		
 		var s = document.createElement("a");
 		s.id = "s"+i;
