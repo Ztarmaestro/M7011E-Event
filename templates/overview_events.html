@@ -17,9 +17,10 @@ This is not possible if you're not logged in -->
     	console.log("Nu körs jag");
     	FB.getLoginStatus(function(response){
     		if (response.status === 'not_authorized'){
+    			console.log("inte ansluten");
     			alert('User not authorized. Sending user to starpage.');
     			homeredirect();
-    		} else {}
+    		} else {console.log("ansluten");}
 		});
 		getAllEvent();
     };
