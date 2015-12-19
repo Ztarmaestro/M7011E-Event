@@ -1,6 +1,25 @@
 
 //Different function that we call for getting/creating events/user
 
+function getAllEventForMain(){
+  var xmlHttp = null;
+
+  xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange=function() {
+    if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+        var json = xmlHttp.responseText;
+        var obj = JSON.parse(json);  
+        filterAllEventForMain(obj);
+    }
+    else{
+      return "Error";
+    }
+  };
+  
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/event", false );
+    xmlHttp.send( null ); 
+}
+
 function getAllEvent(){
   var xmlHttp = null;
 

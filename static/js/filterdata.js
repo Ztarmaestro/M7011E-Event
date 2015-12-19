@@ -66,6 +66,43 @@ function filterAllEvent(data){
 	}
 }
 
+function filterAllEventForMain(data){
+
+	createEventlistForMain(data);
+
+	for( var i=0, l=data.length; i<l; i++ ) {
+
+    	var pic = document.createElement("IMG");
+    	pic.id = "Photo"+i;
+    	pic.src = "";
+    	document.getElementById("s"+i).appendChild(pic);
+
+		Photo= document.getElementById('Photo'+[i]);
+
+		if(document.getElementById("Photo"+[i]) != null){
+	    	Photo.src = data[i].Photo;
+		}
+	}
+}
+
+function createEventlistForMain(data){
+	
+	for( var i=0, x=1, l=data.length; i<l; i++, x++) {
+
+		var div = document.createElement("div");
+		div.id = "slides2";
+		div.className = "item";
+		document.getElementById("slides").appendChild(div);
+		
+		var s = document.createElement("a");
+		s.id = "s"+i;
+		s.className=x;
+		s.onclick=function(){redirect(this.className)};
+    	document.getElementById("slides2").appendChild(s);
+
+	}
+}
+
 function createEventlist(data){
 
 	// For every event you get from the db it creates a link to that event

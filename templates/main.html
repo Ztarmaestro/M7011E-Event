@@ -63,6 +63,10 @@ This file contains the navbar, facebook login button, footer and loads all the j
 <div id="fb-root"></div>
  
 <script>
+window.onload = function() {
+    getAllEventForMain();
+}
+
 //Every time the page is loaded we check so that you're logged in.
 
 // This is called with the results from from FB.getLoginStatus().
