@@ -16,8 +16,13 @@ This is not possible if you're not logged in -->
     window.onload = function() {
     	console.log("Nu körs jag");
     	FB.getLoginStatus(function(response){
+    		if (response.status === 'not_authorized'){
+    			alert('User not authorized. Sending user to starpage.');
+    			homeredirect();
+    		};
+    		else {};
 		});
-		getAllEvent()
+		getAllEvent();
     };
 
 </script>
