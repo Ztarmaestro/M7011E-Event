@@ -145,7 +145,6 @@ function sendForm(form) {
 
 function redirect(data){
   addEventCookie(data); 
-  console.log(data);
   window.location.replace("/show_event");
 }
 
