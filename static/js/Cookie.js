@@ -49,6 +49,11 @@ function getCookie2(cname) {
     return "";
 }
 
+//resets the cookie to an empty string
+function resetCookie(){
+     document.cookie = "";  
+}
+
 
 
 
