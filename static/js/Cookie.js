@@ -1,7 +1,8 @@
 
 // Sets the users FB idtoken to cookie
 function setCookie(cname, idToken) {
-    document.cookie = cname + "=" + idToken + "; ";  
+    document.cookie = cname + "=" + idToken + "; "; 
+    console.log(document.cookie); 
     homeredirect();
 }
 
@@ -12,6 +13,7 @@ function addEventCookie(eID) {
     var userID = "username" + "-" + cookiename;
     var eventID = "event" + "+" + eID;
     document.cookie = userID + "=" + eventID + "=";
+    console.log(document.cookie);
 }
 
 // Gets the FB idtoken from cookie
@@ -24,6 +26,7 @@ function getCookie(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return "";
+    console.log(document.cookie);
 }
 
 // Gets the Eventid from cookie
@@ -37,7 +40,7 @@ function getEventid_Cookie(cname){
         console.log(c);
     }
     return "";
-
+    console.log(document.cookie);
 }
 
 function getCookie2(cname) {
@@ -49,6 +52,7 @@ function getCookie2(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return "";
+    console.log(document.cookie);
 }
 
 
