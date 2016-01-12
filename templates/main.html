@@ -128,15 +128,18 @@ function logout(){
     resetCookie("username");
 
     FB.getLoginStatus(function(ret) {
+        console.log("1");
     /// are they currently logged into Facebook?
     if(ret.authResponse) {
+        console.log("2");
         //they were authed so do the logout
         FB.logout(function(response) {
-           homeredirect();
+            console.log("3");
+ 
         });
     } 
 });
-
+    homeredirect();
 }
 
 function login(){
