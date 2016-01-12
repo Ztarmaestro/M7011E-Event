@@ -18,13 +18,12 @@ This is not possible if you're not logged in -->
 
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
-                getAllEvent();
             } else {
                 console.log("not_authorized");
                 window.location = "/";
             }
         });
-
+        getAllEvent();
     };
 
 </script>
