@@ -125,8 +125,6 @@ function testAPI() {
 
 function logout(){
     console.log("log out");
-    resetCookie("username");
-    console.log("Resets cookie");
 
     FB.getLoginStatus(function(ret) {
     /// are they currently logged into Facebook?

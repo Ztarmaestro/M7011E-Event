@@ -55,7 +55,4 @@ function getCookie2(cname) {
     console.log(document.cookie);
 }
 
-function resetCookie(cname){
-    document.cookie = cname + "=; ";
-}
 
