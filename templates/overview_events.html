@@ -16,12 +16,9 @@ This is not possible if you're not logged in -->
     window.onload = function() {
     	console.log("Nu körs jag");
 
-        var cookie = getCookie("username");
-        console.log(cookie);
-
         if (cookie == "") {
             console.log("not_authorized");
-            homeredirect();
+            window.location = "/";
         }    
 		getAllEvent();
     };
