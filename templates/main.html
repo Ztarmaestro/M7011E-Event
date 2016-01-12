@@ -126,9 +126,17 @@ function testAPI() {
 function logout(){
     console.log("log out");
     resetCookie("username");
-    FB.logout(function(response){
-            homeredirect();
-    });
+
+    FB.getLoginStatus(function(ret) {
+    /// are they currently logged into Facebook?
+    if(ret.authResponse) {
+        //they were authed so do the logout
+        FB.logout(function(response) {
+           homeredirect();
+        });
+    } 
+});
+
 }
 
 function login(){
