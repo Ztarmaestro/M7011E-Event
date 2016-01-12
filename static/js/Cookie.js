@@ -7,6 +7,7 @@ function setCookie(cname, idToken) {
 
 // Adds the event id you clicked on to the cookie
 function addEventCookie(eID) {   
+    console.log(eID);
     var cookiename = getCookie("username");
     var userID = "username" + "-" + cookiename;
     var eventID = "event" + "+" + eID;
@@ -33,6 +34,7 @@ function getEventid_Cookie(cname){
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1);
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        console.log(c);
     }
     return "";
 
