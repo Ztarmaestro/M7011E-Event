@@ -50,8 +50,8 @@ function getCookie2(cname) {
 }
 
 //resets the cookie to an empty string
-function resetCookie(){
-     document.cookie = "";  
+function resetCookie(cname){
+     document.cookie = cname + "=; ";  
 }
 
 
