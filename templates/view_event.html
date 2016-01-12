@@ -12,6 +12,7 @@
 // When page load, get eventid from cookie and then get event from db
     window.onload = function(){
         var eventid = getEventid_Cookie("event");
+        console.log(eventid);
         getEvent(eventid);
     };
 
