@@ -126,6 +126,8 @@ function testAPI() {
 function logout(){
     console.log("log out");
     resetCookie();
+    var cookie = getCookie("username");
+    console.log(cookie);
     FB.logout(); 
     homeredirect();
 }
