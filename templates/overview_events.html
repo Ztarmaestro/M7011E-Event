@@ -16,6 +16,8 @@ This is not possible if you're not logged in -->
     window.onload = function() {
     	console.log("Nu körs jag");
 
+        var cookie = getCookie("username");
+
         if (cookie == "") {
             console.log("not_authorized");
             window.location = "/";
