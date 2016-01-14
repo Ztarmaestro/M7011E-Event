@@ -38,14 +38,16 @@
 <div class="col-xs-10 col-sm-6 panel panel-default" id="map" style="width: 400px; height: 300px;"></div> 
 
 <script type="text/javascript"> 
-var pos;
 
-function success(position(data)) {
+function success(position) {
+  return position;
+}
 
-  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+// Takes address from event and showes it on map      
+function geoaddress(data){
 
     var geoaddress = data.Address;
-    
+    var coords;
     var geozipcode = data.Zipcode;
     var address = geoaddress + ", " + geozipcode + ", " + 'SV';
     var map = new google.maps.Map(document.getElementById('map'), { 
@@ -53,9 +55,15 @@ function success(position(data)) {
        zoom: 13
     });
 
-     var geocoder = new google.maps.Geocoder();
+   var geocoder = new google.maps.Geocoder();
 
-     geocoder.geocode({
+    if (navigator.geolocation){
+      coords = navigator.geolocation.getCurrentPosition(success);
+      } else {
+      error('Geo Location is not supported');
+    }
+
+   geocoder.geocode({
       'address': address
    }, 
    function(results, status) {
@@ -73,16 +81,6 @@ function success(position(data)) {
         map.setCenter(results[0].geometry.location);
       }
    });
-}
-
-// Takes address from event and showes it on map      
-function geoaddress(data){
-
-    if (navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(success(data);
-      } else {
-      error('Geo Location is not supported');
-    }
 }
 
 </script> 
