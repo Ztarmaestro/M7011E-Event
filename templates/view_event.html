@@ -40,8 +40,18 @@
 <script type="text/javascript"> 
 var pos;
 
-function success(position) {
+function success(position(data)) {
+
   var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+    var geoaddress = data.Address;
+    
+    var geozipcode = data.Zipcode;
+    var address = geoaddress + ", " + geozipcode + ", " + 'SV';
+    var map = new google.maps.Map(document.getElementById('map'), { 
+       mapTypeId: google.maps.MapTypeId.TERRAIN,
+       zoom: 13
+    });
 
      var geocoder = new google.maps.Geocoder();
 
@@ -68,19 +78,8 @@ function success(position) {
 // Takes address from event and showes it on map      
 function geoaddress(data){
 
-    var geoaddress = data.Address;
-    
-    var geozipcode = data.Zipcode;
-    var address = geoaddress + ", " + geozipcode + ", " + 'SV';
-    var map = new google.maps.Map(document.getElementById('map'), { 
-       mapTypeId: google.maps.MapTypeId.TERRAIN,
-       zoom: 13
-    });
-
-
-
     if (navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(success);
+      navigator.geolocation.getCurrentPosition(success(data);
       } else {
       error('Geo Location is not supported');
     }
