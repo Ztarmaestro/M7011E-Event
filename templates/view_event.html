@@ -49,7 +49,7 @@ function success(position) {
 function geoaddress(data){
 
     var geoaddress = data.Address;
-    var coords;
+    var pos;
     var geozipcode = data.Zipcode;
     var address = geoaddress + ", " + geozipcode + ", " + 'SV';
     var map = new google.maps.Map(document.getElementById('map'), { 
@@ -60,9 +60,9 @@ function geoaddress(data){
    var geocoder = new google.maps.Geocoder();
 
     if (navigator.geolocation){
-      coords = navigator.geolocation.getCurrentPosition(success);
-      var lon = coords.coords.longitude;
-      var lat = coords.coords.latitude;
+      pos = navigator.geolocation.getCurrentPosition(success);
+      var lon = pos.coords.longitude;
+      var lat = pos.coords.latitude;
       var latlng = new google.maps.LatLng(lon, lat);
       } else {
       error('Geo Location is not supported');
