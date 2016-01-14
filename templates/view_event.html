@@ -39,6 +39,17 @@
 
 <script type="text/javascript"> 
 
+function success(position) {
+
+  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+  var marker = new google.maps.Marker({
+      position: coords,
+      map: map,
+      title:"You are here!"
+  });
+}
+
 // Takes address from event and showes it on map      
 function geoaddress(data){
 
@@ -62,25 +73,14 @@ function geoaddress(data){
           map: map,
           title:"The event is here!"
           if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(success);
+            navigator.geolocation.getCurrentPosition(success);
           } else {
-          error('Geo Location is not supported');
+            error('Geo Location is not supported');
           }
         });
         map.setCenter(results[0].geometry.location);
       }
    });
-}
-
-function success(position) {
-
-  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-  var marker = new google.maps.Marker({
-      position: coords,
-      map: map,
-      title:"You are here!"
-  });
 }
 
 </script> 
