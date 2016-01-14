@@ -145,10 +145,10 @@ func main() {
 	//Handlers for differnt pages
 	r.GET("/", indexHandler)
 	r.GET("/events", eventHandler)
-    r.GET("/profile", profileHandler)
+    //r.GET("/profile", profileHandler)
     r.GET("/show_event", showroomHandler)
     r.GET("/about", aboutHandler)
-    r.GET("/search_result", searchHandler)
+    //r.GET("/search_result", searchHandler)
     r.GET("/events_nologin", eventHandler_nologin)
 
 	fmt.Println("Server running on", bindAddr)
