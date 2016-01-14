@@ -57,12 +57,12 @@ function geoaddress(data){
    }, 
    function(results, status) {
       if(status == google.maps.GeocoderStatus.OK) {
-        var marker new google.maps.Marker({
+        var marker = new google.maps.Marker({
           position: results[0].geometry.location,
           map: map,
           title:"The event is here!"
         });
-         map.setCenter(results[0].geometry.location);
+        map.setCenter(results[0].geometry.location);
       }
    });
 }
