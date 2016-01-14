@@ -39,10 +39,28 @@
 
 <script type="text/javascript"> 
 var pos;
+
 function success(position) {
-  var latlng = position.coords.latitude;
-  console.log(latlng);
-  pos = latlng;
+  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+     geocoder.geocode({
+      'address': address
+   }, 
+   function(results, status) {
+      if(status == google.maps.GeocoderStatus.OK) {
+        var marker = new google.maps.Marker({
+          position: results[0].geometry.location,
+          map: map,
+          title:"The event is here!"
+        });
+        var marker = new google.maps.Marker({
+          position: coords,
+          map: map,
+          title:"You are here!"
+        });
+        map.setCenter(results[0].geometry.location);
+      }
+   });
 }
 
 // Takes address from event and showes it on map      
@@ -61,29 +79,9 @@ function geoaddress(data){
 
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(success);
-      console.log(pos);
       } else {
       error('Geo Location is not supported');
     }
-
-   geocoder.geocode({
-      'address': address
-   }, 
-   function(results, status) {
-      if(status == google.maps.GeocoderStatus.OK) {
-        var marker = new google.maps.Marker({
-          position: results[0].geometry.location,
-          map: map,
-          title:"The event is here!"
-        });
-        var marker = new google.maps.Marker({
-          position: pos,
-          map: map,
-          title:"You are here!"
-        });
-        map.setCenter(results[0].geometry.location);
-      }
-   });
 }
 
 </script> 
