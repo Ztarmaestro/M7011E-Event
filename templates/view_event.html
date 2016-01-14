@@ -40,9 +40,10 @@
 <script type="text/javascript"> 
 
 function success(position) {
-console.log("geo");
-  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
+  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  console.log(coords);
+  var map = new google.maps.Map(document.getElementById("map"), );
   var marker = new google.maps.Marker({
       position: coords,
       map: map,
