@@ -41,6 +41,7 @@
 
 function success(position) {
   var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  console.log(latlng);
   return latlng;
 }
 
@@ -76,7 +77,7 @@ function geoaddress(data){
           title:"The event is here!"
         });
         var marker = new google.maps.Marker({
-          position: latlng,
+          position: pos,
           map: map,
           title:"You are here!"
         });
