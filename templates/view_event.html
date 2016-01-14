@@ -61,7 +61,7 @@ function geoaddress(data){
 
     if (navigator.geolocation){
       pos = navigator.geolocation.getCurrentPosition(success);
-      console.log(pos.coords);
+      console.log(pos.coords.longitude);
       var lon = pos.coords.longitude;
       var lat = pos.coords.latitude;
       var latlng = new google.maps.LatLng(lon, lat);
