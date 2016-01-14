@@ -74,6 +74,11 @@ function geoaddress(data){
           map: map,
           title:"The event is here!"
         });
+        var marker = new google.maps.Marker({
+          position: coords,
+          map: map,
+          title:"You are here!"
+        });
         map.setCenter(results[0].geometry.location);
       }
    });
