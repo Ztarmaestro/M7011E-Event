@@ -40,9 +40,11 @@
 <script type="text/javascript"> 
 
 function success(position) {
-
-  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  console.log(coords);
+  var long = position.coords.longitude;
+  var lat = position.coords.latitude
+  //var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  console.log(long);
+  console.log(lat);
   return coords;
 }
 
