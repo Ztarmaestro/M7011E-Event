@@ -43,6 +43,8 @@ var pos;
 function success(position) {
   var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
+     var geocoder = new google.maps.Geocoder();
+
      geocoder.geocode({
       'address': address
    }, 
@@ -75,7 +77,7 @@ function geoaddress(data){
        zoom: 13
     });
 
-   var geocoder = new google.maps.Geocoder();
+
 
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(success);
