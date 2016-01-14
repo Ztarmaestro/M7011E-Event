@@ -40,7 +40,7 @@
 <script type="text/javascript"> 
 
 function success(position) {
-  var latlng = new google.maps.LatLng(position.coords.latitude);
+  var latlng = position.coords.latitude;
   console.log(latlng);
   return latlng;
 }
