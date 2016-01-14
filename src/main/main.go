@@ -69,7 +69,7 @@ func showroomHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params
 
 	pageSidemeny := "Event/templates/sidemeny.html"
 	pageTemplate := "Event/templates/view_event.html"
-	pageMapbutton := "Event/templates/map.html"
+	//pageMapbutton := "Event/templates/map.html"
 	
 
 	if t, err := template.ParseFiles(pagePath, pageMapbutton, pageSidemeny, pageTemplate); err != nil {
