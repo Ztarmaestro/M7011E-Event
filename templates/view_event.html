@@ -40,10 +40,9 @@
 <script type="text/javascript"> 
 
 function success(position) {
-  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   console.log(position.coords.latitude);
   console.log(position.coords.longitude);
-  return coords;
+  return position;
 }
 
 // Takes address from event and showes it on map      
