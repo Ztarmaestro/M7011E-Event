@@ -40,11 +40,9 @@
 <script type="text/javascript"> 
 
 function success(position) {
-  var long = position.coords.longitude;
-  var lat = position.coords.latitude
-  //var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  console.log(long);
-  console.log(lat);
+  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
   return coords;
 }
 
@@ -74,14 +72,16 @@ function geoaddress(data){
    }, 
    function(results, status) {
       if(status == google.maps.GeocoderStatus.OK) {
-        /*var marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
           position: results[0].geometry.location,
           map: map,
           title:"The event is here!"
-        });*/
+        });
         var marker = new google.maps.Marker({
-
-          position: coords,
+          var long = coords.coords.longitude;
+          var lat = coords.coords.latitude;
+          var latlng = new google.maps.LatLng(long, lat);
+          position: latlng,
           map: map,
           title:"You are here!"
         });
