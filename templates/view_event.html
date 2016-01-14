@@ -64,7 +64,28 @@ function geoaddress(data){
         });
         map.setCenter(results[0].geometry.location);
       }
-   });
+   },
+   function(results, status) {
+      if(status == google.maps.GeocoderStatus.OK) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(success);
+        } else {
+          error('Geo Location is not supported');
+        }
+      }
+   },
+   );
+}
+
+function success(position) {
+
+  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  
+  var marker = new google.maps.Marker({
+      position: coords,
+      map: map,
+      title:"You are here!"
+  });
 }
 
 </script> 
