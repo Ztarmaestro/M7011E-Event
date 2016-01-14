@@ -72,7 +72,7 @@ func showroomHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params
 	//pageMapbutton := "Event/templates/map.html"
 	
 
-	if t, err := template.ParseFiles(pagePath, pageMapbutton, pageSidemeny, pageTemplate); err != nil {
+	if t, err := template.ParseFiles(pagePath, pageSidemeny, pageTemplate); err != nil {
 		// Something gnarly happened.
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	} else {
