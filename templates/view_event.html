@@ -61,6 +61,9 @@ function geoaddress(data){
 
     if (navigator.geolocation){
       coords = navigator.geolocation.getCurrentPosition(success);
+      var lon = coords.coords.longitude;
+      var lat = coords.coords.latitude;
+      var latlng = new google.maps.LatLng(lon, lat);
       } else {
       error('Geo Location is not supported');
     }
@@ -76,9 +79,6 @@ function geoaddress(data){
           title:"The event is here!"
         });
         var marker = new google.maps.Marker({
-          var lon = coords.coords.longitude;
-          var lat = coords.coords.latitude;
-          var latlng = new google.maps.LatLng(lon, lat);
           position: latlng,
           map: map,
           title:"You are here!"
