@@ -42,13 +42,7 @@
 function success(position) {
 
   var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  console.log(coords);
-  var map = new google.maps.Map(document.getElementById("map"));
-  var marker = new google.maps.Marker({
-      position: coords,
-      map: map,
-      title:"You are here!"
-  });
+  return coords;
 }
 
 // Takes address from event and showes it on map      
@@ -75,11 +69,11 @@ function geoaddress(data){
    }, 
    function(results, status) {
       if(status == google.maps.GeocoderStatus.OK) {
-        /*var marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
           position: results[0].geometry.location,
           map: map,
           title:"The event is here!"
-        });*/
+        });
         map.setCenter(results[0].geometry.location);
       }
    });
