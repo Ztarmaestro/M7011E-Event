@@ -38,18 +38,18 @@
 <div class="col-xs-10 col-sm-6 panel panel-default" id="map" style="width: 400px; height: 300px;"></div> 
 
 <script type="text/javascript"> 
-
+var pos;
 function success(position) {
   var latlng = position.coords.latitude;
   console.log(latlng);
-  return latlng;
+  pos = latlng;
 }
 
 // Takes address from event and showes it on map      
 function geoaddress(data){
 
     var geoaddress = data.Address;
-    var pos;
+    
     var geozipcode = data.Zipcode;
     var address = geoaddress + ", " + geozipcode + ", " + 'SV';
     var map = new google.maps.Map(document.getElementById('map'), { 
@@ -60,7 +60,7 @@ function geoaddress(data){
    var geocoder = new google.maps.Geocoder();
 
     if (navigator.geolocation){
-      pos = navigator.geolocation.getCurrentPosition(success);
+      navigator.geolocation.getCurrentPosition(success);
       console.log(pos);
       } else {
       error('Geo Location is not supported');
