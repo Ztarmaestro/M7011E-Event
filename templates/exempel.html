@@ -102,6 +102,31 @@
 
 </body>
 <script>
+    
+ $(".try").click(function()
+    {
+        var index = $(this).attr("data-index");
+        var URI = ($($(".URI")[index])).text();
+        URI = URI.slice(0, URI.length-1);
+        var arguments = $($(".input")[index]).val();
+        var individual = arguments.split("&");
+        var prepared = {};
+        for (var i of individual)
+        {
+            var temp = i.split("=");
+            prepared[temp[0]] = temp[1];
+        }
+        $.ajax({
+            type: "GET",
+            url: URI,
+            data: prepared
+        }).done(function(data)
+        {
+            var $div = $($(".result")[index]);
+            $($(".json")[index]).html(data);
+            $div.show();
+        })
+    });
 
 </script>
 </html>
