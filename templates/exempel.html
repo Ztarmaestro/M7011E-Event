@@ -2,12 +2,15 @@
 <html>
 <head lang="en">
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'> </script>
-    <link href="demoStyle.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>API Demo for TrackStat</title>
 </head>
 <body>
 <h1> API Demo</h1>
+<p>Open up the developers tool in the browser and go to console. Press the "preserve log" box. The result vill be presentet by logging the return from the server.
+<br>
+
+</p>
 <h2>Get</h2>
 <ul>
     <li>endpoint/Users/id/</li>
@@ -25,30 +28,42 @@
 <!-- ------------------- Get User ----------------- -->
     
 <h3>Get User</h3>
-<div class="description collapsible"> Retrieves the ID and name of the user.</div>
+<div class="description collapsible"> Retrieves the ID and name of the user. The ID is taken from Facebook so you need to use that one. It should be around 17 digit long. This number is taken when a user is logged in the first time and then saved in the DB. </div>
 <br>
 <div class="arguments collapsible"> GET variables:
     <div class="tabulate">
-        Facebook IDToken: The ID of the user 
+        Facebook IDToken: The ID of the user (write only the digit) 
     </div>
 </div><br>
+    
+<span>130.240.170.56:8000/users/</span>
+<form>
+    <input type="text" name="inputform" id="textbox1"/>
+    <input type="submit" onclick="try1();"/>
+</form>
 
-<span class="URI">GET http://130.240.170.56:8000/Users/id/ </span><input type="text" class="input"><button class="try" data-index="0">Try it</button>
+<div class="result collapsible"><div><pre class="json1" id="2"></pre></div></div>
     
 <hr class="featurette-divider"></hr>   
 
 <!-- ------------------- Get Event By ID ----------------- -->
     
 <h3>Get User</h3>
-<div class="description collapsible"> Retrieves the information from event with the ID.</div>
+<div class="description collapsible"> Retrieves the information from event with the ID. This number is auto generated when you create an event on the frontend, starting from 1.</div>
 <br>
 <div class="arguments collapsible"> GET variables:
     <div class="tabulate">
-        Event_ID: The ID of the event 
+        Event_ID: The ID of the event (write only the digit)
     </div>
 </div><br>
 
-<span class="URI">GET http://130.240.170.56:8000/Event/id/ </span><input type="text" class="input"><button class="try" data-index="0">Try it</button>
+<span>130.240.170.56:8000/event/</span>
+<form>
+    <input type="text" name="inputform" id="textbox2"/>
+    <input type="submit" onclick="try2();"/>
+</form>
+
+<div class="result collapsible"><div><pre class="json2" id="2"></pre></div></div>
 
 <hr class="featurette-divider"></hr>   
 
@@ -63,7 +78,8 @@
     </div>
 </div><br>
 
-<span class="URI">GET http://130.240.170.56:8000/Event/ <button class="try" data-index="0">Try it</button>
+<span class="URI">130.240.170.56:8000/event/</span><button onclick="try3()" class="try3">Try it</button>
+<div class="result collapsible"><div><pre class="json3" id="3"></pre></div></div>
 
 <hr class="featurette-divider"></hr>   
 
@@ -103,30 +119,76 @@
 </body>
 <script>
     
- $(".try").click(function()
-    {
-        var index = $(this).attr("data-index");
-        var URI = ($($(".URI")[index])).text();
-        URI = URI.slice(0, URI.length-1);
-        var arguments = $($(".input")[index]).val();
-        var individual = arguments.split("&");
-        var prepared = {};
-        for (var i of individual)
-        {
-            var temp = i.split("=");
-            prepared[temp[0]] = temp[1];
-        }
-        $.ajax({
-            type: "GET",
-            url: URI,
-            data: prepared
-        }).done(function(data)
-        {
-            var $div = $($(".result")[index]);
-            $($(".json")[index]).html(data);
-            $div.show();
-        })
-    });
+    function try1()
+    {  
+    var id = document.getElementById("textbox1").value;
+    var xmlHttp = null;
 
+      xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange=function() {
+        if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+            var json = xmlHttp.responseText;
+            var obj = JSON.parse(json); 
+            console.log(obj);
+            
+        }
+        else{
+          return "Error";
+        }
+      };
+  
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/users/" +id, false );
+    xmlHttp.send( null );
+        
+    }
+    
+    function try2()
+    {  
+    var id = document.getElementById("textbox2").value;
+    var xmlHttp = null;
+        
+      xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange=function() {
+        if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+            var json = xmlHttp.responseText;
+            var obj = JSON.parse(json); 
+            console.log(obj);
+            
+        }
+        else{
+          return "Error";
+        }
+      };
+  
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/event/" +id, false );
+    xmlHttp.send( null );
+        
+    }
+    
+    function try3()
+    {
+        
+    var xmlHttp = null;
+        
+      xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange=function() {
+        if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+            var json = xmlHttp.responseText;
+            var obj = JSON.parse(json); 
+            console.log(obj);
+            
+        }
+        else{
+          return "Error";
+        }
+      };
+  
+    xmlHttp.open( "GET", "http://130.240.170.56:8000/event", false );
+    xmlHttp.send( null );
+        
+    }
+    
+    
 </script>
+
 </html>
