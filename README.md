@@ -1,1 +1,1 @@
-Design of Dynamic Web Systems - M7011E 2015
+Design of Dynamic Web Systems - M7011E
